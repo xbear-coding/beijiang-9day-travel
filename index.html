@@ -330,7 +330,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mapview__back{border:1px solid rgba(255,255,255,.16);background:transparent;color:#f3ede4;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;white-space:nowrap}
 .mapview__days{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
 .mapview__day{border:1px solid rgba(255,255,255,.16);background:transparent;color:#cfc7bb;border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;white-space:nowrap}
-.mapview__day.active{background:#d94f2b;border-color:#d94f2b;color:#fff}
+.mapview__day.active{background:#d94f2b;border-color:#ff8c5e;color:#fff;font-weight:700;box-shadow:0 0 0 2px rgba(217,79,43,.34),0 4px 14px rgba(217,79,43,.42)}
+.mapview__day--all{color:#ffcfae;border-color:rgba(255,207,174,.5)}
+.mapview__day--all.active{background:#8a4a2a;border-color:#ffcfae;color:#fff}
 .mapview__canvas{flex:1;min-height:0}
 .mapview__hint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:400;background:rgba(20,19,18,.88);color:#e9e2d8;font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
 .mapview__tools{position:absolute;right:14px;top:74px;z-index:400;display:flex;flex-direction:column;gap:8px}
@@ -353,6 +355,18 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-legend i{display:inline-block;width:22px;height:3px;border-radius:2px;vertical-align:middle;margin-right:8px}
 
 .mv-dest span{display:inline-block;transform:translate(-50%,-100%);background:rgba(28,24,21,.86);color:#ffd9b0;font-size:11px;line-height:1.6;padding:2px 7px;border-radius:5px;white-space:nowrap;border:1px solid rgba(255,217,176,.45);box-shadow:0 2px 6px rgba(0,0,0,.28)}
+
+/* 地图兴趣点：圆点 + 常显名称 */
+.mv-poi{background:none;border:0}
+.mv-poi__pin{display:inline-flex;align-items:center;gap:4px;transform:translate(-10px,-50%);white-space:nowrap}
+.mv-poi__dot{width:20px;height:20px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:700;color:#fff;border:1.5px solid rgba(255,255,255,.9);box-shadow:0 3px 8px rgba(0,0,0,.5)}
+.mv-poi__name{font-size:11px;line-height:1.5;padding:2px 6px;border-radius:5px;background:rgba(20,18,16,.92);color:#f0e9de;border:1px solid rgba(255,255,255,.26);box-shadow:0 2px 6px rgba(0,0,0,.34)}
+.mv-legend__poi{display:flex;gap:6px;align-items:center;margin-top:5px;padding-top:6px;border-top:1px solid rgba(255,255,255,.1)}
+.mv-legend__poi b{width:17px;height:17px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9.5px;font-weight:700;color:#fff}
+.mv-legend__note{font-size:10.5px;color:#9a938a;line-height:1.6;margin-top:5px;max-width:190px}
+.mv-all-mode .mv-dest{display:none}
+.mv-all-mode .mv-poi__name{display:none}
+.mv-lowzoom .mv-poi__name{display:none}
 .nav-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.86rem;line-height:1.7}
 .nav-table th,.nav-table td{border-bottom:1px solid rgba(0,0,0,.12);padding:.55rem .5rem;vertical-align:top;text-align:left}
 .nav-table th{font-weight:600;background:rgba(180,85,45,.06)}
@@ -1725,9 +1739,9 @@ const mapDays = {
   D10:{t:'乌鲁木齐 → 机场', pts:[[43.830,87.630],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
 };
 const DAYS = Object.keys(mapDays);
-const KMPS = 30;                 /* 1× = 30 km/秒，全长约 80 秒 */
+const KMPS = 15;                 /* 1× = 15 km/秒，全程约 190 秒 */
 
-let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[];
+let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[],mvPoiLayer=null;
 let TRIP=null,GPTS=[],GCUM=[],TRIP_TOTAL=0,DS=[];
 const PV={km:0,maxKm:0,playing:false,speed:1,last:0,day:'D1',timer:null,_wantPlay:false};
 
@@ -1830,7 +1844,7 @@ function sliceRange(a,b){
   out.unshift(lerp(a)); out.push(lerp(b));
   return out;
 }
-function dayAt(km){for(let i=0;i<TRIP.length;i++){if(km<=TRIP[i].startKm+TRIP[i].km)return DAYS[i];}return DAYS[DAYS.length-1];}
+function dayAt(km){for(let i=0;i<TRIP.length;i++){if(km<TRIP[i].startKm+TRIP[i].km||i===TRIP.length-1)return DAYS[i];}return DAYS[DAYS.length-1];}
 function renderProgress(){
   if(!TRIP||!mvMap||!GPTS.length)return;
   const pts=sliceTo(PV.km);
@@ -1843,7 +1857,7 @@ function renderProgress(){
     mvCar=L.marker(ll,{icon:L.divIcon({className:'mv-car',html:'<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#ff7a3d" stroke="#fff" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>',iconSize:[24,24],iconAnchor:[12,12]}),zIndexOffset:900}).addTo(mvMap);
   }
   const nd=dayAt(PV.km);
-  if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);}
+  if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);mvPoiRender([nd]);document.getElementById('mapView').classList.remove('mv-all-mode');}
   PV.day=nd;
   const el=document.getElementById('pvRead');
   if(el)el.textContent=PV.day+' · '+PV.km.toFixed(0)+' / '+TRIP_TOTAL.toFixed(0)+' km';
@@ -1888,9 +1902,29 @@ function goDay(id){
   const di=DAYS.indexOf(id),d=TRIP[di];if(!d)return;
   PV.km=d.startKm;
   mvHi.setLatLngs(d.geom);
+  mvPoiRender([id]);
   mvMap.flyToBounds(L.latLngBounds(d.geom),{padding:[70,70],duration:1.0,maxZoom:10});
   renderProgress();
-  mvHint(id+' · 全程 '+d.km.toFixed(0)+' km');
+  mvHint(id+' · 全程 '+d.km.toFixed(0)+' km · '+(mapDays[id].pois||[]).length+' 个要点');
+}
+/* 兴趣点：按类型上色，名称常显，跟着当天走 */
+const POI_KIND={'住宿':{c:'#4d84c7',s:'住'},'餐饮':{c:'#c9752f',s:'食'},'景点':{c:'#3f8f6a',s:'景'},'打卡':{c:'#b8901f',s:'卡'},'补给':{c:'#6f665e',s:'补'},'路况':{c:'#5c6b7a',s:'路'},'交通':{c:'#8a6ab0',s:'机'}};
+function mvPoiRender(ids){
+  if(!mvPoiLayer)return;
+  mvPoiLayer.clearLayers();
+  const list=[];
+  (ids||[]).forEach(function(id){
+    const d=mapDays[id]; if(!d||!d.pois)return;
+    d.pois.forEach(function(p){list.push({ll:[p[0],p[1]],name:p[2],kind:p[3],day:id});});
+  });
+  const seen={};
+  list.forEach(function(p){
+    const k=p.ll[0]+'|'+p.ll[1]+'|'+p.name;
+    if(seen[k])return; seen[k]=1;
+    const st=POI_KIND[p.kind]||{c:'#8a6a5a',s:'点'};
+    const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name">'+p.name+'</span></span>',iconSize:[0,0],iconAnchor:[0,0]});
+    L.marker(p.ll,{icon:ic,zIndexOffset:620}).addTo(mvPoiLayer).bindTooltip(p.day+' · '+p.kind+' · '+p.name,{direction:'top',offset:[0,-14],opacity:.95});
+  });
 }
 function mvHint(t){
   const el=document.getElementById('mapHint');
@@ -1924,20 +1958,35 @@ function mvInit(){
   mvBase=L.polyline([],{color:'#6f665e',weight:3.2,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
   mvTrail=L.polyline([],{color:'#9e5b3c',weight:3.6,opacity:.95,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
   /* 已走段的暖光晕：把行程痕迹从底图路网里拎出来 */
-  mvGlow=L.polyline([],{color:'#ffb27a',weight:11,opacity:.22,lineCap:'round',lineJoin:'round',interactive:false}).addTo(mvMap);
-  mvHi=L.polyline([],{color:'#ffd9b0',weight:7,opacity:.55,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
+  mvGlow=L.polyline([],{color:'#ffb27a',weight:14,opacity:.3,lineCap:'round',lineJoin:'round',interactive:false}).addTo(mvMap);
+  mvHi=L.polyline([],{color:'#ffe6c9',weight:9,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
   mvProg=L.polyline([],{color:'#ff7a3d',weight:5.5,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
   L.control.scale({imperial:false,position:'bottomright'}).addTo(mvMap);
+  mvPoiLayer=L.layerGroup().addTo(mvMap);
+  mvMap.on('zoomend',function(){
+    const v=document.getElementById('mapView');if(!v)return;
+    v.classList.toggle('mv-lowzoom',mvMap.getZoom()<8.4);
+  });
 
   document.getElementById('mapDays').innerHTML=DAYS.map(function(id,i){
     return '<button class="mapview__day'+(i===0?' active':'')+'" data-day="'+id+'">'+id+' '+mapDays[id].t+'</button>';
-  }).join('');
+  }).join('')+'<button class="mapview__day mapview__day--all" data-day="ALL">全程点位</button>';
   document.querySelectorAll('.mapview__day').forEach(function(b){
     b.addEventListener('click',function(){
       if(!mvLoaded){mvHint('真实路线还在加载，稍等一下');return;}
+      const id=b.getAttribute('data-day');
       document.querySelectorAll('.mapview__day').forEach(function(x){x.classList.remove('active');});
       b.classList.add('active');
-      goDay(b.getAttribute('data-day'));
+      if(id==='ALL'){
+        document.getElementById('mapView').classList.add('mv-all-mode');
+        mvPoiRender(DAYS);
+        mvHi.setLatLngs([]);
+        mvMap.flyToBounds(L.latLngBounds(GPTS),{padding:[60,60],duration:1.0,maxZoom:9});
+        mvHint('全程 '+DAYS.length+' 天 · '+Math.round(TRIP_TOTAL)+' km · 圆点即要点，放大或点圆点看名字');
+        return;
+      }
+      document.getElementById('mapView').classList.remove('mv-all-mode');
+      goDay(id);
     });
   });
   document.getElementById('mapZoomIn').addEventListener('click',function(){mvMap.zoomIn(1,{animate:true});});
@@ -1977,15 +2026,25 @@ function mvInit(){
     const DAY_PLACE=['乌市','阿勒泰','禾木','喀纳斯','布尔津','乌尔禾·独山子','赛里木湖','温泉县','乌市','机场还车'];
     TRIP.forEach(function(d,i){
       const st=GPTS[DS[i]]||d.geom[0];
-      mvDayMarks.push(L.circleMarker(st,{radius:4,color:'#7a716a',weight:2,fillColor:'#fff',fillOpacity:.9})
-        .addTo(mvMap).bindTooltip(DAYS[i]+' 起点'));
       const en=d.geom[d.geom.length-1];
-      L.marker(en,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
-        html:'<span>'+DAYS[i]+' · '+(DAY_PLACE[i]||'')+'</span>',iconSize:[0,0],iconAnchor:[0,i===8?-30:-9]})}).addTo(mvMap);
+      const pois=(mapDays[DAYS[i]]||{}).pois||[];
+      const near=function(pt){return pois.some(function(p){return Math.abs(p[0]-pt[0])<0.02&&Math.abs(p[1]-pt[1])<0.02;});};
+      if(!near(st)){
+        mvDayMarks.push(L.circleMarker(st,{radius:4,color:'#7a716a',weight:2,fillColor:'#fff',fillOpacity:.9})
+          .addTo(mvMap).bindTooltip(DAYS[i]+' 起点'));
+      }
+      if(!near(en)){
+        L.marker(en,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
+          html:'<span>'+DAYS[i]+' · '+(DAY_PLACE[i]||'')+'</span>',iconSize:[0,0],iconAnchor:[0,i===8?-30:-9]})}).addTo(mvMap);
+      }else{
+        L.marker(en,{interactive:false,zIndexOffset:560,icon:L.divIcon({className:'mv-dest',
+          html:'<span style="opacity:.68">'+DAYS[i]+'</span>',iconSize:[0,0],iconAnchor:[0,-30]})}).addTo(mvMap);
+      }
     });
     PV.km=0;PV.maxKm=0;renderProgress();
+    mvPoiRender([DAYS[0]]);
     mvMap.flyToBounds(L.latLngBounds(TRIP[0].geom),{padding:[70,70],duration:1.1,maxZoom:10});
-    mvHint('真实道路已载入 · 全长约 '+TRIP_TOTAL.toFixed(0)+' km，按播放看全程');
+    mvHint('真实道路已载入 · 全长约 '+TRIP_TOTAL.toFixed(0)+' km，点日期看当天要点，按播放走全程');
     if(PV._wantPlay){PV._wantPlay=false;setPlaying(true);}
   });
 }
@@ -2068,6 +2127,8 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       <div><i style="background:#b0492a"></i>走过了</div>
       <div><i style="background:#ff7a3d;box-shadow:0 0 0 2px rgba(255,122,61,.28)"></i>正在走</div>
       <div><i style="background:#ffd9b0"></i>当天整段</div>
+      <div class="mv-legend__poi"><b style="background:#4d84c7">住</b><b style="background:#c9752f">食</b><b style="background:#3f8f6a">景</b><b style="background:#b8901f">卡</b><b style="background:#6f665e">补</b><b style="background:#8a6ab0">机</b></div>
+      <div class="mv-legend__note">圆点标的是有确切位置的行程要点，进出疆为航班、落地取车。其余店在「吃住」页看地址。</div>
     </div>
     <div class="mapview__hint" id="mapHint">正在载入真实道路路线…</div>
   </div>
