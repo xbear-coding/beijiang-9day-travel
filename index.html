@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三个老男人的约定 · 北疆十天九晚</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141312'/%3E%3Cpath d='M32 11v42M15 21l34 22M49 21L15 43' stroke='%23c98a58' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#141312">
+<style>
+:root {
+  --bg-primary: #141312;
+  --bg-secondary: #1a1918;
+  --bg-card: #1f1e1c;
+  --bg-overlay: rgba(20,19,18,0.92);
+  --text-primary: #f7f3ea;
+  --text-secondary: #a8a098;
+  --text-muted: #6b6660;
+  --accent: #8a6a3f;
+  --accent-hover: #a07d4a;
+  --border: #2a2826;
+  --border-light: #3a3734;
+  --danger: #c4453c;
+  --success: #5a8c5f;
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --bar-h: 60px;
+}
+.a-shell {
+  --bg-primary: #f6f2e9;
+  --bg-secondary: #ede8dd;
+  --bg-card: #ffffff;
+  --bg-overlay: rgba(246,242,233,0.95);
+  --text-primary: #1a1918;
+  --text-secondary: #5a5550;
+  --text-muted: #8a8580;
+  --accent: #8a6a3f;
+  --accent-hover: #6e5432;
+  --border: #d8d3c8;
+  --border-light: #e8e3d8;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-sans);background:var(--bg-primary);color:var(--text-primary);line-height:1.7;transition:background .4s,color .4s}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none;transition:var(--transition)}
+a:hover{color:var(--accent-hover)}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+.hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero__bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,18,0.3) 0%,rgba(20,19,18,0.85) 100%),url('assets/hero_beijiang.jpg') center/cover no-repeat;z-index:0}
+.hero__content{position:relative;z-index:1;text-align:center;padding:2rem}
+.hero__title{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,5rem);font-weight:700;color:var(--text-primary);letter-spacing:.1em;margin-bottom:1rem;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+.hero__subtitle{font-size:1rem;color:var(--text-secondary);letter-spacing:.3em;margin-bottom:3rem;text-transform:uppercase}
+.hero__meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:4rem;font-size:.85rem;color:var(--text-muted)}
+.hero__title{color:#f7f3ec;text-shadow:0 4px 30px rgba(0,0,0,.62)}
+.hero__btn{color:#f3ede4;border-color:rgba(255,255,255,.45)}
+.hero__subtitle{color:rgba(255,255,255,.86);text-shadow:0 2px 18px rgba(0,0,0,.6)}
+.hero__meta{color:rgba(255,255,255,.74);text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero__caption,.hero__note{color:rgba(255,255,255,.8);text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.hero__entries{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.hero__note{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.15rem;font-size:.8rem;letter-spacing:.08em;color:#efe7dc;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.35);border-radius:999px;cursor:pointer;transition:var(--transition);text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.hero__note:hover{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.65)}
+.hero__note__arrow{font-size:.7rem;transition:transform .3s}
+.hero__note[aria-expanded="true"] .hero__note__arrow{transform:rotate(180deg)}
+.hero__note__body{display:none;max-width:430px;margin:1rem auto 0;font-size:.78rem;line-height:1.85;color:#f4eee6;text-shadow:0 2px 14px rgba(0,0,0,.6);text-align:center}
+.hero__note__body.show{display:block}
+.hero__btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;font-family:var(--font-serif);font-size:1.1rem;letter-spacing:.15em;border:1px solid var(--accent);color:var(--text-primary);background:transparent;transition:var(--transition);position:relative;overflow:hidden}
+.hero__btn::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:-1}
+.hero__btn:hover::before{transform:scaleX(1);transform-origin:left}
+.hero__btn:hover{color:var(--bg-primary);border-color:var(--accent)}
+.theme-toggle{position:fixed;top:calc((var(--bar-h) - 40px) / 2);right:1rem;z-index:1000;width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);transition:var(--transition);background:var(--bg-overlay);backdrop-filter:blur(8px)}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.section{display:none;min-height:100vh;padding-top:calc(var(--bar-h) + 14px)}
+.section.active{display:block}
+.sticky-tabs::-webkit-scrollbar{display:none;height:0}
+.sticky-tabs{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;background:var(--bg-overlay);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 4.2rem 0 1rem;height:var(--bar-h);align-items:center;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+.sticky-tabs__back{font-size:.8rem;color:var(--text-muted);padding:.5rem 1rem .5rem 0;border-right:1px solid var(--border);margin-right:1rem;cursor:pointer;white-space:nowrap}
+.sticky-tabs__back:hover{color:var(--accent)}
+.sticky-tabs__tab{padding:.75rem 1.25rem;font-size:.9rem;color:var(--text-secondary);cursor:pointer;border-bottom:2px solid transparent;transition:var(--transition);white-space:nowrap}
+.sticky-tabs__tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.sticky-tabs__tab:hover{color:var(--text-primary)}
+.tab-panel{display:none;padding:2rem 1rem 4rem;max-width:1200px;margin:0 auto}
+.tab-panel.active{display:block}
+.page-title{font-family:var(--font-serif);font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5rem}
+.page-desc{color:var(--text-secondary);font-size:.9rem;margin-bottom:2rem;max-width:600px}
+.vertical-line{width:1px;height:2rem;background:var(--accent);margin:1.5rem 0}
+
+/* 住宿一览条 */
+.lodge-strip{display:flex;gap:0;align-items:stretch;margin:2rem 0;background:var(--bg-card);border:1px solid var(--border);overflow-x:auto}
+.lodge-strip__cell{flex:1;min-width:120px;padding:1rem .75rem;border-right:1px solid var(--border);text-align:center;cursor:pointer;transition:var(--transition)}
+.lodge-strip__cell:last-child{border-right:none}
+.lodge-strip__cell:hover{background:var(--bg-secondary)}
+.lodge-strip__cell.active{background:var(--accent);color:var(--bg-primary)}
+.lodge-strip__day{font-family:var(--font-serif);font-size:.75rem;opacity:.8}
+.lodge-strip__name{font-size:.9rem;font-weight:600;margin-top:.25rem}
+.lodge-strip__meta{font-size:.7rem;opacity:.7;margin-top:.25rem}
+
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+.timeline__day{position:relative;margin-bottom:2.5rem}
+.timeline__day::before{content:attr(data-day);position:absolute;left:-2rem;top:0;width:2rem;text-align:center;font-family:var(--font-serif);font-size:.8rem;color:var(--accent);transform:translateX(-50%)}
+.timeline__date{font-size:.85rem;color:var(--text-muted);margin-bottom:.5rem}
+.timeline__row{display:flex;gap:1rem;padding:.5rem 0;border-bottom:1px dashed var(--border-light);font-size:.9rem;line-height:1.8}
+.timeline__time{min-width:60px;color:var(--accent);font-weight:500;flex-shrink:0}
+.timeline__loc{min-width:100px;color:var(--text-secondary);flex-shrink:0}
+.timeline__action{color:var(--text-primary)}
+.timeline__note{color:var(--text-muted);font-size:.85rem;margin-left:auto;flex-shrink:0}
+.timeline__alt{margin-top:.5rem;padding:.75rem 1rem;background:var(--bg-card);border-left:3px solid var(--accent);font-size:.85rem;color:var(--text-secondary)}
+.timeline__lodge{margin-top:.5rem;padding:.75rem 1rem;background:var(--bg-secondary);border-left:3px solid var(--success);font-size:.85rem;color:var(--text-secondary)}
+.timeline__lodge strong{color:var(--text-primary)}
+
+.spots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.spot-card{background:var(--bg-card);border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:var(--transition)}
+.spot-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.spot-card__img{width:100%;height:200px;object-fit:cover;transition:transform .4s}
+.spot-card:hover .spot-card__img{transform:scale(1.03)}
+.spot-card__body{padding:1rem}
+.spot-card__name{font-family:var(--font-serif);font-size:1.1rem;margin-bottom:.5rem}
+.spot-card__desc{font-size:.85rem;color:var(--text-secondary);line-height:1.6}
+.spot-card__ref{font-size:.75rem;color:var(--text-muted);margin-top:.5rem}
+.spot-card__book{font-size:.76rem;margin-top:.4rem;color:var(--text-secondary);line-height:1.5}
+.spot-card__book a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.spot-card__book a:hover{opacity:.75}
+
+.lightbox{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:2rem}
+.lightbox.active{display:flex}
+.lightbox__img{max-width:90vw;max-height:80vh;object-fit:contain}
+.lightbox__close{position:absolute;top:1.5rem;right:1.5rem;width:40px;height:40px;color:#fff;font-size:1.5rem}
+.lightbox__nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;color:#fff;font-size:2rem}
+.lightbox__nav--prev{left:1rem}
+.lightbox__nav--next{right:1rem}
+
+/* 酒店卡片 */
+.place-card{background:var(--bg-card);border:1px solid var(--border);margin-bottom:1.5rem;overflow:hidden}
+.place-card--hotel{border-left:3px solid var(--success)}
+.place-card--restaurant{border-left:3px solid var(--accent)}
+.place-card__header{display:flex;gap:1rem;align-items:stretch}
+.place-card__img{width:180px;height:130px;object-fit:cover;flex-shrink:0}
+.place-card__info{padding:1rem;flex:1}
+.place-card__name{font-family:var(--font-serif);font-size:1.15rem;margin-bottom:.25rem}
+.place-card__type{font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
+.place-card__detail{font-size:.85rem;color:var(--text-secondary);line-height:1.8}
+.place-card__link{display:inline-block;margin-top:.5rem;font-size:.75rem;color:var(--accent);border-bottom:1px solid currentColor}
+.place-card__link:hover{color:var(--accent-hover)}
+.place-link{display:inline-flex;align-items:center;gap:.38rem;margin-top:.55rem;padding:.34rem .62rem;border-radius:999px;border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);background:color-mix(in oklab,var(--accent) 10%,transparent);color:var(--accent);font-size:.74rem;line-height:1;text-decoration:none;transition:background .18s,border-color .18s,transform .18s}
+.place-link:hover{background:color-mix(in oklab,var(--accent) 22%,transparent);border-color:var(--accent);transform:translateY(-1px)}
+.place-link--tel{margin:0 0 0 .3rem;padding:.2rem .45rem}
+.place-link .ic{width:14px;height:14px;flex:0 0 14px}
+.ic{width:13px;height:13px;display:inline-block;vertical-align:-2px;margin-right:.18rem;opacity:.7}
+.place-card__tags{margin-top:.5rem;display:flex;gap:.4rem;flex-wrap:wrap}
+.place-card__tag{font-size:.7rem;padding:.15rem .5rem;border:1px solid var(--border);border-radius:2px;color:var(--text-muted)}
+.place-card__warn{margin-top:.5rem;font-size:.75rem;color:var(--danger);border-left:2px solid var(--danger);padding-left:.5rem}
+
+.expense-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:2rem}
+.expense-table th,.expense-table td{padding:.75rem .5rem;text-align:left;border-bottom:1px solid var(--border)}
+.expense-table thead{position:sticky;top:var(--bar-h);z-index:10}
+.expense-table th{font-family:var(--font-serif);color:var(--accent);font-weight:500;background:var(--bg-primary)}
+.expense-table .cat-row td{background:var(--bg-card);font-weight:500;color:var(--text-primary)}
+.expense-table .subtotal td{background:var(--bg-secondary);font-weight:600;color:var(--accent)}
+.expense-table .total td{background:var(--accent);color:var(--bg-primary);font-size:1rem;font-weight:700}
+.expense-table .tag{display:inline-block;padding:.1rem .4rem;font-size:.7rem;border-radius:2px}
+.tag-checked{background:rgba(90,140,95,.15);color:var(--success)}
+.tag-est{background:rgba(138,106,63,.15);color:var(--accent)}
+.tag-reserve{background:rgba(196,69,60,.15);color:var(--danger)}
+.settlement{background:var(--bg-card);border:1px solid var(--accent);padding:1.5rem;margin-top:2rem}
+.settlement__title{font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem;color:var(--accent)}
+.settlement__row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px dashed var(--border-light);font-size:.9rem}
+.settlement__row:last-child{border-bottom:none;font-weight:600;color:var(--accent);font-size:1rem}
+#suanzhang{padding-top:calc(var(--bar-h) + 18px)}
+.settlement{padding-top:1.9rem}
+.settlement__title{margin-top:.1rem}
+#suanzhang .expense-table{margin-top:.4rem}
+.settle-rule{font-size:.87rem;color:var(--text-secondary);line-height:1.75;margin:0 0 .5rem}
+.settle-note{font-size:.8rem;color:var(--text-muted);line-height:1.75;margin-top:1rem;padding-top:.8rem;border-top:1px dashed var(--border-light)}
+.settle-note strong{color:var(--accent)}
+
+.weather-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
+.weather-card{background:var(--bg-card);border:1px solid var(--border);padding:1rem;text-align:center}
+.weather-card__loc{font-family:var(--font-serif);font-size:1rem;margin-bottom:.5rem}
+.weather-card__temp{font-size:1.5rem;color:var(--accent);margin-bottom:.25rem}
+.weather-card__desc{font-size:.8rem;color:var(--text-muted)}
+.task-list{list-style:none}
+.task-list li{padding:.75rem 1rem;background:var(--bg-card);border:1px solid var(--border);margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem;font-size:.9rem}
+.task-list li::before{content:'☐';color:var(--accent);font-size:1.1rem}
+.task-list.is-live li{cursor:pointer;user-select:none}
+.task-list.is-live li::before{content:'';display:none}
+.task-list.is-live li input{flex:none;width:18px;height:18px;accent-color:var(--accent);cursor:pointer;margin:0}
+.task-list.is-live li.done{opacity:.55}
+.task-list.is-live li .tx{flex:1;line-height:1.65}
+.task-list.is-live li.done .tx{text-decoration:line-through}
+.task-list.is-live li .tm{flex:none;color:var(--text-muted);font-size:.76rem;font-variant-numeric:tabular-nums}
+.emergency-card{background:var(--bg-card);border:1px solid var(--danger);padding:1rem;margin-bottom:1rem}
+.emergency-card__title{color:var(--danger);font-family:var(--font-serif);margin-bottom:.5rem}
+.emergency-card__phone{font-size:1.2rem;font-weight:600;color:var(--text-primary)}
+.tips-list{list-style:none}
+.tips-list li{padding:.75rem 0;border-bottom:1px dashed var(--border-light);font-size:.9rem;color:var(--text-secondary)}
+.tips-list li::before{content:'⚠';color:var(--accent);margin-right:.5rem}
+.tips-group__title{font-family:var(--font-serif);font-size:1.05rem;margin:1.9rem 0 .15rem;color:var(--text-primary)}
+.tips-group__count{font-size:.74rem;color:var(--text-muted);font-weight:400;margin-left:.5rem}
+.tips-list--pack li::before{display:none}
+.tips-list--pack label{display:flex;align-items:flex-start;gap:.55rem;cursor:pointer}
+.tips-list--pack input{accent-color:var(--accent);margin:.15rem 0 0;flex:none}
+.tips-list--pack label span{flex:1}
+.tips-list--pack input:checked+span{text-decoration:line-through;opacity:.5}
+
+/* 住宿明细表 */
+.lodge-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-bottom:1rem}
+.lodge-table th,.lodge-table td{padding:.6rem .5rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.lodge-table th{font-family:var(--font-serif);color:var(--accent);font-weight:500;background:var(--bg-secondary)}
+.lodge-table tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.lodge-table .lvl-a{color:var(--success);font-weight:600}
+.lodge-table .lvl-b{color:var(--accent);font-weight:600}
+.lodge-table .lvl-c{color:var(--text-muted);font-weight:600}
+
+.disclaimer{font-size:.75rem;color:var(--text-muted);border-top:1px solid var(--border);padding:1.5rem 1rem;text-align:center;line-height:1.8}
+.source-link{font-size:.75rem;color:var(--accent);opacity:.8;margin-left:.25rem}
+.source-link:hover{opacity:1}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:768px){
+.hero__entries{flex-direction:column;align-items:center}
+.hero__btn{width:100%;max-width:280px;justify-content:center}
+.sticky-tabs{overflow-x:auto}
+.sticky-tabs__tab{padding:.75rem .75rem;font-size:.8rem}
+.place-card__header{flex-direction:column}
+.place-card__img{width:100%;height:160px}
+.timeline__row{flex-wrap:wrap}
+.timeline__note{margin-left:0;width:100%}
+.expense-table{font-size:.75rem}
+.expense-table th,.expense-table td{padding:.5rem .25rem}
+.lodge-strip__cell{min-width:90px;padding:.75rem .5rem}
+.theme-toggle{width:36px;height:36px;top:calc((var(--bar-h) - 36px) / 2);right:.6rem}
+.sticky-tabs{padding:0 3.2rem 0 .5rem}
+.sticky-tabs__back{padding:.5rem .55rem .5rem 0;margin-right:.45rem;font-size:.72rem}
+.sticky-tabs__tab{padding:.7rem .6rem;font-size:.75rem}
+.sticky-tabs__entry{margin-right:3.2rem;padding:.7rem .6rem;font-size:.75rem}
+.settlement{padding:1rem}
+.settlement__row{flex-wrap:wrap;gap:.15rem}
+.page-desc{max-width:none;font-size:.85rem}
+}
+@media(max-width:480px){
+.hero__title{font-size:2rem;letter-spacing:.05em;line-height:1.28}
+.map-entry{right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:9px 13px;font-size:12px;gap:5px}
+.section{padding-bottom:84px}
+.disclaimer{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
+.subnav{padding-right:1.2rem}
+#navView .nv-wrap{padding:0 .25rem}
+#navView .nav-table td,#navView .nav-table th{padding:.55rem .4rem}
+.sticky-tabs__tab{padding:.7rem .52rem;font-size:.72rem}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+@media(max-width:700px){
+/* —— 费用表：一条一张卡，七项全展开 —— */
+.expense-table{display:block;width:100%}
+.expense-table thead{display:none}
+.expense-table tbody{display:block}
+.expense-table tr{display:block;border:1px solid var(--border);border-radius:6px;margin:0 0 .55rem;padding:.55rem .7rem;background:var(--bg-card)}
+.expense-table td{display:flex;gap:.7rem;justify-content:space-between;align-items:flex-start;border:0;padding:.16rem 0;text-align:right;font-size:.78rem;line-height:1.6}
+.expense-table td::before{flex:0 0 4.1em;text-align:left;color:var(--text-muted);font-size:.71rem;white-space:nowrap}
+.expense-table td:nth-child(1){display:none}
+.expense-table td:nth-child(2)::before{content:'项目'}
+.expense-table td:nth-child(3)::before{content:'说明'}
+.expense-table td:nth-child(4)::before{content:'金额'}
+.expense-table td:nth-child(5)::before{content:'谁付'}
+.expense-table td:nth-child(6)::before{content:'怎么来的'}
+.expense-table td:nth-child(7)::before{content:'出处'}
+.expense-table tr.cat-row{border:0;background:transparent;padding:.3rem 0 .35rem;margin:.8rem 0 .35rem}
+.expense-table tr.cat-row td{display:block;text-align:left;font-family:var(--font-serif);font-size:.92rem;color:var(--accent);background:transparent!important}
+.expense-table tr.cat-row td::before{content:none}
+.expense-table tr.subtotal,.expense-table tr.total{border-color:var(--accent);background:var(--bg-secondary)}
+.expense-table tr.subtotal td,.expense-table tr.total td{display:block;text-align:left;border:0;background:transparent!important;padding:.12rem 0;font-size:.85rem}
+.expense-table tr.subtotal td::before,.expense-table tr.total td::before{content:none}
+
+/* —— 住宿表：三种列结构分别卡片化 —— */
+.lodge-table{display:block;width:100%}
+.lodge-table thead{display:none}
+.lodge-table tbody,.lodge-table tfoot{display:block}
+.lodge-table tr{display:block;border:1px solid var(--border);border-radius:6px;margin:0 0 .55rem;padding:.55rem .75rem;background:var(--bg-card)!important}
+.lodge-table td{display:block;border:0!important;padding:.12rem 0;font-size:.79rem;line-height:1.65;background:transparent!important}
+.lodge-table td::before{color:var(--text-muted);font-size:.7rem;margin-right:.45em}
+.lodge-table td:nth-child(1){font-weight:600;color:var(--accent);font-size:.88rem;margin-bottom:.15rem}
+.lodge-table td:nth-child(1)::before{content:none}
+.lodge-table--overview td:nth-child(2)::before{content:'地点'}
+.lodge-table--overview td:nth-child(3)::before{content:'酒店'}
+.lodge-table--overview td:nth-child(4)::before{content:'参考价'}
+.lodge-table--overview td:nth-child(5)::before{content:'档次'}
+.lodge-table--overview td:nth-child(6)::before{content:'为什么'}
+.lodge-table--plans td:nth-child(2)::before{content:'住法'}
+.lodge-table--plans td:nth-child(3)::before{content:'9晚住宿'}
+.lodge-table--plans td:nth-child(4)::before{content:'全程总价'}
+.lodge-table--plans td:nth-child(5)::before{content:'人均'}
+.lodge-table--nights td:nth-child(2)::before{content:'酒店'}
+.lodge-table--nights td:nth-child(3)::before{content:'三间大床'}
+.lodge-table--nights td:nth-child(4)::before{content:'一间三床'}
+.lodge-table--nights td:nth-child(5)::before{content:'一间标间'}
+.lodge-table--nights td:nth-child(3),.lodge-table--nights td:nth-child(4),.lodge-table--nights td:nth-child(5){display:flex;justify-content:space-between}
+.lodge-table--plans td:nth-child(3),.lodge-table--plans td:nth-child(4),.lodge-table--plans td:nth-child(5){display:flex;justify-content:space-between}
+.lodge-table tfoot tr{border-color:var(--accent);background:var(--bg-secondary)!important}
+.lodge-table tfoot td{display:flex;justify-content:space-between}
+.lodge-table tfoot td:nth-child(1){font-weight:600;color:var(--accent)}
+.lodge-table tfoot td:nth-child(2)::before{content:'三间大床';color:var(--text-muted)}
+.lodge-table tfoot td:nth-child(3)::before{content:'一间三床';color:var(--text-muted)}
+.lodge-table tfoot td:nth-child(4)::before{content:'一间标间';color:var(--text-muted)}
+
+
+/* —— 导航表：一天一张卡 —— */
+.nav-table{display:block;width:100%}
+.nav-table thead{display:none}
+.nav-table tbody{display:block}
+.nav-table tr{display:block;border:1px solid var(--border);border-radius:6px;padding:.55rem .7rem;margin:0 0 .5rem;background:var(--bg-card)}
+.nav-table td{display:block;border:0!important;padding:.16rem 0;font-size:.8rem;text-align:left;white-space:normal}
+.nav-table td:nth-child(1){font-weight:600;color:var(--accent);font-size:.88rem}
+.nav-table td:nth-child(2)::before{content:'导航　';color:var(--text-muted);font-size:.71rem}
+.nav-table td:nth-child(3){display:block!important;color:var(--text-secondary)}
+.nav-table td:nth-child(3)::before{content:'里程　';color:var(--text-muted);font-size:.71rem}
+.nav-table td:nth-child(4)::before{content:'约束　';color:var(--text-muted);font-size:.71rem}
+.nv-wrap{padding:0 .6rem}
+.nv-wrap > .page-desc,.nv-note{padding-left:0;padding-right:0}
+
+.spot-card__book{flex-wrap:wrap}
+}
+
+/* ===== 独立页面：路书地图 ===== */
+.map-entry{position:fixed;right:20px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:900;display:flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(24,22,20,.86);color:#f3ede4;font-size:14px;letter-spacing:.02em;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.map-entry:hover{background:rgba(40,36,32,.94)}
+.mapview{position:fixed;inset:0;z-index:1800;background:#121110;display:none;flex-direction:column}
+.mapview.active{display:flex}
+.mapview__bar{display:flex;align-items:center;gap:14px;padding:12px 16px;background:rgba(20,19,18,.94);border-bottom:1px solid rgba(255,255,255,.08);color:#f3ede4;overflow:hidden}
+.mapview__back{border:1px solid rgba(255,255,255,.16);background:transparent;color:#f3ede4;border-radius:999px;padding:7px 14px;font-size:13px;cursor:pointer;white-space:nowrap}
+.mapview__days{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.mapview__day{border:1px solid rgba(255,255,255,.16);background:transparent;color:#cfc7bb;border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;white-space:nowrap}
+.mapview__day.active{background:#d94f2b;border-color:#d94f2b;color:#fff}
+.mapview__canvas{flex:1;min-height:0}
+.mapview__hint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:400;background:rgba(20,19,18,.88);color:#e9e2d8;font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+.mapview__tools{position:absolute;right:14px;top:74px;z-index:400;display:flex;flex-direction:column;gap:8px}
+.mapview__tool{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(24,22,20,.9);color:#f3ede4;font-size:18px;line-height:1;cursor:pointer}
+.mapview__tool:hover{background:rgba(52,46,40,.95)}
+.leaflet-container{background:#0f0f0e}
+.mapview__err{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;font-size:.9rem;line-height:1.8;color:#b9b3aa;background:#141312;z-index:2}
+
+/* ===== 路书播放器 ===== */
+.mv-player{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(20,19,18,.95);border-top:1px solid rgba(255,255,255,.08);color:#f3ede4}
+.mv-player button{border:1px solid rgba(255,255,255,.18);background:rgba(28,26,24,.9);color:#f3ede4;border-radius:10px;height:36px;min-width:44px;padding:0 10px;font-size:13px;cursor:pointer}
+.mv-player button:hover{background:rgba(58,50,44,.95)}
+.mv-player button.main{width:46px;border-radius:23px;font-size:16px}
+.mv-player .read{font-size:12.5px;color:#cfc7bb;white-space:nowrap;min-width:132px}
+.mv-player input[type=range]{flex:1;min-width:80px;accent-color:#d94f2b;height:22px}
+.mv-player .speed{min-width:52px}
+
+/* 地图图例 */
+.mv-legend{position:absolute;left:16px;bottom:64px;z-index:5200;background:rgba(24,22,20,.88);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:10px 12px;font-size:12px;color:#e8e1d6;line-height:1.9;pointer-events:none}
+.mv-legend i{display:inline-block;width:22px;height:3px;border-radius:2px;vertical-align:middle;margin-right:8px}
+
+.mv-dest span{display:inline-block;transform:translate(-50%,-100%);background:rgba(28,24,21,.86);color:#ffd9b0;font-size:11px;line-height:1.6;padding:2px 7px;border-radius:5px;white-space:nowrap;border:1px solid rgba(255,217,176,.45);box-shadow:0 2px 6px rgba(0,0,0,.28)}
+.nav-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.86rem;line-height:1.7}
+.nav-table th,.nav-table td{border-bottom:1px solid rgba(0,0,0,.12);padding:.55rem .5rem;vertical-align:top;text-align:left}
+.nav-table th{font-weight:600;background:rgba(180,85,45,.06)}
+.nav-table td:first-child{white-space:nowrap;color:var(--accent);font-weight:600}
+@media(max-width:760px){.nav-table{display:block;overflow-x:auto;white-space:normal;width:100%}.nav-table th:nth-child(3),.nav-table td:nth-child(3){display:none}.nav-table td:nth-child(4){min-width:210px}}
+
+.sticky-tabs__entry{margin-left:auto;margin-right:4rem;padding:.75rem 1.1rem;font-size:.9rem;color:var(--accent);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:var(--transition)}
+.sticky-tabs__entry:hover{color:var(--text-primary);border-bottom-color:var(--border)}
+.spot-card__kind{display:inline-block;font-size:.7rem;letter-spacing:.06em;color:#a5563a;border:1px solid rgba(180,85,45,.35);padding:1px 6px;border-radius:3px;margin-right:.45rem;vertical-align:2px}
+.wx-bar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.6rem}
+.wx-refresh{border:1px solid var(--border);background:transparent;color:var(--accent);font-size:.8rem;padding:.4rem .9rem;border-radius:999px;cursor:pointer;transition:var(--transition)}
+.wx-refresh:hover{border-color:var(--accent);background:rgba(180,85,45,.08)}
+#navView{display:none}
+#navView.active{display:block}
+.nv-body{position:absolute;top:var(--bar-h);left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg-page);padding:1.2rem 0 3.5rem}
+.nv-wrap > .page-desc,.nv-note{padding-left:1rem;padding-right:1rem}
+.nv-wrap{max-width:none;margin:0 auto}
+.nv-wrap .page-desc{max-width:none}
+.nv-note{font-size:.8rem;color:var(--text-muted);line-height:1.7;margin:.4rem 0 1.2rem}
+@media (max-width:500px){.sticky-tabs__entry{padding:.75rem .6rem;font-size:.8rem}}
+
+/* ===== 第 26 轮：二级冻结标签条 / 备注弹窗 / 图组 / 独立页磨砂导航 ===== */
+
+/* —— 二级冻结标签条：滚动到一定位置后收缩，贴在主导航下沿 —— */
+.subnav{position:sticky;top:var(--bar-h);z-index:30;display:flex;align-items:center;gap:.4rem;
+  overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;height:46px;padding:0 .15rem;
+  margin:0 0 .2rem;background:linear-gradient(180deg,var(--bg-primary) 82%,color-mix(in oklab,var(--bg-primary) 90%,transparent));
+  border-bottom:1px solid var(--border);transition:height .22s ease,padding .22s ease,border-color .22s}
+.subnav::-webkit-scrollbar{display:none;height:0}
+.subnav.is-compact{height:34px;border-bottom-color:color-mix(in oklab,var(--accent) 34%,var(--border));
+  box-shadow:0 6px 18px -12px rgba(0,0,0,.55)}
+.subnav__label{flex:none;font-size:.7rem;letter-spacing:.14em;color:var(--text-muted);padding-right:.15rem}
+.subnav.is-compact .subnav__label{display:none}
+.subnav__chip{flex:none;display:inline-flex;align-items:center;gap:.28rem;padding:.4rem .78rem;border-radius:999px;
+  border:1px solid var(--border-light);color:var(--text-secondary);font-size:.78rem;letter-spacing:.02em;line-height:1.2;
+  background:color-mix(in oklab,var(--bg-card) 90%,transparent);cursor:pointer;white-space:nowrap;transition:var(--transition)}
+.subnav.is-compact .subnav__chip{padding:.24rem .6rem;font-size:.71rem}
+.subnav__chip:hover{border-color:var(--accent);color:var(--accent)}
+.subnav__chip.active{background:var(--accent);border-color:var(--accent);color:var(--bg-primary)}
+.anchor-block{scroll-margin-top:calc(var(--bar-h) + 52px)}
+
+/* —— 走法页：住宿横向条冻结后收缩 —— */
+.lodge-strip-wrap{position:sticky;top:var(--bar-h);z-index:29;background:var(--bg-primary);
+  padding:.35rem 0 .5rem;margin:1.2rem 0 .6rem;transition:padding .22s ease}
+.lodge-strip-wrap.is-compact{padding:.15rem 0 .25rem}
+.lodge-strip{margin:0}
+.lodge-strip-wrap.is-compact .lodge-strip{border-radius:10px}
+.lodge-strip-wrap.is-compact .lodge-strip__cell{padding:.42rem .5rem}
+.lodge-strip-wrap.is-compact .lodge-strip__name{font-size:.78rem;margin-top:.1rem}
+.lodge-strip-wrap.is-compact .lodge-strip__meta{display:none}
+.lodge-strip-wrap.is-compact .lodge-strip__day{font-size:.66rem}
+
+/* —— 备注：页脚按钮 + 全屏弹窗 —— */
+.foot-note{display:flex;flex-direction:column;align-items:center;gap:.7rem;padding:2.2rem 1rem 2.6rem;
+  border-top:1px solid color-mix(in oklab,var(--border) 38%,transparent);margin-top:3rem;text-align:center}
+/* 单字钮：与「一起去看雪」并排成一行，同款描边胶囊，只靠尺码分主次 */
+.hero__note-row{display:inline-flex;align-items:center;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.note-btn{display:inline-flex;align-items:center;justify-content:center;min-width:2.55rem;padding:.52rem .8rem;
+  border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.09);
+  color:#efe7dc;font-family:var(--font-serif);font-size:.8rem;line-height:1;letter-spacing:.1em;
+  text-shadow:0 2px 14px rgba(0,0,0,.6);cursor:pointer;transition:var(--transition)}
+.note-btn:hover,.note-btn:focus-visible{background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.65)}
+.foot-note__meta{font-size:.72rem;color:var(--text-muted);letter-spacing:.02em}
+
+/* —— 按人拆账：三个二级标签，自付与分摊分块 —— */
+.money-panel{display:none}
+.money-panel.active{display:block}
+.money-card{background:var(--bg-card);border:1px solid var(--border-light);border-radius:12px;padding:1rem 1.1rem;margin-top:.9rem}
+.money-card__t{font-family:var(--font-serif);font-size:1rem;color:var(--accent);margin-bottom:.5rem;letter-spacing:.02em}
+.money-list{list-style:none;margin:0;padding:0}
+.money-list li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.38rem 0;
+  font-size:.86rem;border-bottom:1px dashed var(--border-light)}
+.money-list li:last-child{border-bottom:none}
+.money-list li b{font-weight:500;color:var(--surface-face,#efe7dc)}
+.money-list li span:last-child{flex:none;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.money-card__s{margin-top:.55rem;padding-top:.55rem;border-top:1px solid var(--border-light);
+  font-size:.9rem;font-weight:600;text-align:right;letter-spacing:.02em}
+.money-sum{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-top:1.1rem;
+  padding:1rem calc(1.1rem + 54px) 1rem 1.1rem;border-radius:12px;
+  background:color-mix(in oklab,var(--accent) 9%,transparent);
+  border:1px solid color-mix(in oklab,var(--accent) 32%,transparent)}
+.money-sum span{font-size:.86rem;color:var(--text-secondary,var(--text-muted))}
+.money-sum b{font-family:var(--font-serif);font-size:1.35rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.money-note{margin-top:.7rem;font-size:.8rem;line-height:1.85;color:var(--text-muted)}
+.note-modal{position:fixed;inset:0;z-index:2100;display:none;padding:clamp(.75rem,3vw,2.2rem);
+  background:rgba(10,9,8,.62);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.note-modal.active{display:flex;align-items:center;justify-content:center}
+.note-sheet{width:min(920px,100%);max-height:min(86vh,900px);overflow:auto;border-radius:18px;padding:clamp(1.1rem,3vw,2.2rem);
+  background:color-mix(in oklab,var(--bg-card) 92%,transparent);
+  border:1px solid color-mix(in oklab,var(--border-light) 80%,transparent);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.7),inset 0 1px 0 rgba(255,255,255,.06)}
+.a-shell .note-sheet{background:color-mix(in oklab,var(--bg-card) 96%,transparent);box-shadow:0 30px 80px -34px rgba(0,0,0,.28)}
+.note-sheet__head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.4rem}
+.note-sheet__title{font-family:var(--font-serif);font-size:clamp(1.15rem,3.4vw,1.55rem);letter-spacing:.02em}
+.note-sheet__sub{font-size:.76rem;color:var(--text-muted);margin-top:.35rem}
+.note-sheet__close{width:38px;height:38px;border-radius:50%;border:1px solid var(--border-light);color:var(--text-secondary);font-size:1.15rem;flex:none}
+.note-sheet__close:hover{border-color:var(--accent);color:var(--accent)}
+.note-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem 1.8rem}
+.note-sec__title{display:flex;align-items:center;gap:.5rem;font-size:.86rem;letter-spacing:.08em;color:var(--accent);margin-bottom:.6rem}
+.note-sec__title::before{content:'';width:3px;height:14px;background:var(--accent);border-radius:2px}
+.note-sec__list{list-style:none;margin:0}
+.note-sec__list li{font-size:.83rem;line-height:1.85;color:var(--text-secondary);padding:.3rem 0;border-bottom:1px dashed var(--border-light)}
+.note-sec__list li:last-child{border-bottom:0}
+.note-sec__list li b{color:var(--text-primary);font-weight:600}
+
+/* —— 看点：多图左右滑动 —— */
+.spot-card__gallery{position:relative;height:212px;overflow:hidden;background:var(--bg-secondary)}
+.spot-card__track{display:flex;height:100%;will-change:transform;transition:transform .42s cubic-bezier(.4,0,.2,1)}
+.spot-card__slide{flex:0 0 100%;height:100%}
+.spot-card__slide img{width:100%;height:100%;object-fit:cover;display:block}
+.spot-card__nav{position:absolute;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:rgba(16,15,14,.54);color:#fff;font-size:.95rem;
+  border:1px solid rgba(255,255,255,.24);opacity:0;transition:opacity .2s ease,background .2s ease;z-index:2}
+.spot-card:hover .spot-card__nav,.spot-card__nav:focus-visible{opacity:1}
+.spot-card__nav:hover{background:rgba(16,15,14,.8)}
+.spot-card__nav--prev{left:.5rem}
+.spot-card__nav--next{right:.5rem}
+.spot-card__dots{position:absolute;left:50%;bottom:.55rem;transform:translateX(-50%);display:flex;gap:.28rem;z-index:2}
+.spot-card__dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.55);border:0;padding:0}
+.spot-card__dot.on{background:#fff;width:14px;border-radius:3px}
+.spot-card__count{position:absolute;right:.55rem;top:.55rem;z-index:2;font-size:.68rem;letter-spacing:.06em;
+  color:#fff;background:rgba(16,15,14,.5);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.1rem .42rem}
+.region-head{display:flex;align-items:baseline;gap:.6rem;margin:2.2rem 0 .9rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.region-head__name{font-family:var(--font-serif);font-size:1.05rem;letter-spacing:.06em}
+.region-head__meta{font-size:.72rem;color:var(--text-muted)}
+
+/* —— 独立页导航：照片背景 + 磨砂玻璃，高度不超栏高 —— */
+.mapview__bar{height:var(--bar-h);padding:0 clamp(.7rem,2vw,1.1rem);position:relative;overflow:hidden;
+  background-size:cover;background-position:center 42%;border-bottom:1px solid rgba(255,255,255,.1);
+  box-shadow:0 8px 30px -18px rgba(0,0,0,.8)}
+.mapview__bar::before{content:'';position:absolute;inset:0;z-index:0;
+  background:linear-gradient(100deg,rgba(14,13,12,.9) 0%,rgba(14,13,12,.72) 46%,rgba(14,13,12,.9) 100%);
+  backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15)}
+.mapview__bar > *{position:relative;z-index:1}
+#navView .mapview__bar{background-image:url('assets/hero_beijiang.jpg')}
+#mapView .mapview__bar{background-image:url('assets/spot_sayram.jpg')}
+#carView .mapview__bar{background-image:url('assets/spot_aheroad.jpg')}
+.mapview__bar .mapview__back{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.mapview__bar .mapview__day{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2)}
+
+/* —— 租车独立页 —— */
+.car-hero{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1rem}
+.car-badge{font-size:.74rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--border-light);color:var(--text-secondary)}
+.car-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1rem 1.1rem;margin-bottom:.9rem}
+.car-card__top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.car-card__name{font-family:var(--font-serif);font-size:1.02rem}
+.car-card__price{color:var(--accent);font-weight:600;font-size:.95rem;white-space:nowrap}
+.car-card__price small{font-weight:400;color:var(--text-muted);font-size:.7rem}
+.car-card__spec{display:flex;flex-wrap:wrap;gap:.35rem;margin:.55rem 0 .2rem}
+.car-card__spec span{font-size:.72rem;color:var(--text-secondary);border:1px solid var(--border-light);border-radius:4px;padding:.1rem .4rem}
+.car-card__note{font-size:.78rem;color:var(--text-secondary);line-height:1.7;margin-top:.55rem}
+.car-card__note b{color:var(--danger)}
+.car-card--note{border-left:3px solid var(--accent);background:var(--bg-card)}
+.car-card__eg{font-size:.78rem;color:var(--text-muted);margin:.25rem 0 .55rem}
+.car-card__fit,.car-card__why,.car-card__watch{font-size:.86rem;line-height:1.75;color:var(--text-secondary);margin:.3rem 0}
+.car-card__fit b,.car-card__why b,.car-card__watch b{color:var(--text-primary);font-weight:600}
+.car-card__watch{color:var(--text-muted);font-size:.82rem}
+.car-card--emg .car-card__name{color:var(--accent);font-size:.95rem;margin-bottom:.2rem}
+.car-links{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:.85rem}
+.car-link{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .8rem;border:1px solid var(--border);border-radius:999px;
+  font-size:.82rem;color:var(--text-primary);text-decoration:none;background:var(--bg-card);transition:.18s}
+.car-link span{font-size:.72rem;color:var(--text-muted)}
+.car-link:hover{border-color:var(--accent);color:var(--accent)}
+.car-svc{list-style:none;padding:0;margin:0}
+.car-svc li{font-size:.86rem;line-height:1.8;color:var(--text-secondary);padding:.5rem 0;border-bottom:1px solid var(--border-light)}
+.car-svc li b{color:var(--text-primary);font-weight:600}
+@media (max-width:700px){
+  .car-card{padding:.85rem .9rem}
+  .car-card__fit,.car-card__why,.car-card__watch,.car-svc li{font-size:.82rem}
+  .car-link{font-size:.78rem;padding:.4rem .7rem}
+}
+
+
+
+.lightbox__cap{position:absolute;left:50%;bottom:1.4rem;transform:translateX(-50%);color:#f3ede4;font-size:.8rem;letter-spacing:.04em;background:rgba(14,13,12,.62);padding:.35rem .8rem;border-radius:999px}
+.place-card__media{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);position:relative}
+.place-card__shot{display:block;padding:0;border:0;background:var(--bg-secondary);aspect-ratio:4/3;overflow:hidden;cursor:zoom-in}
+.place-card__shot img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.place-card__shot:hover img{transform:scale(1.04)}
+.place-card__more{position:absolute;right:.5rem;top:.5rem;font-size:.68rem;color:#fff;background:rgba(14,13,12,.55);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.08rem .42rem}
+@media(max-width:700px){.place-card__media{grid-template-columns:repeat(2,1fr)}.place-card__info{padding:.85rem .8rem}}
+
+
+.pack-callout{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+  margin:.9rem 0 1.4rem;padding:1rem 1.15rem;border-radius:14px;
+  border:1px solid color-mix(in oklab,var(--accent) 34%,transparent);
+  background:linear-gradient(135deg,color-mix(in oklab,var(--accent) 12%,transparent),transparent 70%),var(--bg-card)}
+.pack-callout__main b{display:block;font-family:var(--font-serif);font-size:.98rem;letter-spacing:.02em;margin-bottom:.2rem}
+.pack-callout__main span{font-size:.78rem;color:var(--text-secondary)}
+.pack-callout__side{display:flex;align-items:center;gap:.8rem;flex:none}
+.pack-callout__num{font-size:.86rem;color:var(--accent);font-variant-numeric:tabular-nums}
+.pack-callout__go{border:1px solid color-mix(in oklab,var(--accent) 40%,transparent);background:transparent;
+  color:var(--accent);border-radius:999px;padding:.34rem .75rem;font-size:.76rem;cursor:pointer;transition:var(--transition)}
+.pack-callout__go:hover{background:color-mix(in oklab,var(--accent) 18%,transparent)}
+.tips-list--pack li::before{content:none}
+
+</style>
+<link rel="stylesheet" href="assets/leaflet.css">
+<script src="assets/leaflet.js" defer></script>
+</head>
+<body>
+<noscript><div style="padding:16px;background:#1b1917;color:#f3ede4;font-size:15px">这一页要靠浏览器正常打开才显示行程、图片和地图，别关掉脚本。</div></noscript>
+<button class="theme-toggle" id="themeToggle" aria-label="切换主题">◐</button>
+
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__content reveal">
+    <h1 class="hero__title">三个老男人的约定</h1>
+    <p class="hero__subtitle">刘总 · 熊大 · 蒋爹</p>
+    <div class="hero__meta"><span>2026.12.09 — 12.18</span><span>长沙 · 深圳 → 乌鲁木齐 → 北疆</span></div>
+    <div class="hero__entries">
+      <button class="hero__btn" onclick="enterSection('jiutian')">十天</button>
+      <button class="hero__btn" onclick="enterSection('lushang')">路上</button>
+    </div>
+    <div class="vertical-line" style="margin:3rem auto"></div>
+    <div class="hero__note-row">
+      <button class="hero__note" id="heroNote" onclick="toggleHeroNote()" aria-expanded="false" aria-controls="heroNoteBody"><span>十天九晚，一起去看雪</span><span class="hero__note__arrow">▾</span></button>
+      <button class="note-btn" type="button" onclick="openNote()" aria-label="出发前备注" title="出发前备注">注</button>
+    </div>
+    <p class="hero__note__body" id="heroNoteBody">12 月 9 日出发、18 日回，乌鲁木齐集合。点「十天」看每天怎么走、住哪、花多少；点「路上」看天气、今天干什么、出状况怎么办，还有门道。</p>
+  </div>
+</section>
+
+<!-- ========== 十天九晚 ========== -->
+<section class="section" id="jiutian">
+  <nav class="sticky-tabs">
+    <span class="sticky-tabs__back" onclick="backToHome()">← 返回</span>
+    <span class="sticky-tabs__tab active" data-tab="zoufa">走法</span>
+    <span class="sticky-tabs__tab" data-tab="kandian">看点</span>
+    <span class="sticky-tabs__tab" data-tab="chizhu">吃住</span>
+    <span class="sticky-tabs__tab" data-tab="suanzhang">算账</span>
+  </nav>
+
+  <!-- 走法 -->
+  <div class="tab-panel active" id="zoufa">
+    <h2 class="page-title">走法</h2>
+    <p class="page-desc">十天九晚，按天排到小时，每天收在自己住处。</p>
+    <div class="lodge-strip-wrap" id="lodgeWrap"><div class="lodge-strip" id="lodgeStrip"></div></div>
+
+    <p class="page-desc" style="margin-top:2rem">每天从哪开到哪、几点放行、哪里没加油站，在同栏「导航」里。</p>
+
+    <div class="timeline" id="timeline"></div>
+  </div>
+
+  <!-- 看点 -->
+  <div class="tab-panel" id="kandian">
+    <h2 class="page-title">看点</h2>
+    <p class="page-desc">按行政区域分开，每处多张图，左右滑动看，点开可放大。</p>
+    <div class="subnav" id="spotSubnav" data-target="#kandian"><span class="subnav__label">行政区</span></div>
+    <div id="spotsGrid"></div>
+  </div>
+
+  <!-- 吃住 -->
+  <div class="tab-panel" id="chizhu">
+    <h2 class="page-title">吃住</h2>
+    <p class="page-desc">九晚住宿、七家餐厅。图都能点开看大图，卡片右下角进订房页或点评页。</p>
+    <div class="subnav" id="chizhuSubnav" data-target="#chizhu">
+      <span class="subnav__label">吃住</span>
+      <span class="subnav__chip active" data-anchor="stayTop">住</span>
+      <span class="subnav__chip" data-anchor="eatTop">吃</span>
+    </div>
+
+    <h3 class="page-title anchor-block" id="stayTop" style="font-size:1.3rem;margin-top:1.2rem">住宿总览</h3>
+    <p class="page-desc">九个晚上住哪儿，一张表看完。按"暖气足、位置方便、能拖行李箱"三条挑的首选与备选。</p>
+    <table class="lodge-table lodge-table--overview">
+      <thead><tr><th>晚</th><th>地点</th><th>酒店</th><th>参考价</th><th>档次</th><th>为何选它</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>乌市</td><td>首选 希尔顿（米东区）<br>备选 华凌智享</td><td>780（实）</td><td class="lvl-a">A·首选</td><td>到乌市当晚，暖气热水稳，离机场近</td></tr>
+        <tr><td>D2</td><td>阿勒泰</td><td>首选 金桥假日<br>备选 阿勒泰凯瑞</td><td>418（实）</td><td class="lvl-a">A·首选</td><td>市中心，次日早起赶禾木</td></tr>
+        <tr><td>D3</td><td>禾木</td><td>首选 无也民宿<br>备选 西融·禾木民宿（甲级）/ 懒猫木屋</td><td>1,764（实）</td><td class="lvl-a">A·首选</td><td>全屋地暖+雪景窗，元旦前上浮</td></tr>
+        <tr><td>D4</td><td>喀纳斯</td><td>首选 停泊STAY·坐忘（图瓦村）<br>备选 停泊·自怡（新村）</td><td>1,455（实）</td><td class="lvl-a">A·首选</td><td>4.9 分雪山草场；自怡同档 ¥1,180</td></tr>
+        <tr><td>D5</td><td>布尔津</td><td>首选 知禾·设计师民宿（额河店）<br>备选 深山见·北山下 / 叁旬·观景</td><td>394（实）</td><td class="lvl-a">A·首选</td><td>星级店冬季歇业，河边精品民宿全营；4.7 分 345 条，双床含早可免费取消</td></tr>
+        <tr><td>D6</td><td>克拉玛依</td><td>首选 独山子玛依塔柯（五星级）<br>备选 乌尔禾丽呈华廷</td><td>288（实）</td><td class="lvl-a">A·首选</td><td>玛依塔柯在独库起点，次日去赛湖顺路</td></tr>
+        <tr><td>D7</td><td>赛湖</td><td>首选 赛里木湖逸扉酒店<br>备选 赛里木湖·塔玛暇尔</td><td>462（实）</td><td class="lvl-a">A·首选</td><td>景区内西海路 7 号集群，硫磺温泉，4.7 分 522 条，12/15 实订得到</td></tr>
+        <tr><td>D8</td><td>温泉县</td><td>首选 花间堂·阿日相<br>备选 圣泉湾·万信至格 / 圣泉酒店</td><td>1,146（实）</td><td class="lvl-a">A·首选</td><td>私汤入户，泡完直接睡；带赛湖门票可打折</td></tr>
+        <tr><td>D9</td><td>乌市</td><td>首选 希尔顿（同 D1）<br>备选 华凌智享</td><td>780（实）</td><td class="lvl-c">C·同店</td><td>免搬行李，去大巴扎和机场都顺</td></tr>
+      </tbody>
+    </table>
+
+    <p class="page-desc" style="margin-top:1rem;border-left:3px solid #b4552d;padding-left:.9rem">布尔津的星级酒店冬天基本歇业，能住的是额尔齐斯河边那批民宿；赛里木湖景区里的酒店照常营业。这两晚按卡片上的店订就行，不用换方案。</p>
+
+    <h3 class="page-title" style="font-size:1.3rem;margin-top:2rem">房型计价（9 晚 · 实价重算）</h3>
+    <p class="page-desc">价格是 12 月每晚的真实房价，乘三间。三个人一律住三间——高星酒店基本没有三床房，只有禾木无也有一间真三人间。D4、D7 两晚没有三人间，三床档按两间双床、三人分睡算。</p>
+    <table class="lodge-table lodge-table--plans">
+      <thead><tr><th>方案</th><th>住法</th><th>9晚住宿</th><th>全程总价</th><th>人均</th></tr></thead>
+      <tbody>
+        <tr><td>三间大床</td><td>三人各住一间，逐晚实价×3</td><td>¥21,759</td><td>¥46,824</td><td>¥15,608</td></tr>
+        <tr><td>一间三床</td><td>三人同房（三人间/家庭房；D5、D7 无此房型，按两间双床计）</td><td>¥10,742</td><td>¥35,807</td><td>¥11,936</td></tr>
+        <tr><td>一间标间（2 人）</td><td>两人出行，1 间标间或大床，人均分摊</td><td>¥7,253</td><td>—</td><td>房费人均 ¥3,627</td></tr>
+      </tbody>
+    </table>
+    <h4 style="margin:1.6rem 0 .6rem;font-size:1rem">逐晚三种住法（¥，含税，携程 12 月实际日期）</h4>
+    <div style="overflow-x:auto"><table class="lodge-table lodge-table--nights">
+      <thead><tr><th>晚</th><th>酒店</th><th>三间大床</th><th>一间三床</th><th>一间标间</th></tr></thead>
+      <tbody>
+        <tr><td>D1</td><td>希尔顿（乌市） <span class="tag tag-checked">实价</span></td><td>¥2,340</td><td>¥1,092</td><td>¥780</td></tr>
+        <tr><td>D2</td><td>金桥假日 <span class="tag tag-checked">实价</span></td><td>¥1,254</td><td>¥585</td><td>¥418</td></tr>
+        <tr><td>D3</td><td>无也民宿 <span class="tag tag-checked">实价</span></td><td>¥5,292</td><td>¥2,545</td><td>¥1,764</td></tr>
+        <tr><td>D4</td><td>停泊STAY·坐忘 <span class="tag tag-est">估算</span></td><td>¥3,663</td><td>¥1,709</td><td>¥1,221</td></tr>
+        <tr><td>D5</td><td>知禾·设计师民宿（额河店） <span class="tag tag-checked">实价</span></td><td>¥1,182</td><td>¥788</td><td>¥394</td></tr>
+        <tr><td>D6</td><td>玛依塔柯 <span class="tag tag-checked">实价</span></td><td>¥864</td><td>¥403</td><td>¥288</td></tr>
+        <tr><td>D7</td><td>赛里木湖逸扉酒店 <span class="tag tag-checked">实价</span></td><td>¥1,386</td><td>¥924</td><td>¥462</td></tr>
+        <tr><td>D8</td><td>花间堂·阿日相 <span class="tag tag-checked">实价</span></td><td>¥3,438</td><td>¥1,604</td><td>¥1,146</td></tr>
+        <tr><td>D9</td><td>希尔顿（乌市） <span class="tag tag-checked">实价</span></td><td>¥2,340</td><td>¥1,092</td><td>¥780</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">九晚合计</td><td>¥21,759</td><td>¥10,742</td><td>¥7,253</td></tr></tfoot>
+    </table></div>
+
+    <p class="page-desc" style="margin-top:.8rem">四件事按顺序办：① 禾木无也这晚最贵也最紧，第一优先订；② 玛依塔柯 ¥288 含双早，订时要求三间同层；③ 赛湖那晚想住湖景，逸扉高级湖景双床比园景只贵 96 元，值得换；④ 温泉县凭赛湖门票在指定商户有折扣，票根别丢。</p>
+
+    <h3 class="page-title" style="font-size:1.3rem;margin-top:2rem">酒店明细</h3>
+    <div id="hotelsList"></div>
+
+    <h3 class="page-title anchor-block" id="eatTop" style="font-size:1.3rem;margin-top:2rem">餐厅明细</h3>
+    <p class="page-desc">七家都在大众点评有页面，评分和条数写在标签上。点卡片右下角图标进点评看实拍，或者直接在 App 里搜店名。</p>
+    <div id="restaurantsList"></div>
+  </div>
+
+  <!-- 算账 -->
+  <div class="tab-panel" id="suanzhang">
+    <h2 class="page-title">算账</h2>
+    <p class="page-desc">三个人十天的钱，一笔一笔摊开。谁自己花的、谁该分多少，最后都算到元。</p>
+    <nav class="subnav" id="moneySubnav" data-target="#suanzhang">
+      <span class="subnav__label">按人看</span>
+      <span class="subnav__chip active" data-mwho="刘总">刘总</span>
+      <span class="subnav__chip" data-mwho="蒋爹">蒋爹</span>
+      <span class="subnav__chip" data-mwho="熊大">熊大</span>
+    </nav>
+    <div id="moneyTabs"></div>
+    <div><table class="expense-table"><thead><tr><th>分类</th><th>项目</th><th>说明</th><th>金额</th><th>谁付</th><th>怎么来的</th><th>出处</th></tr></thead><tbody id="expenseBody"></tbody></table></div>
+    <div class="settlement" id="settlement"></div>
+  </div>
+</section>
+
+<!-- ========== 路上 ========== -->
+<section class="section" id="lushang">
+  <nav class="sticky-tabs">
+    <span class="sticky-tabs__back" onclick="backToHome()">← 返回</span>
+    <span class="sticky-tabs__tab active" data-tab="tianse">天色</span>
+    <span class="sticky-tabs__tab" data-tab="jintian">今天</span>
+    <span class="sticky-tabs__tab" data-tab="wanyi">万一</span>
+    <span class="sticky-tabs__tab" data-tab="mendao">门道</span>
+    <span class="sticky-tabs__tab" id="navEntry" data-nav="nav">导航</span>
+    <span class="sticky-tabs__tab" id="carEntry" data-nav="car">租车</span>
+  </nav>
+  <div class="tab-panel active" id="tianse">
+    <div class="wx-bar"><h2 class="page-title" style="margin:0">天色</h2><button class="wx-refresh" type="button" onclick="refreshWeather()">刷新</button><span id="wxStamp" style="font-size:.75rem;color:var(--text-muted)"></span></div>
+    <p class="page-desc">六个点位当前天气，看着不准就点刷新再取一次。</p>
+    <div class="weather-grid" id="weatherGrid"></div>
+    <p style="font-size:.75rem;color:var(--text-muted)">天气取自 <a class="source-link" href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo↗</a> · 出发前再核</p>
+  </div>
+  <div class="tab-panel" id="jintian"><h2 class="page-title">今天</h2>
+    <p class="page-desc" id="todayStamp">—</p>
+    <ul class="task-list is-live" id="taskList"></ul>
+    <p class="page-desc" id="todayNote" style="font-size:.78rem;margin-top:.6rem"></p></div>
+  <div class="tab-panel" id="wanyi"><h2 class="page-title">万一</h2><div id="emergencyList"></div></div>
+  <div class="tab-panel" id="mendao">
+    <h2 class="page-title">门道</h2>
+    <div class="subnav" id="tipsSubnav" data-target="#mendao"><span class="subnav__label">类别</span></div>
+    <div id="tipsList"></div>
+    <h3 class="page-title" style="font-size:1.15rem;margin-top:2rem">官方公告（每条都能点开核对原文）</h3>
+    <ul class="tips-list" style="margin-top:.6rem">
+      <li><a href="https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html" target="_blank" rel="noopener">喀纳斯景区冬季游览公告（管委会 2025-10-13，2026 季未见新版单发公告，官网旅游页 2026-10-30 仍写"继续执行冬季全域门票"）：冬季全域票 100 元/人·3 天，含喀纳斯+禾木+白哈巴；禾木自驾须"原行网"小程序现场预约（72 公里售票处或禾木游客中心，带行驶证+驾照，每日 10:00 放号、约满即止）；哈纳斯村、白哈巴村冬季可自驾进并在指定区域停放；日承载 1.2 万人（2025-10 公告口径）</a></li>
+      <li><a href="https://kns.gov.cn/001/001004/20230520/06b83d7b-65e1-4c93-b5e2-a65cfb502998.html" target="_blank" rel="noopener">喀纳斯门票与区间车价格公示：旺季 5/1–10/15，淡季 10/16–次年 4/30；全域票旺季 195、淡季 100 元/人次·3 天</a></li>
+      <li><a href="https://www.alt.gov.cn/lyalt/004001/20251016/67c5ddae-22cc-41ca-8e44-9415a82f805f.html" target="_blank" rel="noopener">新疆冬季景区优惠政策（阿勒泰市政府 2025-10-15）：赛里木湖 2025/10/16–2026/3/15 门票半价 35 元/人；温泉县住宿满 180 元发票免本人门票（须先住后从北门进）</a></li>
+      <li><a href="http://www.altxw.com/gg/202510/t20251023_31214558.html" target="_blank" rel="noopener">阿禾公路冬季通行通告（阿勒泰公安+文旅+交通三局）：冬季模式为每年 10/16–次年 5/14，阿勒泰—禾木 10:00–14:00 双向、阿勒泰—野卡峡 10:00–17:00，当天 20:00 前驶离；仅限装雪地胎的 7 座以下（含 7 座）四驱越野车；全线 209.45 km 无加油站。2026–2027 季自 2026/10/16 起执行（中新网 2026-10-20 报道）</a></li>
+      <li><a href="http://www.weh.gov.cn/weh/ly1/202610/c83d45a81b6947989a5c0374886df24d.shtml" target="_blank" rel="noopener">世界魔鬼城售票时间通知（乌尔禾区政府 2026-10-08）：自 2026/10/9 起 09:30–19:00，19:00 停售门票与区间车票；咨询 0990-6964701</a></li>
+      <li><a href="https://www.xinjiang.gov.cn/xinjiang/dzdt/202602/e0151c84403a4e668d7a164fdc0e472f.shtml" target="_blank" rel="noopener">自治区政府网：赛里木湖冰雪旅游季（2026-02）——门票半价 35 元/人；凭赛湖门票可免费滑初级道</a></li>
+      <li><a href="https://www.news.cn/local/20260803/4c0b11cad281454cb65de812d8fae976/c.html" target="_blank" rel="noopener">新疆赛里木湖景区自驾服务费调整（新华社 2026-08-03，转博州联合工作组通报）：自 2026/8/20 0 时起由按人计改为按车计——5 座及以下 120 元/车、6–7 座 180 元、8–19 座 300 元、20 座及以上 600 元</a></li>
+    </ul>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox"><button class="lightbox__close" onclick="closeLightbox()">×</button><button class="lightbox__nav lightbox__nav--prev" onclick="lightboxNav(-1)">‹</button><img class="lightbox__img" id="lightboxImg" src="" alt=""><div class="lightbox__cap" id="lightboxCap"></div><button class="lightbox__nav lightbox__nav--next" onclick="lightboxNav(1)">›</button></div>
+
+<div class="foot-note" id="footNote">
+  <span class="foot-note__meta">信息截至 2026 年 11 月 · 出发前再核一遍</span>
+</div>
+
+<div class="note-modal" id="noteModal" role="dialog" aria-modal="true" aria-label="出发前备注">
+  <div class="note-sheet">
+    <div class="note-sheet__head">
+      <div>
+        <div class="note-sheet__title">出发前，把这几件事过一遍</div>
+        <div class="note-sheet__sub">都是大白话，想到哪条看哪条</div>
+      </div>
+      <button class="note-sheet__close" type="button" onclick="closeNote()" aria-label="关闭">×</button>
+    </div>
+    <div class="note-grid">
+      <div class="note-sec">
+        <div class="note-sec__title">走之前</div>
+        <ul class="note-sec__list">
+          <li><b>阿禾公路通不通</b>：出发前三天看微博「阿勒泰交警」，暴雪封路是常事，封了就按备选绕 G217。</li>
+          <li><b>九晚住宿挨个打电话</b>：问三句——24 小时供暖还是分时段、热水限时吗、车能不能开到门口。</li>
+          <li><b>雪地胎和四驱</b>：没这两样上不了阿禾公路，取车时当场看轮胎花纹，不是雪地胎就换车。</li>
+          <li><b>离线地图</b>：山里没信号，出发前一天把整段离线包下好，再带一部对讲机。</li>
+          <li><b>证件</b>：身份证、驾照、行驶证复印件各存一张在手机里。</li>
+        </ul>
+      </div>
+      <div class="note-sec">
+        <div class="note-sec__title">路上怎么走</div>
+        <ul class="note-sec__list">
+          <li><b>放行窗口</b>：阿禾公路每天 10:00–14:00 双向放行，20:00 前必须驶离，别卡点。</li>
+          <li><b>加油</b>：进山前在阿勒泰加满，209 公里全线没有加油站；禾木出发前再加一次。</li>
+          <li><b>天黑</b>：山里天黑后不通行，每天 20:00 前到住处。</li>
+          <li><b>喝酒</b>：谁当晚喝了，第二天早上也不许摸方向盘。</li>
+          <li><b>每天出门前</b>：看一眼「天色」，再确认当天的放行和售票时间。</li>
+        </ul>
+      </div>
+      <div class="note-sec">
+        <div class="note-sec__title">钱怎么算</div>
+        <ul class="note-sec__list">
+          <li><b>机票各买各的</b>：长沙往返 1,600、深圳往返 1,400，谁买的算谁的。</li>
+          <li><b>一起花的钱</b>：这趟由熊大统一刷卡，刘总和蒋爹事后各转一笔，不用三个人互相追账。</li>
+          <li><b>估算项</b>：油费、过路费、餐费、门票区间车是估的，以实际花出去的为准。</li>
+          <li><b>票根</b>：喀纳斯全域票三天有效，二次检票要查；温泉县凭赛湖门票有折扣，别丢。</li>
+        </ul>
+      </div>
+      <div class="note-sec">
+        <div class="note-sec__title">天气和意外</div>
+        <ul class="note-sec__list">
+          <li><b>天气是实时取的</b>：不准就点刷新，出门前再看一眼。</li>
+          <li><b>冰面别踩</b>：12 月初赛湖是冰推冰裂，不是成片蓝冰，别站上去。</li>
+          <li><b>风大别靠边</b>：魔鬼城崖边结冰，拍照往里站。</li>
+          <li><b>出事先打这三个</b>：122 交警、400-111-0906 喀纳斯景区、租车合同上的救援电话。</li>
+          <li><b>租车救援号</b>：取车时当场存进手机，别用网上搜的通用号。</li>
+        </ul>
+      </div>
+      <div class="note-sec">
+        <div class="note-sec__title">这份路书怎么用</div>
+        <ul class="note-sec__list">
+          <li><b>十天</b>：走法、看点、吃住、算账四块，一块一块往下看。</li>
+          <li><b>路上</b>：天色、今天、万一、门道，再加导航、租车两页。</li>
+          <li><b>导航</b>：逐日终点名整段粘进高德，别只搜城市名。</li>
+          <li><b>路书地图</b>：右下角「路书地图」，按播放看全程，点某天看单日。</li>
+          <li><b>不外传</b>：这是我们三个人自己用的行程。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   行程数据 —— 换内容只改这一段，不用动下面的程序
+   0) itinerary    10 天行程时间线（daily rows，改文案只动它）
+   1) spots        9 个看点（img 指向 assets/ 下的实景图）
+   2) hotels       9 家住宿（九晚住处，含实景照与详情页链接）
+   3) restaurants  6 家餐厅
+   4) expenses     费用明细（who 写"刘总/熊大/蒋爹"=个人垫付，写"公摊"=三人平摊）
+   5) lodgingNights 住宿一览条（横向那条，D1–D9）
+   6) weatherPoints 天气卡取点
+   改完保存、浏览器刷新即可生效。
+   ============================================================ */
+const itinerary = [
+  {
+    day: "D1",
+    date: "12月09日 · 周三 · 各地 → 乌鲁木齐",
+    rows: [
+      {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总与蒋爹（长沙）同机 CZ6882 预计15:30到；熊大（深圳）ZH9241 预计17:10到，机场会合。"},
+      {t: "18:00", loc: "乌市取车", act: "机场取四驱SUV+雪地胎（已预留）。取车后直奔酒店放行李。", note: "检查胎压、防冻液"},
+      {t: "20:00", loc: "乌市", act: "晚饭：馬风花·大盘鸡（建设路，乌鲁木齐美食热门榜第1）。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
+    ],
+    lodge: "<strong>宿乌市 · 希尔顿（米东区红光山路 1237 号）</strong> 备选华凌智享。双床 45㎡ 实价 780。到乌市第一晚住得离机场近，暖气足、24 小时热水、能免费寄存行李，第二天上高速方便。",
+    alt: "备选：如航班延误超2小时，直接酒店外卖，不赶饭点。",
+  },
+  {
+    day: "D2",
+    date: "12月10日 · 周四 · 乌鲁木齐 → 阿勒泰市（约500km，S21）",
+    rows: [
+      {t: "08:00", loc: "乌市", act: "出发前加满油。走G7京新高速转S21阿乌高速，全程高速直达，不走克拉玛依。"},
+      {t: "12:30", loc: "三个泉子服务区", act: "午饭。沙漠高速服务区选择少，吃饱再走。"},
+      {t: "16:00", loc: "阿勒泰市", act: "入住。晚饭：乡村馕坑肉（团结路十区，阿勒泰新疆菜榜第2）。", link: {href: "https://m.dianping.com/shop/Ew0MxjJQa6r1rZAT", label: "大众点评↗"}},
+    ],
+    lodge: "<strong>宿阿勒泰 · 金桥假日</strong> 备选阿勒泰凯瑞。在市中心、挨着金山广场，到将军山滑雪场 5 分钟车程，有自助早餐，第二天早起赶阿禾公路省时间。",
+    alt: "备选：如遇风吹雪封路，退回乌市住一晚，次日早出发。",
+  },
+  {
+    day: "D3",
+    date: "12月11日 · 周五 · 阿勒泰 → 禾木（约209km，阿禾公路）",
+    rows: [
+      {t: "08:00", loc: "阿勒泰", act: "退房吃早饭。加满油——进山后全程无加油站。", note: "⚠ 这条最重要"},
+      {t: "09:30", loc: "路口", act: "到阿禾公路检查口排队。放行窗口 10:00-14:00。", link: {href: "https://weibo.com/altaygajj", label: "阿勒泰交警↗"}},
+      {t: "10:00", loc: "放行", act: "进阿禾公路。全程209km，限速，别超车。风景段停车拍照。"},
+      {t: "12:30", loc: "中途", act: "停车吃干粮。风大，别久留。"},
+      {t: "14:00", loc: "禾木", act: "到村口停车。换乘区间车进村。入住禾木小木屋。", note: "20:00前必须驶离公路"},
+      {t: "16:00", loc: "禾木村", act: "溜达。哈登观景台看日落。刘总说看晨雾，眼睛却在找穿红裙的姑娘——好色老痞子!"},
+      {t: "19:00", loc: "禾木", act: "晚饭。图瓦人家访+土火锅。"},
+    ],
+    lodge: "<strong>宿禾木 · 无也民宿（东哈拉 68 号）</strong> 备选西融·禾木民宿（全国首批甲级旅游民宿）、懒猫木屋·归逸山居。全屋地暖加雪景窗，有滑雪班车。订房必问三句：24 小时供暖还是分时段？热水限时吗？车能不能开到门口？",
+    alt: "备选：如阿禾公路因暴雪关闭，改走G217→布尔津→禾木（多绕约3h）。或退回阿勒泰住一晚次日再试。",
+  },
+  {
+    day: "D4",
+    date: "12月12日 · 周六 · 禾木 → 喀纳斯（约60km）",
+    rows: [
+      {t: "07:30", loc: "禾木", act: "起早。哈登平台看晨雾日出。"},
+      {t: "10:00", loc: "禾木→喀纳斯", act: "区间车或自驾。约1.5h到喀纳斯换乘中心。"},
+      {t: "14:00", loc: "喀纳斯湖", act: "徒步湖边栈道。12月初湖面刚开始结冰，别踩。"},
+    ],
+    lodge: "<strong>宿喀纳斯 · 停泊 STAY</strong> 备选云中歌。老村木屋挨得密，选主路边、车能停到跟前的，拖行李少走两百米。",
+    alt: "备选：如区间车停运，包当地司机走盘山路。",
+  },
+  {
+    day: "D5",
+    date: "12月13日 · 周日 · 喀纳斯 → 布尔津（约150km）",
+    rows: [
+      {t: "09:30", loc: "出发", act: "走S232→G217。沿途白桦林雪景。"},
+      {t: "12:00", loc: "冲乎尔", act: "停车拍照。河谷观景台。"},
+      {t: "14:00", loc: "布尔津", act: "入住。布尔津河堤夜市逛逛。刘总那晚非要坐靠窗，说看河灯，眼睛却总往路过的人身上瞟。"},
+      {t: "19:00", loc: "布尔津", act: "晚饭：煲来饱去冷水鱼（友谊峰路夜市，狗鱼一鱼两吃）。", link: {href: "https://m.dianping.com/shop/H4swvmAqdrEiNyvS", label: "大众点评↗"}},
+    ],
+    lodge: "<strong>宿布尔津 · 知禾·设计师民宿（额尔齐斯河店）</strong> 备选 深山见·北山下、叁旬·观景酒店。双床含早 ¥394、4.7 分 345 条、免费取消。银泰与喀纳斯旅游酒店冬季歇业到 2027-05-01，凯旋门、七彩河假日不接受预订——别按老方案订。民宿在河边，走到河堤夜市和网红桥，晚饭吃烤狗鱼方便。",
+  },
+  {
+    day: "D6",
+    date: "12月14日 · 周一 · 布尔津 → 克拉玛依（约330km）",
+    rows: [
+      {t: "08:30", loc: "布尔津", act: "退房出发，走G217往乌尔禾。今天不直开赛里木湖：771 km 要跑 8.5–10.5 小时，冬天跑不完，拆成两天。"},
+      {t: "11:30", loc: "乌尔禾", act: "世界魔鬼城。雪覆雅丹，进景区坐区间车；不想进就在观景台远观。"},
+      {t: "13:30", loc: "乌尔禾", act: "午饭：阿吾丹·非遗手抓饭（柳树街8-121号，乌尔禾美食榜第1，羊拐抓饭）。", link: {href: "https://m.dianping.com/shop/l3gAGb8eERXy9cEi", label: "大众点评↗"}},
+      {t: "16:30", loc: "克拉玛依", act: "入住独山子玛依塔柯酒店。下午自由：独库公路零公里打卡，克拉玛依河夜景。今天不赶路。"},
+      {t: "19:00", loc: "独山子", act: "晚饭主选住的那家酒店餐厅：三人要配酒，喝完直接上楼，车原地不动，这条最稳。备选 老掌柜芦花鸡（独山子银川路1号工商银行旁，人均约78，0992-3657658）——注意这家 2026 年 1 月被独山子区市场监管局抽检辣椒不合格，介意就按主选走。", link: {href: "http://www.dsz.gov.cn/dsz/spypjg/202604/84e3b4adef4e443ba43e6c3112f86952.shtml", label: "市监局通告↗"}},
+    ],
+    lodge: "<strong>宿独山子 · 玛依塔柯酒店</strong> 备选乌尔禾丽呈华廷。五星级旅游饭店，就在独库公路零公里起点，集中供暖、能停一台 SUV，第二天上 G3014 近。",
+    alt: "备选：魔鬼城因雪封闭，直接到克拉玛依，下午改市博物馆室内休整。",
+  },
+  {
+    day: "D7",
+    date: "12月15日 · 周二 · 克拉玛依 → 赛里木湖（约430km）",
+    rows: [
+      {t: "08:30", loc: "克拉玛依", act: "出发，走G3014奎阿高速转G30连霍高速。"},
+      {t: "12:30", loc: "奎屯", act: "服务区午饭，加满油。"},
+      {t: "16:30", loc: "赛里木湖", act: "到东门，买自驾票进景区。12月初是冰推冰裂，不是成片蓝冰。"},
+      {t: "17:30", loc: "赛湖", act: "南岸看冰推。风极大，穿厚，别站冰面上。晚饭：高白鲑餐吧（克勒涌珠店，点评 4.0、180 条，香煎高白鲑＋鱼肉饺）。点评挂着「营业状态不确定」，进酒店先问一句；不开就吃逸扉的餐厅。"},
+    ],
+    lodge: "<strong>宿赛里木湖 · 逸扉酒店（西海路 7 号）</strong> 备选 塔玛暇尔。园景双床 ¥462、高级湖景双床 ¥558，4.7 分 522 条，带硫磺温泉，12/15 实订得到。西海盛宴、湖光帐影那两家 12/15 显示不接受预订，别订。出了酒店就是湖边，明早看日出不用赶路。",
+    alt: "备选：营地停运则退到精河县城住，次日早上再进湖。",
+  },
+  {
+    day: "D8",
+    date: "12月16日 · 周三 · 赛里木湖 → 温泉县（约90km）",
+    rows: [
+      {t: "09:00", loc: "赛湖", act: "环湖拍照，南岸冰推。今天只开90km，慢慢来。"},
+      {t: "11:00", loc: "出发", act: "走G30往精河方向，转温泉县。一路雪原，路况好。"},
+      {t: "13:00", loc: "温泉县", act: "入住花间堂·阿日相，午饭就在店里膳祥餐厅吃——县城可选的馆子少，酒店餐厅是最稳的一顿。"},
+      {t: "15:00", loc: "温泉", act: "泡汤。室内外池都有，泡完再散步。蒋爹的主场。"},
+      {t: "19:00", loc: "温泉县", act: "晚饭：膳祥餐厅（酒店内）点本地羊肉和拌面；想换口味去旺福楼（孟克特北路，温泉县热门榜第2，铜锅奶茶、烤三文鱼串）。配酒适量，明天 600km。"},
+    ],
+    lodge: "<strong>宿温泉县 · 花间堂·阿日相</strong> 备选圣泉湾·万信至格、圣泉酒店。带私汤入户，泡完就能回房；温泉县是离赛湖最近的温泉，比绕去别处省一天。",
+    alt: "备选：温泉满房则回赛湖营地住第二晚，第二天直接返乌市。",
+  },
+  {
+    day: "D9",
+    date: "12月17日 · 周四 · 温泉县 → 乌鲁木齐（约600km）",
+    rows: [
+      {t: "08:30", loc: "温泉县", act: "退房出发，走G30经精河、奎屯。"},
+      {t: "12:30", loc: "奎屯", act: "服务区午饭，加满油。"},
+      {t: "18:30", loc: "乌市", act: "到乌市，入住希尔顿，放下行李。"},
+      {t: "19:30", loc: "新疆国际大巴扎", act: "逛大巴扎，看夜景、买干果。三人一起，别走散。"},
+      {t: "21:00", loc: "乌市", act: "晚饭：还是馬风花，从大巴扎走 300 米就到，配酒。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
+    ],
+    lodge: "<strong>宿乌市 · 希尔顿</strong> 和 D1 同一家，两晚不用换店；24 小时热水，退房直接去机场。",
+  },
+  {
+    day: "D10",
+    date: "12月18日 · 周五 · 乌鲁木齐 → 各地",
+    rows: [
+      {t: "09:00", loc: "乌市", act: "退房还车，三人行李一次装车。", note: "还车前加满油"},
+      {t: "12:00", loc: "机场", act: "各自安检。刘总与蒋爹 CZ6881 预计14:00；熊大 ZH9242 预计16:00。"},
+      {t: "—", loc: "归途", act: "刘总负责浪漫，熊大负责兜底，蒋爹负责把酒喝明白。下次再约。"},
+    ],
+  },
+];
+
+const spotKinds = ['网红','小众','备选','人文','网红','打卡','小众','人文','备选','打卡','人文'];
+const spots = [
+  {name:'禾木晨雾',region:'阿勒泰',desc:'日出时哈登观景台，炊烟、晨雾、木屋群。12 月初日出约 09:30。冬季全域票 100 元/人·3 天，含禾木。村里车位少，自驾进村要先预约，没约上就停游客中心换免费区间车。',img:'assets/spot_hemu.jpg',ref:'实景图·VCG',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
+  {name:'喀纳斯湖冰推',region:'阿勒泰',desc:'12 月初湖面开始结冰，冰块被风推到岸边堆起来。全域票已含喀纳斯。哈纳斯村冬季可自驾进、在指定区域停车。观鱼台冬天常封闭，到了问一句。',img:'assets/spot_kanas.jpg',ref:'实景图·VCG',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
+  {name:'白哈巴村',region:'阿勒泰',desc:'这次不去，要边防证。留作下次：西北第一村，中哈边境。',img:'assets/spot_baihaba.jpg',ref:'实景图·VCG',book:'本次不去，不用买票',bookUrl:''},
+  {name:'布尔津河堤夜市',region:'布尔津',desc:'冷水鱼一条街。烤狗鱼、五道黑，晚上才热闹。',img:'assets/spot_nightmarket.jpg',ref:'实景图·今日头条',book:'街区免费，吃饭按店结账',bookUrl:''},
+  {name:'赛里木湖蓝冰',region:'博州',desc:'12 月初只有冰推冰裂，成片蓝冰要等 1 月中下旬。冬季门票半价 35 元/人；自驾服务费按车算，5 座及以下 120 元。东门进南门出，逆时针环湖。',img:'assets/spot_sayram.jpg',ref:'实景图·人民图片',book:'景区官方平台在线预约门票↗',bookUrl:'https://h5.visitor.xjslmhlt.cn/'},
+  {name:'魔鬼城雪景',region:'克拉玛依',desc:'雪盖住雅丹，远观最好看。售票 09:30–19:00，19:00 停售门票和区间车票，咨询 0990-6964701。淡季门票约 20 元，小火车 20 元。风大时崖边结冰，别往边上站。',img:'assets/spot_ghostcity.jpg',ref:'实景图·汇图网',book:'现场购票·官网只有资讯与电话↗',bookUrl:'http://www.klmysjmgc.com/'},
+  {name:'阿禾公路',region:'阿勒泰',desc:'209 公里没有加油站，进山前在阿勒泰加满。冬季每年 10/16–次年 5/14：阿勒泰—禾木 10:00–14:00 双向放行，当天 20:00 前驶离；只许装雪地胎的 7 座以下四驱越野车。',img:'assets/spot_aheroad.jpg',ref:'实景图·VCG',book:'公路不收费；进禾木村另要预约',bookUrl:''},
+  {name:'乌鲁木齐大巴扎',region:'乌鲁木齐',desc:'D9 晚上逛一圈，看夜景、买干果。商铺多数开到 22:30，21:00 后小吃摊陆续收。干果按斤议价，先尝后买。',img:'assets/spot_bazaar.jpg',ref:'实景图·图虫',book:'免费开放，不用买票',bookUrl:''},
+  {name:'新疆博物馆',region:'乌鲁木齐',desc:'这次不去。只当 D6 魔鬼城封路时的室内备选。',img:'assets/spot_museum.jpg',ref:'实景图·图虫',book:'本次不去（D6 封路备选）；要去需官方小程序预约',bookUrl:''},
+  {name:'五彩滩日落',region:'布尔津',desc:'额尔齐斯河北岸的雅丹彩丘，D5 傍晚顺路。09:00 开园、19:00 停售、19:15 最后入园；淡季 22 元/人。日落前一小时进去，光最好。',img:'assets/spot_wucaotan.jpg',ref:'来源：布尔津县政府公告↗',refUrl:'https://brj.gov.cn/lybej/006018/20261008/e49f5b6b-efad-45ba-a711-7d98cfa1c132.html',book:'现场购票，无在线预约·政府公告↗',bookUrl:'https://brj.gov.cn/lybej/006018/20261008/e49f5b6b-efad-45ba-a711-7d98cfa1c132.html'},
+  {name:'黑油山',region:'克拉玛依',desc:'城北 2 公里，原油外溢结成的沥青丘，最高 13 米、0.2 平方公里。1955 年一号井在这里喷出工业油流，是克拉玛依油田的起点。门票 40 元。停 40 分钟够。',img:'assets/spot_heiyoushan.jpg',ref:'来源：克拉玛依市政府↗',refUrl:'https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml',book:'现场购票，无在线预约·政府公示↗',bookUrl:'https://www.klmy.gov.cn/klmys/ggwhfw/202609/1b6e661aa5db40658097a6d29f68ba6c.shtml'},
+];
+
+/* 酒店（九晚住处） */
+const hotels = [
+  {name:'无也民宿（禾木）',addr:'禾木乡东哈拉68号',tel:'—',price:'双床 1,764 / 三人间 2,545（实价）',hours:'含早',img:'assets/hotel_wuye.jpg',imgs:['assets/hotel_wuye_1.jpg','assets/hotel_wuye_2.jpg','assets/hotel_wuye_3.jpg','assets/hotel_wuye_4.jpg'],tags:['全屋地暖','雪景窗','滑雪班车'],warn:'D3 首选，院子就在禾木河边；房型有三人间（3 张 1.2 米床·30㎡）与家庭房（1.8 米+1.2 米·28㎡），三床档在这里成立；订房必问供暖是否 24 小时、热水限时吗',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
+  {name:'独山子玛依塔柯酒店',addr:'独山子大庆东路13号',tel:'0992-3886866',price:'双床 288 含双早（实价）',hours:'24h前台',img:'assets/hotel_maitake.jpg',imgs:['assets/hotel_maitake_1.jpg','assets/hotel_maitake_2.jpg','assets/hotel_maitake_3.jpg','assets/hotel_maitake_4.jpg'],tags:['五星级旅游饭店','集中供暖','免费停车'],warn:'D6 首选，独库公路零公里起点；房型以双床/大床为主，三人要三间',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/699198.html'},
+  {name:'花间堂·阿日相（温泉县）',addr:'温泉县博格达尔景区',tel:'—',price:'双床 1,146 起（实价）',hours:'24h前台',img:'assets/hotel_huajiantang.jpg',imgs:['assets/hotel_huajiantang_1.jpg','assets/hotel_huajiantang_2.jpg','assets/hotel_huajiantang_3.jpg','assets/hotel_huajiantang_4.jpg'],tags:['独栋别墅','私汤入户','雪山景'],warn:'D8 首选；泡池每人约 288，晚饭可在酒店膳祥餐厅解决',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
+  {name:'希尔顿（乌市）',addr:'乌市米东区红光山路1237号',tel:'—',price:'双床 780（实价）',hours:'24h前台',img:'assets/hotel_hilton.jpg',imgs:['assets/hotel_hilton_1.jpg','assets/hotel_hilton_2.jpg','assets/hotel_hilton_3.jpg','assets/hotel_hilton_4.jpg'],tags:['地暖','独立卫浴','24h热水','免费寄存'],warn:'到乌市第一晚与返程两晚，住市区连锁最稳',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-10'},
+  {name:'金桥假日酒店（阿勒泰）',addr:'阿勒泰市中心',tel:'0906-2171111',price:'双床 418 含双早（实价）',hours:'24h前台',img:'assets/hotel_jinqiao.jpg',imgs:['assets/hotel_jinqiao_1.jpg','assets/hotel_jinqiao_2.jpg','assets/hotel_jinqiao_3.jpg','assets/hotel_jinqiao_4.jpg'],tags:['智能客房','自助早餐','暖气'],warn:'距将军山雪场5分钟，早起赶阿禾公路首选',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
+  {name:'西融·禾木民宿',addr:'禾木河边',tel:'—',price:'800-1200/晚',hours:'含早',img:'assets/hotel_xirong.jpg',tags:['甲级民宿','7栋木屋','地暖','独立卫浴'],warn:'全国首批甲级旅游民宿。订房必问：24h供暖还是分时段？热水是否限时？',ref:'中华民宿网↗',refUrl:'http://zhminsu.com/?list_18/178.html'},
+  {name:'崇野集·枝几·Yeelen观景木屋',addr:'禾木新村响泉路05号',tel:'—',price:'1000+/晚',hours:'含早',img:'assets/hotel_chongyeji.jpg',tags:['4星','地暖','浴缸','管家服务'],warn:'4星观景木屋，条件最好的一档，元旦春节可能上浮到1500-3000',ref:'携程禾木列表↗',refUrl:'https://hotels.ctrip.com/hotel/D816_3327/sl4202170'},
+  {name:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',addr:'哈纳斯村观鱼台路西八巷02号（喀纳斯新村，距图瓦村地标约950米）',tel:'—',price:'大床 1,455 含早（实价）',hours:'24h',img:'assets/hotel_tingbo.jpg',imgs:['assets/hotel_tingbo_1.jpg','assets/hotel_tingbo_2.jpg','assets/hotel_tingbo_3.jpg','assets/hotel_tingbo_4.jpg'],score:['评分4.9'],tags:['雪山草场','暖气'],warn:'忘归大床 1,455，含早；同档备选 停泊·自怡（哈纳斯新村）¥1,180',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
+  {name:'云中歌民宿',addr:'喀纳斯新村85号',tel:'18097506067',price:'700-1000/晚',hours:'含早',img:'assets/hotel_yunzhongge.jpg',imgs:['assets/hotel_yunzhongge_1.jpg','assets/hotel_yunzhongge_2.jpg','assets/hotel_yunzhongge_3.jpg','assets/hotel_yunzhongge_4.jpg'],score:['评分4.7'],tags:['地暖'],warn:'老村木屋，需确认车辆能否到门口',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131678182.html'},
+  {name:'知禾·设计师艺术民宿（布尔津）',addr:'布尔津卧龙湾路酒吧一条街2号楼',tel:'—',price:'双床 394 含早（实价）',hours:'含早',img:'assets/hotel_zhihe.jpg',imgs:['assets/hotel_zhihe_1.jpg','assets/hotel_zhihe_2.jpg','assets/hotel_zhihe_3.jpg','assets/hotel_zhihe_4.jpg'],score:['4.7分','345条'],tags:['额尔齐斯河畔','设计感大堂','免费取消'],warn:'D5 首选，高档型民宿，紧邻额尔齐斯河与人工湖，走到河堤夜市约 10 分钟。银泰、喀纳斯旅游酒店歇业到 2027-05-01，凯旋门与七彩河假日不接受预订，别按老方案订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
+  {name:'赛里木湖逸扉酒店',addr:'博乐赛湖景区西海路7号 2号楼',tel:'—',price:'园景双床 462 / 湖景 558（实价）',hours:'24h前台',img:'assets/hotel_yifei.jpg',imgs:['assets/hotel_yifei_1.jpg','assets/hotel_yifei_2.jpg','assets/hotel_yifei_3.jpg','assets/hotel_yifei_4.jpg'],score:['4.7分','522条'],tags:['硫磺温泉','5钻','景区内'],warn:'D7 首选，塔玛暇尔集群 2 号楼，出门即湖边，明早看日出不用赶路。西海盛宴、湖光帐影那两家不接受预订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
+];
+
+/* 餐厅 */
+const restaurants = [
+  {name:'馬风花·新疆菜·大盘鸡（人民电影院店）',addr:'乌市天山区建设路成基大厦1楼底商（近国际大巴扎）',tel:'—',price:'人均50',hours:'12:00-次日',img:'assets/food_mafenghua.jpg',imgs:['assets/food_mafenghua_1.jpg','assets/food_mafenghua_2.jpg','assets/food_mafenghua_3.jpg','assets/food_mafenghua_4.jpg'],score:['点评4.7','15228条'],tags:['乌鲁木齐美食热门榜第1'],warn:'D1 落地第一顿、D9 逛完大巴扎的夜宵，都定这家——走 300 米就到。12:00 才开门，别上午去；有包厢大桌，三人到店直接说要大桌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l87PzE1sWwA03Rgo'},
+  {name:'乡村馕坑肉（阿勒泰首店）',addr:'阿勒泰市团结路十区173-1栋',tel:'—',price:'人均83',hours:'12:00-次日',img:'assets/food_xiangcun.jpg',imgs:['assets/food_xiangcun_1.jpg','assets/food_xiangcun_2.jpg','assets/food_xiangcun_3.jpg','assets/food_xiangcun_4.jpg'],score:['点评4.1','5238条'],tags:['阿勒泰新疆菜榜第2'],warn:'D2 晚饭。馕坑肉、烤羊排、自制酸奶是前三名推荐；免费停车，冬天车别停外面过夜',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/Ew0MxjJQa6r1rZAT'},
+  {name:'煲来饱去冷水鱼（布尔津）',addr:'布尔津友谊峰路美食四季夜市一楼二楼',tel:'—',price:'人均75',hours:'营业至02:00',img:'assets/food_baolai.jpg',imgs:['assets/food_baolai_1.jpg','assets/food_baolai_2.jpg','assets/food_baolai_3.jpg','assets/food_baolai_4.jpg'],score:['点评4.4','3415条'],tags:['狗鱼一鱼两吃'],warn:'D5 晚饭。642 人推荐爆炒野生狗鱼块，429 人推荐红烧狗鱼——点一条狗鱼两吃最划算。夜市同一家店上下两层，先看菜单再落座，问清按条还是按斤',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H4swvmAqdrEiNyvS'},
+  {name:'阿吾丹·非遗手抓饭（乌尔禾店）',addr:'克拉玛依乌尔禾区柳树街8-121号',tel:'—',price:'人均59',hours:'08:00-次日',img:'assets/food_awudan.jpg',imgs:['assets/food_awudan_1.jpg','assets/food_awudan_2.jpg','assets/food_awudan_3.jpg','assets/food_awudan_4.jpg'],score:['点评4.6','1354条'],tags:['乌尔禾美食热门榜第1'],warn:'D6 看完魔鬼城的午饭，就在镇中心，比景区门口强一档。羊拐抓饭、碎肉抓饭、现榨沙棘汁；08:00 开门，赶早不排队',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l3gAGB8eERXy9cEi'},
+  {name:'高白鲑餐吧（克勒涌珠店）',addr:'博乐小营盘镇203县道克勒涌珠北',tel:'—',price:'人均78',hours:'09:00-',img:'assets/food_gaobai.jpg',imgs:['assets/food_gaobai_1.jpg','assets/food_gaobai_2.jpg','assets/food_gaobai_3.jpg','assets/food_gaobai_4.jpg'],score:['点评4.0','180条'],tags:['赛湖特产高白鲑'],warn:'D7 赛湖这顿的唯一正经鱼馆。这家营业状态不稳，去之前一定先打电话或在酒店问一句；不开就退回酒店餐厅。香煎高白鲑、鱼肉饺是招牌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/k4tEone1rCxlvYfW'},
+  {name:'旺福楼酒店（温泉县）',addr:'温泉县孟克特街与团结路交叉口往东约200米',tel:'—',price:'人均70',hours:'11:00-',img:'assets/food_wangfulou.jpg',imgs:['assets/food_wangfulou_1.jpg','assets/food_wangfulou_2.jpg','assets/food_wangfulou_3.jpg','assets/food_wangfulou_4.jpg'],score:['点评4.2','300条'],tags:['温泉县热门榜第2'],warn:'D8 晚饭的外食选项。铜锅奶茶、农家跑地鸡、烤三文鱼串；县城馆子 21:00 前收，别拖。不想出门就用花间堂膳祥餐厅',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9HMlSjpf7GPTcaz'},
+  {name:'丝路有约（万宴城店）',addr:'乌市天山区中山路万宴城二楼',tel:'19990123781',price:'人均93',hours:'13:00-22:30',img:'assets/food_siluyouyue_1.jpg',imgs:['assets/food_siluyouyue_1.jpg','assets/food_siluyouyue_2.jpg','assets/food_siluyouyue_3.jpg','assets/food_siluyouyue_4.jpg'],score:['点评4.6','9853条'],tags:['2026年上榜餐厅'],warn:'备选。只用咸盐烤的羊肉串、小龙虾烤包子、黄油卡瓦斯是前三；商场店好停车，适合 D9 中午到乌市先垫一顿',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9O822L7aXtkQW3m'},
+];
+const expenses = [
+  {cat:'机票（三人）',items:[
+    {name:'长沙→乌市往返（刘总）',detail:'CZ6882＋CZ6881，与蒋爹同机',amount:'1,600',who:'刘总',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
+    {name:'长沙→乌市往返（蒋爹）',detail:'CZ6882＋CZ6881，与刘总同机',amount:'1,600',who:'蒋爹',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
+    {name:'深圳→乌市往返（熊大）',detail:'ZH9241＋ZH9242',amount:'1,400',who:'熊大',nature:'查到',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'},
+  ]},
+    {cat:'住宿（9晚·三间大床·中档基准）',items:[
+    {name:'乌市希尔顿×2晚（三间）',detail:'D1 和 D9 两晚，三间',amount:'4,680',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-11'},
+    {name:'阿勒泰金桥假日×1晚（三间）',detail:'418×3，含双早',amount:'1,254',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
+    {name:'禾木民宿×1晚（三间）',detail:'无也民宿，三间，1,764×3',amount:'5,292',who:'公摊',nature:'估算',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
+    {name:'喀纳斯木屋×1晚（三间）',detail:'停泊STAY·坐忘，1,455×3',amount:'3,663',who:'公摊',nature:'估算',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
+    {name:'布尔津×1晚（三间）',detail:'知禾，394×3，含早',amount:'1,182',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
+    {name:'克拉玛依×1晚（三间）',detail:'独山子玛依塔柯，288×3，含双早',amount:'864',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/699198.html?checkin=2026-12-14&checkout=2026-12-15'},
+    {name:'赛里木湖×1晚（三间）',detail:'逸扉园景双床，462×3',amount:'1,386',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
+    {name:'温泉县×1晚（三间）',detail:'花间堂，1,146×3',amount:'3,438',who:'公摊',nature:'估算',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
+  ]},
+  {cat:'交通',items:[
+    {name:'租车×10天',detail:'四驱 SUV 带雪地胎，租 10 天',amount:'4,000',who:'公摊',nature:'估算',ref:'神州租车↗',refUrl:'https://www.zuche.com/'},
+    {name:'油费',detail:'2,875 公里，雪天费油，每公里 0.73 元',amount:'2,100',who:'公摊',nature:'估算',ref:'—',refUrl:'—'},
+    {name:'过路费',detail:'全程高速过路费',amount:'850',who:'公摊',nature:'估算',ref:'—',refUrl:'—'},
+    {name:'阿禾公路包车',detail:'万一路封了，改包当地车',amount:'800',who:'公摊',nature:'预留',ref:'当地司机',refUrl:'—'},
+    {name:'自驾保险（三人）',detail:'车险＋三人意外险＋极寒保障',amount:'900',who:'公摊',nature:'预留',ref:'平安/人保↗',refUrl:'https://www.pingan.com/'},
+  ]},
+  {cat:'餐饮',items:[
+    {name:'全程正餐',detail:'约 30 顿，三个人',amount:'6,600',who:'公摊',nature:'估算',ref:'高德地图↗',refUrl:'https://ditu.amap.com/'},
+  ]},
+  {cat:'门票滑雪温泉',items:[
+    {name:'喀纳斯门票+区间车',detail:'三人通票 100×3＝300（官方价）；区间车另留 390',amount:'690',who:'公摊',nature:'估算',ref:'管委会公告↗',refUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
+    {name:'禾木区间车',detail:'三人，禾木门票含在通票里，这里只算区间车',amount:'450',who:'公摊',nature:'估算',ref:'管委会公告↗',refUrl:'https://kns.gov.cn/001/001004/20230520/06b83d7b-65e1-4c93-b5e2-a65cfb502998.html'},
+    {name:'赛里木湖门票+自驾服务费',detail:'门票 35×3＝105＋自驾服务费 120/车（官方），共 225',amount:'225',who:'公摊',nature:'查到',ref:'新华网·票价调整↗',refUrl:'https://www.news.cn/local/20260803/4c0b11cad281454cb65de812d8fae976/c.html'},
+    {name:'温泉泡池（三人）',detail:'县城泡汤，三个人',amount:'300',who:'公摊',nature:'估算',ref:'—',refUrl:'—'},
+    {name:'滑雪（可选）',detail:'将军山或吉克普林，刘总自己玩',amount:'1,000',who:'刘总',nature:'预留',ref:'—',refUrl:'—'},
+  ]},
+  {cat:'装备杂项',items:[
+    {name:'防滑链',detail:'备用',amount:'200',who:'公摊',nature:'预留',ref:'—',refUrl:'—'},
+    {name:'对讲机租赁',detail:'山里没信号，租一部',amount:'150',who:'公摊',nature:'预留',ref:'—',refUrl:'—'},
+    {name:'暖宝宝/药品',detail:'暖宝宝和常用药',amount:'200',who:'公摊',nature:'预留',ref:'—',refUrl:'—'},
+  ]},
+  {cat:'备用金',items:[
+    {name:'应急备用',detail:'2,000',amount:'2,000',who:'公摊',nature:'预留',ref:'—',refUrl:'—'},
+  ]},
+];
+
+const weatherPoints = [
+  {loc:'禾木',lat:48.69,lon:87.43,temp:'—',desc:'加载中…'},
+  {loc:'喀纳斯',lat:48.58,lon:87.17,temp:'—',desc:'加载中…'},
+  {loc:'布尔津',lat:47.70,lon:86.85,temp:'—',desc:'加载中…'},
+  {loc:'赛里木湖',lat:44.60,lon:81.17,temp:'—',desc:'加载中…'},
+  {loc:'阿勒泰',lat:47.87,lon:88.13,temp:'—',desc:'加载中…'},
+  {loc:'乌鲁木齐',lat:43.83,lon:87.62,temp:'—',desc:'加载中…'},
+];
+const tasks = [
+  '出发前3天：确认阿禾公路通行状态（微博@阿勒泰交警）',
+  '出发前3天：逐家电话确认9晚住宿的供暖/热水/营业状态',
+  '出发前2天：加满油，检查雪地胎胎压',
+  '出发前1天：下载离线地图（奥维/高德离线包）',
+  '出发当天：带身份证+驾照+边防证（如去白哈巴）',
+  '每天出发前：看天色页确认天气+放行窗口',
+  '每天20:00前：确保已到住宿点（山里天黑后不通行）',
+];
+const emergencies = [
+  {title:'阿勒泰交警（122）',phone:'122',desc:'阿禾公路放行与路况，接线时说明在阿勒泰境内'},
+  {title:'布尔津交警',phone:'122',desc:'布尔津段路况，122 转县交警'},
+  {title:'旅游投诉',phone:'12301',desc:'全国旅游服务热线，遇加价或强制消费打这个'},
+  {title:'喀纳斯景区热线',phone:'400-111-0906',desc:'景区内被困、门票与区间车咨询'},
+  {title:'租车救援',phone:'—',desc:'取车时当场把合同上的救援电话存进手机，别用网上通用号'},
+  {title:'通用紧急',phone:'110 / 120 / 122',desc:'报警/急救/交警'},
+];
+const tipGroups = [
+  {g:'出发前装备', pack:true, items:[
+    '证件：身份证、驾照、行驶证复印件，手机里各存一张照片。',
+    '极寒穿着：羽绒服、抓绒、雪地靴、帽子手套围脖，暖宝宝带够。',
+    '药品：感冒药、退烧药、肠胃药、创可贴、润唇膏、防晒霜——雪地反光，防晒别省。',
+    '车用：防滑链、拖车绳、搭电线、铁锹、保温壶、干粮。',
+    '现金带 2000 元，山里有些店只收现金。',
+    '离线地图提前下好，带一部对讲机——山里没信号。',
+    '相机和手机电池贴身放，低温掉电快。',
+  ]},
+  {g:'租车', pack:false, items:[
+    '车型：四驱 SUV、5 座，后备箱能并排放下三个 24 寸箱。',
+    '雪地胎是标配还是加价，下单页上确认——没雪地胎上不了阿禾公路。',
+    '合同写明允许驶入喀纳斯、禾木景区山路，标准合同多把这两处列为禁行区，出事不赔。',
+    '押金、违章押金、免赔额问清，能买不计免赔就买。',
+    '第二、第三驾驶员都要登记在合同上，否则出事只认第一驾驶员。',
+    '取车拍三张：车身四角、油表、轮胎花纹；满油取满油还，还车前加满并留小票。',
+    '写明道路救援电话和响应时间；封路改期或退车怎么算，提前问清。',
+  ]},
+  {g:'门票与预约', pack:false, items:[
+    '喀纳斯、禾木、白哈巴通票：冬季全域票 100 元/人·3 天，官方渠道是小程序「喀纳斯景区」「原行网」，没有网页入口。',
+    '禾木自驾进村要预约：到 72 公里售票处或禾木游客中心，用“原行网”小程序现场办，带行驶证和驾照，每天 10:00 放号，约满即止。',
+    '赛里木湖：门票半价 35 元/人；自驾服务费按车收，5 座及以下 120 元——三人一车共 225 元。',
+    '票根留好：喀纳斯全域票 3 天有效，进二次检票口要查，丢了只能重买。',
+    '边防证：这次不去白哈巴，不用办；临时改去，得在户籍地或阿勒泰边境管理大队办。',
+  ]},
+  {g:'住宿与吃饭', pack:false, items:[
+    '订房必问三句：24 小时供暖还是分时段？热水限时吗？车能开到门口吗？',
+    '九天早餐默认靠住宿含早，订房时问清含几人份、几点开饭；要赶日出提前打招呼。',
+    '禾木、喀纳斯山里没有外卖也没有连锁，三餐在村里解决；出发前在阿勒泰或布尔津买够水和干粮，山里物价比城里贵一倍。',
+    '温泉县城馆子少，晚饭优先用花间堂膳祥餐厅；县城餐馆多在 21:00 前收。',
+    '布尔津夜市同一条鱼各家差价能到一倍，点之前问清按条还是按斤、多重、怎么算。',
+    '禾木村里木屋车到不了门口，拖行李要换雪地摩托或马拉爬犁。',
+  ]},
+  {g:'开车与安全', pack:false, items:[
+    '阿禾公路 10:00–14:00 放行，14:00 后到路口只能等第二天，别卡点。',
+    '进山前加满油，209 公里全线没有加油站。',
+    '谁当晚喝了酒，第二天早上也不许摸方向盘。',
+    '长途逢服务区就上厕所、加油、买热水，别等油表亮灯：D2 三个泉子、D7 和 D9 奎屯。',
+    '山里信号时有时无，三个人里有一台手机有电就够，不用都开着。',
+    '赛湖房车营地冬季供水有限，夜里零下 35 度水管容易结冰，出发前打个电话确认。',
+  ]},
+  {g:'行程与预案', pack:false, items:[
+    '冬季房源少，禾木、喀纳斯、赛湖、温泉县提前 7–10 天订，出发前 1 天再确认一次。',
+    'D1 晚到 2 小时以上就直接叫酒店外卖；D10 遇到大雪优先改签，不硬赶。',
+    '拍照时间：禾木哈登观景台日出约 09:30，提前半小时上去站位置；喀纳斯湖栈道下午逆光；赛湖环湖西路拍冰裂纹；魔鬼城日落前一小时侧光最好。',
+    '赛湖 12 月初只有冰推冰裂，成片蓝冰要等 1 月中下旬，别失望。',
+    '魔鬼城风大时崖边结冰，别往边缘站。',
+  ]},
+];
+
+const SPOT_REGION_ORDER=['阿勒泰','布尔津','克拉玛依','博州','乌鲁木齐','其他'];
+function spotImgs(s){const a=(s.imgs&&s.imgs.length)?s.imgs:[s.img];return a.filter(Boolean);}
+function galleryTpl(list,alt,idPrefix){
+  if(list.length<2)return `<div class="spot-card__gallery"><img src="${list[0]}" alt="${alt}" style="width:100%;height:100%;object-fit:cover"></div>`;
+  const slides=list.map((u,k)=>`<div class="spot-card__slide"><img src="${u}" alt="${alt}（${k+1}）" loading="lazy"></div>`).join('');
+  const dots=list.map((_,k)=>`<button class="spot-card__dot${k===0?' on':''}" data-i="${k}" aria-label="第${k+1}张"></button>`).join('');
+  return `<div class="spot-card__gallery" data-gal="${idPrefix}" data-len="${list.length}" data-at="0">
+    <div class="spot-card__track">${slides}</div>
+    <span class="spot-card__count">1/${list.length}</span>
+    <button class="spot-card__nav spot-card__nav--prev" data-dir="-1" aria-label="上一张">‹</button>
+    <button class="spot-card__nav spot-card__nav--next" data-dir="1" aria-label="下一张">›</button>
+    <div class="spot-card__dots">${dots}</div>
+  </div>`;
+}
+function renderSpots(){
+  const groups={};
+  spots.forEach((s,i)=>{(groups[s.region||'其他']=groups[s.region||'其他']||[]).push(i);});
+  const order=SPOT_REGION_ORDER.filter(r=>groups[r]).concat(Object.keys(groups).filter(r=>!SPOT_REGION_ORDER.includes(r)));
+  const html=order.map(reg=>{
+    const idxs=groups[reg];
+    const cards=idxs.map(i=>{
+      const s=spots[i];
+      const imgs=spotImgs(s);
+      const book=s.book?(s.bookUrl?`<div class="spot-card__book"><a href="${s.bookUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.book}</a></div>`:`<div class="spot-card__book">${s.book}</div>`):'';
+      return `<div class="spot-card reveal" data-spot="${i}">
+        ${galleryTpl(imgs,s.name,'spot-'+i)}
+        <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}<div class="spot-card__ref">${s.ref}</div></div></div>`;
+    }).join('');
+    return `<div class="region-head anchor-block" id="reg-${reg}"><span class="region-head__name">${reg}</span><span class="region-head__meta">${idxs.length} 处</span></div><div class="spots-grid">${cards}</div>`;
+  }).join('');
+  document.getElementById('spotsGrid').innerHTML=html;
+  /* 行政区标签 */
+  const sub=document.getElementById('spotSubnav');
+  if(sub){
+    sub.innerHTML='<span class="subnav__label">行政区</span>'+order.map((r,k)=>
+      `<span class="subnav__chip${k===0?' active':''}" data-anchor="reg-${r}">${r}</span>`).join('');
+  }
+  /* 图组绑定：左右箭头 / 圆点 / 点图开大图 */
+  document.querySelectorAll('#spotsGrid .spot-card__gallery').forEach(g=>{
+    const len=Number(g.dataset.len||1);
+    let at=0;
+    const track=g.querySelector('.spot-card__track');
+    const cnt=g.querySelector('.spot-card__count');
+    const dots=Array.prototype.slice.call(g.querySelectorAll('.spot-card__dot'));
+    function go(k){
+      at=(k+len)%len;
+      if(track)track.style.transform='translateX(-'+(at*100)+'%)';
+      if(cnt)cnt.textContent=(at+1)+'/'+len;
+      dots.forEach((d,di)=>d.classList.toggle('on',di===at));
+      g.dataset.at=String(at);
+    }
+    g.querySelectorAll('[data-dir]').forEach(b=>{
+      b.addEventListener('click',ev=>{ev.stopPropagation();go(at+Number(b.dataset.dir));});
+    });
+    dots.forEach(d=>d.addEventListener('click',ev=>{ev.stopPropagation();go(Number(d.dataset.i));}));
+    g.addEventListener('click',ev=>{
+      if(ev.target.closest('[data-dir]')||ev.target.closest('.spot-card__dot'))return;
+      ev.stopPropagation();
+      const card=g.closest('.spot-card');
+      const si=Number(card.dataset.spot);
+      openSpotGallery(si,at);
+    });
+  });
+}
+function renderHotels(){document.getElementById('hotelsList').innerHTML=hotels.map(h=>cardTpl(h,'hotel')).join('');}
+function renderRestaurants(){document.getElementById('restaurantsList').innerHTML=restaurants.map(r=>cardTpl(r,'restaurant')).join('');}
+const IC = {
+  pin:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 21s-6-5.2-6-10a6 6 0 1 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.1"/></svg>',
+  phone:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M7 3.5h3l1.5 4-2 1.5a12 12 0 0 0 5 5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A17 17 0 0 1 5 5.7 2 2 0 0 1 7 3.5z"/></svg>',
+  coin:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.2"/><path d="M9.3 8.8l2.7 3.9 2.7-3.9M12 12.7v3.1M10 13.6h4"/></svg>',
+  clock:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.2"/><path d="M12 7.4v5l3.2 2"/></svg>',
+  nav:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.4l6.4 17-6.4-4.6-6.4 4.6z"/></svg>',
+  ext:'<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-8.2 8.2"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5V7.5A1.5 1.5 0 0 1 5.5 6H10"/></svg>'
+};
+function cardTpl(p,kind){
+  const cardUrl = p.refUrl!=='—'?p.refUrl:'#';
+  const label = p.ref.replace(/↗/g,'').replace(/详情页|搜索页|酒店页|探店/g,'').trim() || '来源';
+  const link = p.refUrl!=='—'?`<a class="place-link" href="${p.refUrl}" target="_blank" rel="noopener" title="${p.ref}" aria-label="打开来源：${label}">${IC.ext}<span>${label}</span></a>`:`<span class="place-link" style="border-color:transparent;background:none;opacity:.55" title="暂无外链">${IC.ext}<span>${label}</span></span>`;
+  const tags = (p.score||[]).concat(p.tags).map(t=>`<span class="place-card__tag">${t}</span>`).join('');
+  const imgs=((p.imgs&&p.imgs.length)?p.imgs:[p.img]).filter(Boolean);
+  const bucket=kind==='hotel'?'hotel':'restaurant';
+  const media=imgs.map((u,k)=>`<button class="place-card__shot" type="button" data-k="${k}" aria-label="看第${k+1}张图"><img src="${u}" alt="${p.name}实景 ${k+1}" loading="lazy"></button>`).join('');
+  const more=imgs.length>1?`<span class="place-card__more">${imgs.length} 张</span>`:'';
+  return `<div class="place-card ${kind==='hotel'?'place-card--hotel':'place-card--restaurant'} reveal" data-url="${cardUrl}" data-bucket="${bucket}" data-name="${p.name}">
+    <div class="place-card__media">${media}${more}</div>
+    <div class="place-card__header"><div class="place-card__info"><div class="place-card__name">${p.name}</div><div class="place-card__type">${kind==='hotel'?'酒店':'餐厅'}</div><div class="place-card__detail">${IC.pin}${p.addr}<br>${IC.phone}${p.tel} ${p.tel!=='—'?`<a class="place-link place-link--tel" href="tel:${p.tel.replace(/[^0-9]/g,'')}" title="拨打电话">${IC.ext}<span>拨打</span></a>`:''}<br>${IC.coin}${p.price} · ${IC.clock}${p.hours}</div><div class="place-card__tags">${tags}</div>${link}</div></div><div class="place-card__warn">${p.warn}</div></div>`;
+}
+function renderExpenses(){
+  let html='',grandTotal=0;
+  expenses.forEach(cat=>{
+    html+=`<tr class="cat-row"><td colspan="7">${cat.cat}</td></tr>`;
+    let catTotal=0;
+    cat.items.forEach(item=>{
+      const amt=parseInt(item.amount.replace(/,/g,''));
+      catTotal+=amt;
+      const tagClass=item.nature==='查到'?'tag-checked':item.nature==='估算'?'tag-est':'tag-reserve';
+      const natureZh={'查到':'实价','估算':'估的','预留':'留的余量'}[item.nature]||item.nature;
+      const refLink=item.refUrl!=='—'?`<a class="source-link" href="${item.refUrl}" target="_blank">${item.ref}</a>`:item.ref;
+      html+=`<tr><td></td><td>${item.name}</td><td>${item.detail}</td><td>¥${item.amount}</td><td>${item.who==='公摊'?'三人一起':item.who+'自己'}</td><td><span class="tag ${tagClass}">${natureZh}</span></td><td>${refLink}</td></tr>`;
+    });
+    html+=`<tr class="subtotal"><td colspan="3">${cat.cat} 小计</td><td>¥${catTotal.toLocaleString()}</td><td colspan="3"></td></tr>`;
+    grandTotal+=catTotal;
+  });
+  html+=`<tr class="total"><td colspan="3">总合计</td><td>¥${grandTotal.toLocaleString()}</td><td colspan="3">人均 ¥${Math.round(grandTotal/3).toLocaleString()}</td></tr>`;
+  document.getElementById('expenseBody').innerHTML=html;
+  const members=['刘总','蒋爹','熊大'];
+  const selfPaid={'刘总':0,'蒋爹':0,'熊大':0};
+  let sharedTotal=0;
+  expenses.forEach(c=>c.items.forEach(it=>{
+    const amt=parseInt(it.amount.replace(/,/g,''))||0;
+    if(selfPaid.hasOwnProperty(it.who)){selfPaid[it.who]+=amt;}else{sharedTotal+=amt;}
+  }));
+  const base=Math.floor(sharedTotal/members.length), rem=sharedTotal-base*members.length;
+  const share={},due={};
+  members.forEach((m,i)=>{share[m]=base+(i<rem?1:0);due[m]=selfPaid[m]+share[m];});
+  const paidSum=members.reduce((a,m)=>a+selfPaid[m],0);
+  const allItems=[];expenses.forEach(g=>g.items.forEach(it=>allItems.push(it)));
+  const ownOf=m=>allItems.filter(it=>it.who===m);
+  const selfLine=members.map(m=>{
+    const list=ownOf(m);
+    const parts=list.map(it=>`${it.name.replace(/（.+?）/g,'')} ${it.amount}`);
+    return `${m} ¥${selfPaid[m].toLocaleString()}（${parts.join(' ＋ ')}）`;
+  }).join('、');
+  const oneShare=(sharedTotal/members.length);
+  const rows=members.map(m=>{
+    if(m==='熊大')return `<div class="settlement__row"><span>熊大</span><span>先垫 ¥${sharedTotal.toLocaleString()}，自己那份 ¥${share[m].toLocaleString()} 自己担；另外机票 1,400 自付</span></div>`;
+    return `<div class="settlement__row"><span>${m} → 转给熊大</span><span>¥${share[m].toLocaleString()}（自己那 ¥${selfPaid[m].toLocaleString()} 已自付）</span></div>`;
+  }).join('');
+  document.getElementById('settlement').innerHTML=`
+    <div class="settlement__title">这笔账怎么分</div>
+    <p class="settle-rule">自己那份自己付，不进平摊：${selfLine}。</p>
+    <p class="settle-rule">剩下的 ¥${sharedTotal.toLocaleString()} 是三个人一起花的，一人一份 ${oneShare.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}；凑整后刘总 ¥${share['刘总'].toLocaleString()}、蒋爹 ¥${share['蒋爹'].toLocaleString()}、熊大 ¥${share['熊大'].toLocaleString()}，多出的 1 元记刘总。</p>
+    <p class="settle-rule">这趟说好由熊大统一刷卡，刘总和蒋爹不用先掏钱，回来各转一笔就完事。</p>
+    ${rows}
+    <div class="settlement__row"><span>三个人一共</span><span>刘总 ¥${due['刘总'].toLocaleString()} · 蒋爹 ¥${due['蒋爹'].toLocaleString()} · 熊大 ¥${due['熊大'].toLocaleString()} ＝ ¥${(due['刘总']+due['蒋爹']+due['熊大']).toLocaleString()}</span></div>
+    <p class="settle-note">每个人该出多少 = 自己那几笔 + 平摊的一份。三档合计 ¥46,824，摊成一样是每人 ¥15,608；机票各买各的，所以按上面那列给。</p>`;
+
+  /* —— 按人拆账：自己单独出的 / 大家一起花的，各算一块 —— */
+  const sharedByCat=[];
+  expenses.forEach(g=>{
+    let sum=0;
+    g.items.forEach(it=>{if(!selfPaid.hasOwnProperty(it.who))sum+=parseInt(it.amount.replace(/,/g,''))||0;});
+    if(sum>0)sharedByCat.push({cat:g.cat,sum:sum});
+  });
+  const moneyPanels=members.map((m,idx)=>{
+    const own=ownOf(m);
+    const ownRows=own.length
+      ? own.map(it=>`<li><b>${it.name.replace(/（.+?）/g,'')}</b><span>¥${it.amount}</span></li>`).join('')
+      : '<li><b>没有单独出的钱</b><span>—</span></li>';
+    const sharedRows=sharedByCat.map(c=>{
+      const per=Math.round(c.sum/members.length);
+      return `<li><b>${c.cat}</b><span>一共 ¥${c.sum.toLocaleString()}　你那份 ¥${per.toLocaleString()}</span></li>`;
+    }).join('');
+    const payLine = m==='熊大'
+      ? '这趟说好你统一刷卡，先垫 '+sharedTotal.toLocaleString()+' 元；刘总和蒋爹回来各转你一笔，你自己净掏 '+(share[m]+selfPaid[m]).toLocaleString()+' 元'
+      : '熊大统一刷卡，你不用先掏钱；回来转他 '+share[m].toLocaleString()+' 元就行，自己那 '+selfPaid[m].toLocaleString()+' 元已经自己付过了';
+    return `<div class="money-panel${idx===0?' active':''}" data-mwho="${m}">
+      <div class="money-card">
+        <div class="money-card__t">自己单独出的 · 不进平摊</div>
+        <ul class="money-list">${ownRows}</ul>
+        <div class="money-card__s">小计 ¥${selfPaid[m].toLocaleString()}</div>
+      </div>
+      <div class="money-card">
+        <div class="money-card__t">大家一起花的 · 你出三分之一</div>
+        <ul class="money-list">${sharedRows}</ul>
+        <div class="money-card__s">小计 ¥${share[m].toLocaleString()}（凑整后）</div>
+      </div>
+      <div class="money-sum"><span>${m} 这趟一共该出</span><b>¥${due[m].toLocaleString()}</b></div>
+      <p class="money-note">${payLine}。机票各买各的，从来不算在平摊里。</p>
+    </div>`;
+  }).join('');
+  const mt=document.getElementById('moneyTabs');
+  if(mt)mt.innerHTML=moneyPanels;
+
+  /* 点标签只切内容，不滚页 */
+  if(!window.__moneyBound){
+    window.__moneyBound=true;
+    document.addEventListener('click',function(e){
+      const chip=e.target.closest&&e.target.closest('#moneySubnav .subnav__chip');
+      if(!chip)return;
+      const who=chip.getAttribute('data-mwho');
+      document.querySelectorAll('#moneySubnav .subnav__chip').forEach(c=>c.classList.toggle('active',c===chip));
+      document.querySelectorAll('#moneyTabs .money-panel').forEach(p=>p.classList.toggle('active',p.getAttribute('data-mwho')===who));
+    });
+  }
+}
+let weatherInited=false;
+function paintWeather(){
+  document.getElementById('weatherGrid').innerHTML=weatherPoints.map(w=>`<div class="weather-card"><div class="weather-card__loc">${w.loc}</div><div class="weather-card__temp">${w.temp}</div><div class="weather-card__desc">${w.desc}</div></div>`).join('');
+}
+function renderWeather(){
+  const stamp=document.getElementById('wxStamp');
+  if(stamp){const d=new Date();stamp.textContent='更新于 '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');}
+  paintWeather();
+  if(weatherInited)return;
+  weatherInited=true;
+  weatherPoints.forEach((w,i)=>{
+    const ctl=new AbortController();
+    const timer=setTimeout(()=>ctl.abort(),8000);
+    fetch(`https://api.open-meteo.com/v1/forecast?latitude=${w.lat}&longitude=${w.lon}&daily=temperature_2m_max,temperature_2m_min&timezone=Asia/Shanghai&forecast_days=1`,{signal:ctl.signal})
+      .then(r=>{if(!r.ok)throw new Error('http '+r.status);return r.json();})
+      .then(d=>{
+        if(d&&d.daily){const max=Math.round(d.daily.temperature_2m_max[0]),min=Math.round(d.daily.temperature_2m_min[0]);weatherPoints[i].temp=`${min}°/${max}°`;weatherPoints[i].desc='实时';}
+        else{weatherPoints[i].temp='—';weatherPoints[i].desc='无当日数据';}
+      })
+      .catch(()=>{weatherPoints[i].temp='—';weatherPoints[i].desc='这次没取到·出发前再查';})
+      .finally(()=>{clearTimeout(timer);paintWeather();});
+  });
+}
+const lodgingNights=[['D1','乌市','希尔顿'],['D2','阿勒泰','金桥假日'],['D3','禾木','无也民宿'],['D4','喀纳斯','停泊STAY·坐忘'],['D5','布尔津','知禾民宿'],['D6','独山子','玛依塔柯'],['D7','赛湖','逸扉'],['D8','温泉县','花间堂'],['D9','乌市','希尔顿']];
+/* ===== 程序部分 —— 一般不用改 ===== */
+function renderLodgeStrip(){
+  const nights=lodgingNights;
+  document.getElementById('lodgeStrip').innerHTML=nights.map((n,i)=>`<div class="lodge-strip__cell ${i===0?'active':''}" onclick="document.querySelectorAll('.timeline__day')[${i}].scrollIntoView({behavior:'smooth'})"><div class="lodge-strip__day">${n[0]}</div><div class="lodge-strip__name">${n[1]}</div><div class="lodge-strip__meta">${n[2]}</div></div>`).join('');
+}
+const TICK_KEY='bjt_tick_v1';
+const _md0=/^(\d+)月(\d+)日/.exec(itinerary[0].date)||[0,12,9];
+const TRIP_START=new Date(2026,Number(_md0[1])-1,Number(_md0[2]));
+const TRIP_LEN=itinerary.length;
+function tickMap(){try{return JSON.parse(localStorage.getItem(TICK_KEY)||'{}')}catch(e){return {}}}
+function tickSave(o){try{localStorage.setItem(TICK_KEY,JSON.stringify(o))}catch(e){}}
+function stampNow(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+function dayIndex(){const n=new Date();const t0=new Date(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((t0-TRIP_START)/86400000);}
+function renderTasks(){
+  const idx=dayIndex(), stamp=document.getElementById('todayStamp'), note=document.getElementById('todayNote');
+  let head='', items=[], foot='';
+  if(idx<0){
+    head='今天 '+stampNow()+' · 距出发 '+(-idx)+' 天';
+    items=tasks.map(t=>({t:t,tm:''}));
+    foot='勾掉的会记住，下次打开还在。出发前一晚再过一遍没勾的。';
+  }else if(idx<TRIP_LEN){
+    const d=itinerary[idx];
+    head='今天 '+stampNow()+' · D'+(idx+1)+' · '+d.date.replace(/^\d+月\d+日 · 周. · /,'');
+    items=d.rows.map(r=>({t:r.act,tm:r.t}));
+    if(d.lodge)items.push({t:'今晚落脚：'+d.lodge.replace(/<[^>]+>/g,''),tm:''});
+    foot='出发前先看「天色」确认天气和放行口，20:00 前到住宿点。';
+  }else{
+    head='今天 '+stampNow()+' · 这趟已经走完 '+(idx-TRIP_LEN+1)+' 天';
+    items=[{t:'按「算账」页把三笔转账结清',tm:''},{t:'确认租车押金解冻、没有违章扣款',tm:''},{t:'照片归到一起，约下一趟',tm:''}];
+    foot='';
+  }
+  if(stamp)stamp.textContent=head;
+  if(note)note.textContent=foot;
+  const list=document.getElementById('taskList');
+  if(!list)return;
+  const m=tickMap();
+  list.innerHTML=items.map((it,i)=>{
+    const k='t'+i+'|'+it.t.slice(0,16), on=!!m[k];
+    return '<li class="'+(on?'done':'')+'" data-k="'+k+'"><input type="checkbox"'+(on?' checked':'')+'>'
+      +'<span class="tx">'+it.t+'</span>'+(it.tm?'<span class="tm">'+it.tm+'</span>':'')+'</li>';
+  }).join('');
+  list.querySelectorAll('li').forEach(li=>{
+    const box=li.querySelector('input');
+    const flip=()=>{const mm=tickMap();const k=li.dataset.k;
+      if(mm[k])delete mm[k];else mm[k]=1;
+      tickSave(mm);li.classList.toggle('done',!!mm[k]);box.checked=!!mm[k];};
+    box.addEventListener('change',flip);
+    li.addEventListener('click',e=>{if(e.target!==box)flip();});
+  });
+}
+function renderEmergency(){document.getElementById('emergencyList').innerHTML=emergencies.map(e=>`<div class="emergency-card"><div class="emergency-card__title">${e.title}</div><div class="emergency-card__phone">${e.phone}</div><div style="font-size:.85rem;color:var(--text-secondary);margin-top:.25rem">${e.desc}</div></div>`).join('');}
+const PACK_KEY='bjt_pack_v1';
+function readPack(){try{return JSON.parse(localStorage.getItem(PACK_KEY)||'{}')}catch(e){return {}}}
+function renderTips(){
+  const done=readPack();
+  /* 装备清单置顶提示：让「出发前装备」这一组不再埋在长列表里 */
+  const packGroup=tipGroups.find(g=>g.pack);
+  const packed=packGroup?packGroup.items.filter((_,i)=>done[packGroup.g+'#'+i]).length:0;
+  const callout=packGroup?`<div class="pack-callout">
+      <div class="pack-callout__main"><b>出发前装备 ${packGroup.items.length} 条</b><span>照着勾，勾一条少一件；勾过的下次打开还在。</span></div>
+      <div class="pack-callout__side"><span class="pack-callout__num">${packed}/${packGroup.items.length}</span><button type="button" class="pack-callout__go" onclick="jumpTip('${packGroup.g}')">去看清单</button></div>
+    </div>`:'';
+  document.getElementById('tipsList').innerHTML=callout+tipGroups.map(gp=>{
+    const lis=gp.items.map((t,i)=>{
+      if(!gp.pack)return `<li>${t}</li>`;
+      const k=gp.g+'#'+i;
+      return `<li><label><input type="checkbox" data-pack="${k}"${done[k]?' checked':''}><span>${t}</span></label></li>`;
+    }).join('');
+    return `<div class="anchor-block" id="tips-${gp.g}"><h3 class="tips-group__title">${gp.g}<span class="tips-group__count">${gp.items.length} 条</span></h3><ul class="tips-list${gp.pack?' tips-list--pack':''}">${lis}</ul></div>`;
+  }).join('');
+  /* 类别冻结标签 */
+  const sub=document.getElementById('tipsSubnav');
+  if(sub){
+    sub.innerHTML='<span class="subnav__label">类别</span>'+tipGroups.map((gp,k)=>
+      `<span class="subnav__chip${k===0?' active':''}" data-anchor="tips-${gp.g}">${gp.g}</span>`).join('');
+  }
+  const box=document.getElementById('tipsList');
+  if(!box.dataset.bound){
+    box.dataset.bound='1';
+    box.addEventListener('change',e=>{
+      const cb=e.target.closest('input[type=checkbox]');if(!cb)return;
+      const done2=readPack();done2[cb.dataset.pack]=cb.checked;
+      try{localStorage.setItem(PACK_KEY,JSON.stringify(done2))}catch(err){}
+      const num=document.querySelector('.pack-callout__num');
+      if(num&&packGroup){const p2=packGroup.items.filter((_,i)=>done2[packGroup.g+'#'+i]).length;num.textContent=p2+'/'+packGroup.items.length;}
+    });
+  }
+}
+
+document.addEventListener('click',e=>{
+  const shot=e.target.closest('.place-card__shot');
+  if(shot){
+    e.stopPropagation();
+    const card=shot.closest('.place-card');
+    const bucket=card.dataset.bucket, name=card.dataset.name;
+    const src=(bucket==='hotel'?hotels:restaurants).find(x=>x.name===name);
+    if(src){
+      const list=((src.imgs&&src.imgs.length)?src.imgs:[src.img]).filter(Boolean);
+      lightboxData=list.map((u,k)=>({img:u,cap:name+' · '+(k+1)+'/'+list.length}));
+      lightboxIdx=Number(shot.dataset.k)||0;
+      showLightbox();
+    }
+    return;
+  }
+  const card=e.target.closest('.place-card[data-url]');if(!card)return;const a=e.target.closest('a');if(a&&card.contains(a))return;const u=card.dataset.url;if(u&&u!=='#')window.open(u,'_blank','noopener');
+});
+let lightboxData=[],lightboxIdx=0,lightboxReturnFocus=null;
+function openSpotGallery(i,k){
+  const s=spots[i];const list=spotImgs(s);
+  lightboxData=list.map((u,ki)=>({img:u,cap:s.name+' · '+(ki+1)+'/'+list.length}));
+  lightboxIdx=k||0;showLightbox();
+}
+function openLightboxSpot(i){openSpotGallery(i,0);}
+function openLightbox(idx){lightboxData=spots;lightboxIdx=idx;showLightbox();}
+function showLightbox(){if(!lightboxData.length)return;lightboxReturnFocus=document.activeElement;
+  paintLightbox();
+  document.getElementById('lightbox').classList.add('active');
+  const btn=document.querySelector('.lightbox__close');if(btn)btn.focus();}
+function paintLightbox(){
+  const it=lightboxData[lightboxIdx];if(!it)return;
+  document.getElementById('lightboxImg').src=it.img;
+  document.getElementById('lightboxImg').alt=it.cap||'';
+  const cap=document.getElementById('lightboxCap');
+  if(cap)cap.textContent=it.cap||'';
+  const n=document.querySelectorAll('.lightbox__nav');
+  n.forEach(b=>{b.style.display=lightboxData.length>1?'':'none';});
+}
+function closeLightbox(){const lb=document.getElementById('lightbox');if(!lb.classList.contains('active'))return;lb.classList.remove('active');if(lightboxReturnFocus&&lightboxReturnFocus.focus)lightboxReturnFocus.focus();}
+function lightboxNav(dir){if(!lightboxData.length)return;lightboxIdx=(lightboxIdx+dir+lightboxData.length)%lightboxData.length;paintLightbox();}
+/* 手机上左右滑切图：横向位移过 45px 才算，避免误触 */
+(function(){
+  const lb=document.getElementById('lightbox');
+  if(!lb||lb.__swiped)return;
+  lb.__swiped=true;
+  let sx=null,sy=null;
+  lb.addEventListener('pointerdown',function(e){
+    if(e.target.closest('.lightbox__nav')||e.target.closest('.lightbox__close')){sx=null;return;}
+    sx=e.clientX;sy=e.clientY;
+  },{passive:true});
+  lb.addEventListener('pointerup',function(e){
+    if(sx===null)return;
+    const dx=e.clientX-sx, dy=e.clientY-(sy||0);
+    sx=null;sy=null;
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))lightboxNav(dx<0?1:-1);
+  },{passive:true});
+})();
+
+function enterSection(id){
+  document.getElementById('hero').style.display='none';
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+  setTimeout(()=>{document.querySelectorAll('.section.active .tab-panel.active .reveal').forEach(el=>el.classList.add('visible'));},100);
+}
+function backToHome(){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById('hero').style.display='flex';
+  window.scrollTo(0,0);
+}
+function toggleHeroNote(){
+  const body=document.getElementById('heroNoteBody'), btn=document.getElementById('heroNote');
+  const open=body.classList.toggle('show');
+  btn.setAttribute('aria-expanded', open?'true':'false');
+}
+document.querySelectorAll('.sticky-tabs__tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const panelId=tab.getAttribute('data-tab');
+    if(!panelId)return;                        /* 导航 / 租车走自己的独立页 */
+    const section=tab.closest('.section');
+    section.querySelectorAll('.sticky-tabs__tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    section.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    section.querySelector(`#${panelId}`).classList.add('active');
+    window.scrollTo(0,0);
+    setTimeout(()=>{section.querySelectorAll(`#${panelId} .reveal`).forEach(el=>el.classList.add('visible'));},100);
+  });
+});
+document.addEventListener('keydown',e=>{
+  const lb=document.getElementById('lightbox');
+  const isOpen=lb.classList.contains('active');
+  if(e.key==='Escape'){if(isOpen){e.preventDefault();closeLightbox();}return;}
+  if(!isOpen)return;
+  if(e.key==='ArrowLeft'){e.preventDefault();lightboxNav(-1);}
+  if(e.key==='ArrowRight'){e.preventDefault();lightboxNav(1);}
+});
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ')return;
+  const el=e.target.closest&&e.target.closest('.sticky-tabs__tab,.sticky-tabs__back,.lodge-strip__cell,.spot-card,.place-card');
+  if(!el)return;
+  e.preventDefault();
+  el.click();
+});
+
+/* —— 二级冻结标签条：滚动到 64px 后收缩，点了跳到对应块 —— */
+(function(){
+  const subs=()=>Array.prototype.slice.call(document.querySelectorAll('.subnav'));
+  let raf=false;
+  function sync(){
+    raf=false;
+    const y=window.scrollY||document.documentElement.scrollTop||0;
+    const on=y>64;
+    subs().forEach(el=>el.classList.toggle('is-compact',on));
+    const lw=document.getElementById('lodgeWrap');
+    if(lw)lw.classList.toggle('is-compact',on);
+  }
+  function schedule(){if(raf)return;raf=true;requestAnimationFrame(sync);}
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',schedule,{passive:true});
+  document.addEventListener('click',function(e){
+    const chip=e.target.closest&&e.target.closest('.subnav__chip');
+    if(!chip)return;
+    const host=chip.closest('.subnav');
+    if(host)host.querySelectorAll('.subnav__chip').forEach(c=>c.classList.remove('active'));
+    chip.classList.add('active');
+    const id=chip.getAttribute('data-anchor');
+    const t=id&&document.getElementById(id);
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  document.addEventListener('DOMContentLoaded',sync);
+  setTimeout(sync,120);
+})();
+
+function refreshWeather(){
+  weatherInited=false;
+  weatherPoints.forEach(w=>{w.temp='…';w.desc='重新取数中';});
+  paintWeather();
+  renderWeather();
+}
+function openNav(){
+  closeCar();
+  document.getElementById('navView').classList.add('active');
+  document.body.style.overflow='hidden';
+  const b=document.querySelector('#navView .nv-body'); if(b) b.scrollTop=0;
+}
+function closeNav(){
+  document.getElementById('navView').classList.remove('active');
+  document.body.style.overflow='';
+}
+/* ===== 租车：选车决策 / 服务 / 应急 ===== */
+const CAR = {
+  models: [
+    {tag:'主推', name:'中型四驱 SUV', eg:'汉兰达 / 途昂 / 探险者 这一级',
+     fit:'3 个人 + 3 个 28 寸箱 + 一堆冬装，刚好装满',
+     why:'北疆冬天路面上有压实雪，四驱加雪地胎是底线。这一级底盘高、坐姿高、暖气足，跑长途三个人不挤。',
+     watch:'订车时问清是不是真四驱（有的低配是两驱）、有没有雪地胎、后备箱能不能放下三个大箱。'},
+    {tag:'备选·稳', name:'硬派越野', eg:'坦克 300 / 普拉多 / 牧马人 这一级',
+     fit:'雪大、走阿禾公路、或者要去没清雪的路段',
+     why:'下雪封路、路面积雪深的时候，硬派越野是唯一敢往前开的。',
+     watch:'油耗高、车重、市区停车费劲；价格比中型 SUV 高一档，只在雪情重的时候才值。'},
+    {tag:'省钱', name:'紧凑型 SUV', eg:'CR-V / 途观 / RAV4 这一级',
+     fit:'两个人合适，三个人加行李会挤',
+     why:'日常够用、便宜、省油。',
+     watch:'三个人坐后排跑四五个小时，中间那位会难受；行李箱要塞满后排脚下。'}
+  ],
+  services: [
+    {k:'雪地胎',v:'必问。新疆冬季门店大多换好了，但有的要加钱，问清是"已含"还是"另收"。'},
+    {k:'防滑链',v:'平台一般不配。自己买一副放后备箱，几十块，关键时刻能救命。'},
+    {k:'保险免赔额',v:'基础险通常还有一两千的免赔，撞一下自己掏。三个人出来玩，建议加买"全险/尊享"，一天几十块，省心。'},
+    {k:'异地还车',v:'乌市取、喀纳斯还这种，多数门店不支持，或者异地费很贵。行程是环线回乌市，直接原地还最省。'},
+    {k:'押金',v:'刷卡预授权，几千块冻结，还车后几天解冻。走之前确认信用卡额度够。'},
+    {k:'油',v:'满油取、满油还。还车前在机场附近加满，别让门店代加，代加贵。'},
+    {k:'送车上门',v:'乌市酒店可以送车到门口，省一趟跑门店，下单时勾上。'}
+  ],
+  emergency: [
+    {t:'车打不着火（零下二三十度最常见）',d:'先别连续拧钥匙，越拧越亏电。叫平台救援搭电，或者让酒店帮忙找当地修车铺。停车尽量选背风、有阳光的位置。',who:'平台救援 / 酒店前台'},
+    {t:'陷进雪里',d:'别一脚油门到底，轮子空转只会越陷越深。挂低速挡轻给油，前后小幅挪，车轮下垫防滑板、纸板、脚垫都行。实在出不来就叫救援，别自己挖一小时。',who:'平台救援'},
+    {t:'爆胎 / 扎胎',d:'能自己换就换备胎，换完记得把坏胎带走。在高速上先靠边、开双闪、放三角牌，人站到护栏外，打 12122。',who:'12122 / 平台救援'},
+    {t:'小剐蹭',d:'先拍照（全景、接触点、对方车牌），再报平台备案，别私下给现金了事。还车时没备案的伤，容易被判自己承担。',who:'平台客服'},
+    {t:'出事故',d:'三件事按顺序：报警 122、报保险、报平台。人先下车到安全位置，别在车道里站着拍照。',who:'122 / 保险公司 / 平台'},
+    {t:'路被封了',d:'阿禾公路、独库公路冬天会封，别赌。出发前看当地交警和"新疆交通"的发布，封了就改走 G217 或干脆多住一晚。硬闯封闭路段，保险可能不赔。',who:'当地交警 / 景区公告'},
+    {t:'车坏在半路',d:'先报平台，要求换车或拖车。拖车费和住宿费留好票据，事后凭票找平台报。',who:'平台客服'}
+  ],
+  links: [
+    {n:'神州租车',u:'https://www.zuche.com/',t:'400-616-6666'},
+    {n:'一嗨租车',u:'https://www.1hai.cn/',t:'400-888-6608'},
+    {n:'携程租车',u:'https://car.ctrip.com/',t:'平台在线客服'}
+  ]
+};
+
+function renderCar(){
+  const list=document.getElementById('carList');
+  if(!list || list.dataset.done) return;
+  list.dataset.done='1';
+  const models=CAR.models.map(m=>`
+    <div class="car-card">
+      <div class="car-badge">${m.tag}</div>
+      <h3 class="car-card__name">${m.name}</h3>
+      <p class="car-card__eg">${m.eg}</p>
+      <p class="car-card__fit"><b>坐得下吗：</b>${m.fit}</p>
+      <p class="car-card__why">${m.why}</p>
+      <p class="car-card__watch"><b>订车时要问：</b>${m.watch}</p>
+    </div>`).join('');
+  const svc=CAR.services.map(x=>`<li><b>${x.k}：</b>${x.v}</li>`).join('');
+  const emg=CAR.emergency.map(x=>`
+    <div class="car-card car-card--emg">
+      <h3 class="car-card__name">${x.t}</h3>
+      <p class="car-card__why">${x.d}</p>
+      <p class="car-card__watch"><b>找谁：</b>${x.who}</p>
+    </div>`).join('');
+  const lk=CAR.links.map(x=>`<a class="car-link" href="${x.u}" target="_blank" rel="noopener">${x.n} ↗<span>${x.t}</span></a>`).join('');
+  list.innerHTML=`
+    <div class="car-card car-card--note">
+      <p class="car-card__why"><b>先说钱。</b>租车价格每天、每个门店、每个平台都不一样，页面里写死一个数字，到了门店对不上，反而是坑。所以这里只讲怎么选、怎么验、出了事谁管；价格请在出发前 30 天左右，用下面三家平台的官方入口各查一次同车型同日期，取中间价。</p>
+      <div class="car-links">${lk}</div>
+    </div>
+    <h3 class="page-title" style="font-size:1.1rem;margin:1.4rem 0 .7rem">选哪一档</h3>
+    ${models}
+    <h3 class="page-title" style="font-size:1.1rem;margin:1.6rem 0 .7rem">订车时把这些问清楚</h3>
+    <ul class="car-svc">${svc}</ul>`;
+  const box=document.getElementById('carEmergency');
+  if(box) box.innerHTML=emg;
+}
+
+function openCar(){
+  closeNav();
+  renderCar();
+  const v=document.getElementById('carView');
+  v.classList.add('active');
+  document.body.style.overflow='hidden';
+  const b=v.querySelector('.nv-body'); if(b) b.scrollTop=0;
+}
+function closeCar(){
+  const v=document.getElementById('carView');
+  if(!v)return;
+  v.classList.remove('active');
+  document.body.style.overflow='';
+}
+function jumpTip(g){
+  const t=document.getElementById('tips-'+g);
+  if(!t)return;
+  t.scrollIntoView({behavior:'smooth',block:'start'});
+  const sub=document.getElementById('tipsSubnav');
+  if(sub)sub.querySelectorAll('.subnav__chip').forEach(c=>c.classList.toggle('active',c.dataset.anchor==='tips-'+g));
+}
+function openNote(){
+  const m=document.getElementById('noteModal');
+  m.classList.add('active');
+  document.body.style.overflow='hidden';
+  const c=m.querySelector('.note-sheet__close'); if(c)c.focus();
+}
+function closeNote(){
+  const m=document.getElementById('noteModal');
+  if(!m.classList.contains('active'))return;
+  m.classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('click',function(e){
+  if(!e.target.closest)return;
+  if(e.target.closest('#navEntry')){openNav();return;}
+  if(e.target.closest('#carEntry')){openCar();return;}
+  if(e.target.closest('#navBack')){closeNav();return;}
+  if(e.target.closest('#carBack')){closeCar();return;}
+  if(e.target.id==='noteModal'){closeNote();}
+});
+document.getElementById('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('a-shell');localStorage.setItem('theme',document.body.classList.contains('a-shell')?'light':'dark');});
+if(localStorage.getItem('theme')==='light')document.body.classList.add('a-shell');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* 图片兜底：任一图片加载失败时给出可读占位，不露破图标 */
+document.addEventListener('error',e=>{
+  const t=e.target;
+  if(!t||t.tagName!=='IMG'||t.dataset.failed)return;
+  t.dataset.failed='1';
+  t.style.background='linear-gradient(135deg,#2a2724,#161514)';
+  t.style.objectFit='cover';
+  t.alt=(t.alt||'图片')+'（加载失败）';
+},true);
+(function(){
+  const probe=new Image();
+  probe.onerror=()=>{const bg=document.querySelector('.hero__bg');if(bg){bg.style.background='linear-gradient(160deg,#242019,#0d0c0b)';}};
+  probe.src='assets/hero_beijiang.jpg';
+})();
+
+function renderItinerary(){
+  const el=document.getElementById('timeline');
+  if(!el)return;
+  el.innerHTML=itinerary.map(d=>{
+    const rows=d.rows.map(r=>{
+      let note='';
+      if(r.link)note=`<a class="source-link" href="${r.link.href}" target="_blank">${r.link.label}</a>`;
+      else if(r.note)note=r.note;
+      return `<div class="timeline__row"><span class="timeline__time">${r.t}</span><span class="timeline__loc">${r.loc}</span><span class="timeline__action">${r.act}</span>${note?`<span class="timeline__note">${note}</span>`:''}</div>`;
+    }).join('');
+    return `<div class="timeline__day" data-day="${d.day}"><div class="timeline__date">${d.date}</div>${rows}${d.lodge?`<div class="timeline__lodge">${d.lodge}</div>`:''}${d.alt?`<div class="timeline__alt">${d.alt}</div>`:''}</div>`;
+  }).join('');
+}
+
+/* 无障碍：把可点元素补成键盘可达（Tab 聚焦 + Enter/Space 触发） */
+function decorateA11y(){
+  document.querySelectorAll('.sticky-tabs__tab,.sticky-tabs__back,.lodge-strip__cell,.spot-card,.place-card').forEach(el=>{
+    if(!el.hasAttribute('tabindex'))el.setAttribute('tabindex','0');
+    if(!el.hasAttribute('role'))el.setAttribute('role','button');
+  });
+  const lb=document.getElementById('lightbox');
+  if(lb){lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','图片预览');}
+  const img=document.getElementById('lightboxImg');
+  if(img&&spots.length)img.src=spots[0].img;
+}
+
+/* 初始化 */
+renderItinerary();
+renderSpots();
+renderHotels();
+renderRestaurants();
+renderLodgeStrip();
+renderExpenses();
+renderWeather();
+renderTasks();
+renderEmergency();
+renderTips();
+decorateA11y();
+setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('visible')),100);
+
+/* ===== 独立页面：路书地图（真实道路 + 播放控制） ===== */
+const mapDays = {
+  D1: {t:'各地 → 乌鲁木齐', pts:[[43.905,87.472],[43.830,87.630]], pois:[[43.905,87.472,'乌市机场','交通'],[43.830,87.630,'乌市希尔顿','住宿'],[43.782,87.617,'馬风花','餐饮']]},
+  D2: {t:'乌市 → 阿勒泰', pts:[[43.830,87.630],[45.200,88.200],[47.845,88.140]], pois:[[45.200,88.200,'三个泉子服务区','补给'],[47.845,88.130,'金桥假日','住宿']]},
+  D3: {t:'阿勒泰 → 禾木', pts:[[47.845,88.140],[47.900,88.300],[48.300,87.700],[48.566,87.437]], pois:[[47.900,88.300,'小东沟检查站','路况'],[48.566,87.437,'禾木村','景点'],[48.575,87.450,'哈登观景台','打卡']]},
+  D4: {t:'禾木 → 喀纳斯', pts:[[48.566,87.437],[48.600,87.200],[48.716,87.017]], pois:[[48.716,87.017,'喀纳斯湖','景点']]},
+  D5: {t:'喀纳斯 → 布尔津', pts:[[48.716,87.017],[48.300,87.100],[47.702,86.874]], pois:[[48.300,87.100,'冲乎尔河谷','打卡'],[47.702,86.874,'河堤夜市','餐饮']]},
+  D6: {t:'布尔津 → 克拉玛依', pts:[[47.702,86.874],[46.183,85.833],[45.595,84.874]], pois:[[46.183,85.833,'世界魔鬼城','景点'],[45.595,84.874,'独山子','住宿']]},
+  D7: {t:'克拉玛依 → 赛里木湖', pts:[[45.595,84.874],[44.420,84.900],[44.600,81.170]], pois:[[44.420,84.900,'奎屯','补给'],[44.600,81.170,'赛湖东门','景点'],[44.600,81.120,'逸扉酒店','住宿']]},
+  D8: {t:'赛里木湖 → 温泉县', pts:[[44.600,81.170],[44.970,81.020]], pois:[[44.970,81.020,'温泉县','住宿']]},
+  D9: {t:'温泉县 → 乌鲁木齐', pts:[[44.970,81.020],[44.420,84.900],[43.830,87.630]], pois:[[44.420,84.900,'奎屯','补给'],[43.830,87.630,'乌市希尔顿','住宿'],[43.828,87.600,'大巴扎','景点']]},
+  D10:{t:'乌鲁木齐 → 机场', pts:[[43.830,87.630],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
+};
+const DAYS = Object.keys(mapDays);
+const KMPS = 30;                 /* 1× = 30 km/秒，全长约 80 秒 */
+
+let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[];
+let TRIP=null,GPTS=[],GCUM=[],TRIP_TOTAL=0,DS=[];
+const PV={km:0,maxKm:0,playing:false,speed:1,last:0,day:'D1',timer:null,_wantPlay:false};
+
+function haversine(a,b){
+  const R=6371,rad=Math.PI/180;
+  const dLat=(b[0]-a[0])*rad,dLng=(b[1]-a[1])*rad;
+  const x=Math.sin(dLat/2)**2+Math.cos(a[0]*rad)*Math.cos(b[0]*rad)*Math.sin(dLng/2)**2;
+  return 2*R*Math.asin(Math.min(1,Math.sqrt(x)));
+}
+function tFetch(url,ms){
+  var ctl=typeof AbortController!=='undefined'?new AbortController():null;
+  var opt=ctl?{signal:ctl.signal}:{};
+  var timer=setTimeout(function(){if(ctl)ctl.abort();},ms||12000);
+  return fetch(url,opt).finally(function(){clearTimeout(timer);});
+}
+function osrmRoute(coords){
+  const q=coords.map(function(c){return c[1]+','+c[0];}).join(';');
+  return tFetch('https://router.project-osrm.org/route/v1/driving/'+q+'?overview=full&geometries=geojson',10000)
+    .then(function(r){return r.json();}).then(function(j){
+      const rt=j&&j.routes&&j.routes[0];
+      if(!rt)throw new Error('no route');
+      return rt.geometry.coordinates.map(function(c){return [c[1],c[0]];});
+    });
+}
+function valhallaRoute(coords){
+  const body={locations:coords.map(function(c){return {lat:c[0],lon:c[1]};}),costing:'auto',shape_format:'geojson'};
+  return tFetch('https://valhalla1.openstreetmap.de/route?json='+encodeURIComponent(JSON.stringify(body)),12000)
+    .then(function(r){return r.json();}).then(function(j){
+      if(!j||!j.trip)throw new Error('no trip');
+      let pts=[];
+      j.trip.legs.forEach(function(l){pts=pts.concat(l.shape.coordinates.map(function(c){return [c[1],c[0]];}));});
+      return pts;
+    });
+}
+function getRoute(coords){
+  return osrmRoute(coords).catch(function(){return valhallaRoute(coords);}).catch(function(){return coords.slice();});
+}
+function loadRoutes(done){
+  let i=0;
+  (function next(){
+    if(i>=DAYS.length){done();return;}
+    const id=DAYS[i],d=mapDays[id];
+    mvHint('正在获取真实道路路线 '+(i+1)+'/'+DAYS.length+' · '+id);
+    getRoute(d.pts).then(function(road){
+      d.road=(road&&road.length>1)?road:d.pts.slice();
+      i++;next();
+    });
+  })();
+}
+function buildTrip(){
+  TRIP=[];GPTS=[];GCUM=[];DS=[];TRIP_TOTAL=0;
+  let prevEnd=null;
+  DAYS.forEach(function(id){
+    const d=mapDays[id];
+    const road=(d.road&&d.road.length>1)?d.road.slice():d.pts.slice();
+    if(prevEnd){road[0]=[prevEnd[0],prevEnd[1]];}
+    const lastW=d.pts[d.pts.length-1];
+    road[road.length-1]=[lastW[0],lastW[1]];
+    DS.push(GPTS.length);
+    road.forEach(function(p,i){
+      if(i>0||GPTS.length===0){GPTS.push(p);}else{GPTS[GPTS.length-1]=p;}
+    });
+    d.startKm=TRIP_TOTAL;
+    let km=0;
+    for(let i=1;i<road.length;i++)km+=haversine(road[i-1],road[i]);
+    d.km=km;d.geom=road;TRIP_TOTAL+=km;
+    prevEnd=road[road.length-1];
+    TRIP.push(d);
+  });
+  let acc=0;GCUM=[0];
+  for(let i=1;i<GPTS.length;i++){acc+=haversine(GPTS[i-1],GPTS[i]);GCUM.push(acc);}
+  TRIP_TOTAL=acc;
+}
+function idxAt(km){
+  let lo=0,hi=GCUM.length-1;
+  while(lo<hi){const mid=(lo+hi)>>1;if(GCUM[mid]<km)lo=mid+1;else hi=mid;}
+  return lo;
+}
+function sliceTo(km){
+  if(!GPTS.length)return [];
+  km=Math.max(0,Math.min(TRIP_TOTAL,km));
+  const i=idxAt(km),i0=Math.max(0,i-1);
+  const seg=GCUM[i]-GCUM[i0]||1,f=(km-GCUM[i0])/seg;
+  const a=GPTS[i0],b=GPTS[Math.min(i,GPTS.length-1)];
+  const out=GPTS.slice(0,i0+1);
+  out.push([a[0]+(b[0]-a[0])*f,a[1]+(b[1]-a[1])*f]);
+  return out;
+}
+function sliceRange(a,b){
+  if(!GPTS.length)return [];
+  a=Math.max(0,Math.min(TRIP_TOTAL,a));b=Math.max(a,Math.min(TRIP_TOTAL,b));
+  const i0=idxAt(a),i1=idxAt(b);
+  const out=GPTS.slice(i0,Math.min(i1+1,GPTS.length));
+  const pa=GPTS[Math.max(0,i0-1)],pb=GPTS[Math.min(i1,GPTS.length-1)];
+  function lerp(k){
+    const lo=Math.max(0,idxAt(k)-1),hi=Math.min(idxAt(k),GPTS.length-1);
+    const seg=GCUM[hi]-GCUM[lo]||1,f=(k-GCUM[lo])/seg;
+    return [GPTS[lo][0]+(GPTS[hi][0]-GPTS[lo][0])*f,GPTS[lo][1]+(GPTS[hi][1]-GPTS[lo][1])*f];
+  }
+  out.unshift(lerp(a)); out.push(lerp(b));
+  return out;
+}
+function dayAt(km){for(let i=0;i<TRIP.length;i++){if(km<=TRIP[i].startKm+TRIP[i].km)return DAYS[i];}return DAYS[DAYS.length-1];}
+function renderProgress(){
+  if(!TRIP||!mvMap||!GPTS.length)return;
+  const pts=sliceTo(PV.km);
+  mvProg.setLatLngs(sliceRange(Math.max(0,PV.km-80),PV.km));
+  mvTrail.setLatLngs(sliceTo(PV.maxKm));
+  if(mvGlow)mvGlow.setLatLngs(sliceTo(PV.maxKm));
+  const ll=pts[pts.length-1]||GPTS[0];
+  if(mvCar){mvCar.setLatLng(ll);}
+  else{
+    mvCar=L.marker(ll,{icon:L.divIcon({className:'mv-car',html:'<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#ff7a3d" stroke="#fff" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>',iconSize:[24,24],iconAnchor:[12,12]}),zIndexOffset:900}).addTo(mvMap);
+  }
+  const nd=dayAt(PV.km);
+  if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);}
+  PV.day=nd;
+  const el=document.getElementById('pvRead');
+  if(el)el.textContent=PV.day+' · '+PV.km.toFixed(0)+' / '+TRIP_TOTAL.toFixed(0)+' km';
+  const rg=document.getElementById('pvRange');
+  if(rg&&!rg.dataset.drag)rg.value=String(Math.round(PV.km/TRIP_TOTAL*1000));
+  const btn=document.querySelector('.mapview__day[data-day="'+PV.day+'"]');
+  if(btn&&!btn.classList.contains('active')){
+    document.querySelectorAll('.mapview__day').forEach(function(x){x.classList.remove('active');});
+    btn.classList.add('active');
+    if(btn.scrollIntoView)btn.scrollIntoView({block:'nearest',inline:'nearest'});
+  }
+}
+let lastPan=0;
+function follow(){
+  if(!mvCar)return;
+  const now=performance.now();
+  if(now-lastPan<1200)return;
+  lastPan=now;
+  const ll=mvCar.getLatLng();
+  const z=mvMap.getZoom();
+  if(z<7){mvMap.setView(ll,8,{animate:true});return;}
+  if(mvMap.distance(mvMap.getCenter(),ll)>mvMap.getSize().y*120){mvMap.panTo(ll,{animate:true,duration:0.8});}
+}
+function step(){
+  if(!PV.playing)return;
+  const now=performance.now();
+  if(!PV.last)PV.last=now;
+  const dt=Math.min(0.6,(now-PV.last)/1000);PV.last=now;
+  PV.km+=dt*PV.speed*KMPS;
+  if(PV.km>=TRIP_TOTAL){PV.km=TRIP_TOTAL;setPlaying(false);}
+  if(PV.km>PV.maxKm)PV.maxKm=PV.km;
+  renderProgress();follow();
+}
+function setPlaying(v){
+  PV.playing=v;
+  const b=document.getElementById('pvPlay');
+  if(b){b.textContent=v?'❚❚':'▶';b.setAttribute('aria-label',v?'暂停':'播放');}
+  if(v){PV.last=0;if(PV.timer)clearInterval(PV.timer);PV.timer=setInterval(step,60);}
+  else if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
+}
+function goDay(id){
+  const di=DAYS.indexOf(id),d=TRIP[di];if(!d)return;
+  PV.km=d.startKm;
+  mvHi.setLatLngs(d.geom);
+  mvMap.flyToBounds(L.latLngBounds(d.geom),{padding:[70,70],duration:1.0,maxZoom:10});
+  renderProgress();
+  mvHint(id+' · 全程 '+d.km.toFixed(0)+' km');
+}
+function mvHint(t){
+  const el=document.getElementById('mapHint');
+  if(!el)return;
+  el.textContent=t;
+  if(el._t)clearTimeout(el._t);
+  el._t=setTimeout(function(){el.textContent='拖拽 / 滚轮 / 双指缩放 · 放到街区层会显示道路名 · 点亮色看当天，按播放看全程';},4200);
+}
+function mvLocate(){
+  if(mvWatch){navigator.geolocation.clearWatch(mvWatch);mvWatch=null;if(mvMe){mvMap.removeLayer(mvMe);mvMe=null;}mvHint('已关闭实时定位');return;}
+  if(!navigator.geolocation){mvHint('当前环境不支持定位');return;}
+  mvWatch=navigator.geolocation.watchPosition(function(pos){
+    const ll=[pos.coords.latitude,pos.coords.longitude];
+    if(mvMe){mvMe.setLatLng(ll);}else{mvMe=L.circleMarker(ll,{radius:8,color:'#2f7cf6',weight:2,fillColor:'#2f7cf6',fillOpacity:.9}).addTo(mvMap).bindPopup('我的位置');}
+    mvMap.setView(ll,Math.max(mvMap.getZoom(),11),{animate:true});
+    mvHint('实时定位中 · 精度约 '+Math.round(pos.coords.accuracy)+' 米');
+  },function(){mvWatch=null;mvHint('定位不可用：file:// 打开会被浏览器拦截，部署上线后正常');},{enableHighAccuracy:true,timeout:10000,maximumAge:3000});
+}
+function mvNoLib(){
+  var box=document.getElementById('mapCanvas');
+  if(box&&!box.querySelector('.mapview__err')){
+    box.innerHTML='<div class="mapview__err">地图没加载出来——它要去网上取图，网络不通就拿不到。<br>行程、费用、导航表在别的页里，都不受影响；换个网络再打开这一页就行。</div>';
+  }
+}
+function mvInit(){
+  if(mvMap)return;
+  if(typeof L==='undefined'){mvNoLib();return;}
+  mvMap=L.map('mapCanvas',{zoomControl:false,zoomAnimation:true,fadeAnimation:true,preferCanvas:false});
+  L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x={x}&y={y}&z={z}',{subdomains:['1','2','3','4'],maxZoom:19,minZoom:4,keepBuffer:6,detectRetina:true,updateWhenIdle:false,updateWhenZooming:false}).addTo(mvMap);
+  mvMap.setView([44.3,85.6],6);   /* 默认给全程视野，不把某一段顶到看不见 */
+  mvBase=L.polyline([],{color:'#6f665e',weight:3.2,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
+  mvTrail=L.polyline([],{color:'#9e5b3c',weight:3.6,opacity:.95,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
+  /* 已走段的暖光晕：把行程痕迹从底图路网里拎出来 */
+  mvGlow=L.polyline([],{color:'#ffb27a',weight:11,opacity:.22,lineCap:'round',lineJoin:'round',interactive:false}).addTo(mvMap);
+  mvHi=L.polyline([],{color:'#ffd9b0',weight:7,opacity:.55,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
+  mvProg=L.polyline([],{color:'#ff7a3d',weight:5.5,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
+  L.control.scale({imperial:false,position:'bottomright'}).addTo(mvMap);
+
+  document.getElementById('mapDays').innerHTML=DAYS.map(function(id,i){
+    return '<button class="mapview__day'+(i===0?' active':'')+'" data-day="'+id+'">'+id+' '+mapDays[id].t+'</button>';
+  }).join('');
+  document.querySelectorAll('.mapview__day').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(!mvLoaded){mvHint('真实路线还在加载，稍等一下');return;}
+      document.querySelectorAll('.mapview__day').forEach(function(x){x.classList.remove('active');});
+      b.classList.add('active');
+      goDay(b.getAttribute('data-day'));
+    });
+  });
+  document.getElementById('mapZoomIn').addEventListener('click',function(){mvMap.zoomIn(1,{animate:true});});
+  document.getElementById('mapZoomOut').addEventListener('click',function(){mvMap.zoomOut(1,{animate:true});});
+  document.getElementById('mapLocate').addEventListener('click',mvLocate);
+  document.getElementById('pvPlay').addEventListener('click',function(){
+    if(!mvLoaded){PV._wantPlay=true;mvHint('路线加载完就开播');return;}
+    if(!PV.playing&&PV.km>=TRIP_TOTAL){PV.km=0;}
+    setPlaying(!PV.playing);
+  });
+  document.getElementById('pvPrev').addEventListener('click',function(){
+    if(!mvLoaded)return;
+    goDay(DAYS[Math.max(0,DAYS.indexOf(PV.day)-1)]);
+  });
+  document.getElementById('pvNext').addEventListener('click',function(){
+    if(!mvLoaded)return;
+    goDay(DAYS[Math.min(DAYS.length-1,DAYS.indexOf(PV.day)+1)]);
+  });
+  document.getElementById('pvSpeed').addEventListener('click',function(){
+    PV.speed=PV.speed===1?2:(PV.speed===2?4:1);
+    this.textContent=PV.speed+'×';
+  });
+  const rg=document.getElementById('pvRange');
+  rg.addEventListener('input',function(){
+    if(!mvLoaded)return;
+    rg.dataset.drag='1';
+    PV.km=TRIP_TOTAL*(Number(rg.value)/1000);
+    if(PV.km>PV.maxKm)PV.maxKm=PV.km;
+    renderProgress();
+  });
+  rg.addEventListener('change',function(){delete rg.dataset.drag;});
+
+  loadRoutes(function(){
+    mvLoaded=true;
+    buildTrip();
+    mvBase.setLatLngs(GPTS);
+    const DAY_PLACE=['乌市','阿勒泰','禾木','喀纳斯','布尔津','乌尔禾·独山子','赛里木湖','温泉县','乌市','机场还车'];
+    TRIP.forEach(function(d,i){
+      const st=GPTS[DS[i]]||d.geom[0];
+      mvDayMarks.push(L.circleMarker(st,{radius:4,color:'#7a716a',weight:2,fillColor:'#fff',fillOpacity:.9})
+        .addTo(mvMap).bindTooltip(DAYS[i]+' 起点'));
+      const en=d.geom[d.geom.length-1];
+      L.marker(en,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
+        html:'<span>'+DAYS[i]+' · '+(DAY_PLACE[i]||'')+'</span>',iconSize:[0,0],iconAnchor:[0,i===8?-30:-9]})}).addTo(mvMap);
+    });
+    PV.km=0;PV.maxKm=0;renderProgress();
+    mvMap.flyToBounds(L.latLngBounds(TRIP[0].geom),{padding:[70,70],duration:1.1,maxZoom:10});
+    mvHint('真实道路已载入 · 全长约 '+TRIP_TOTAL.toFixed(0)+' km，按播放看全程');
+    if(PV._wantPlay){PV._wantPlay=false;setPlaying(true);}
+  });
+}
+function mvBootstrap(){
+  var btn=document.createElement('button');
+  btn.className='map-entry';btn.type='button';btn.textContent='路书地图';
+  btn.addEventListener('click',function(){
+    document.getElementById('mapView').classList.add('active');
+    if(!mvMap)mvInit();
+    setTimeout(function(){if(mvMap){mvMap.invalidateSize();renderProgress();}},200);
+  });
+  document.body.appendChild(btn);
+  document.getElementById('mapBack').addEventListener('click',function(){
+    document.getElementById('mapView').classList.remove('active');
+    setPlaying(false);
+    if(mvWatch){navigator.geolocation.clearWatch(mvWatch);mvWatch=null;if(mvMe&&mvMap){mvMap.removeLayer(mvMe);mvMe=null;}}
+  });
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',mvBootstrap);}else{mvBootstrap();}
+
+</script>
+
+<div class="mapview" id="carView">
+  <div class="mapview__bar">
+    <button class="mapview__back" id="carBack">返回</button>
+    <div class="mapview__days"><span style="font-family:var(--font-serif);font-size:.95rem">租车 · 车型与服务</span></div>
+  </div>
+  <div class="nv-body">
+    <div class="nv-wrap" id="carWrap">
+      <p class="page-desc" style="margin-top:0">这一段只讲车：租什么、多少钱、出了事谁管。价格是公开报价，取车当天以门店核价为准。</p>
+      <div id="carList"></div>
+      <h3 class="page-title" style="font-size:1.1rem;margin-top:1.6rem">应急怎么办</h3>
+      <div id="carEmergency"></div>
+    </div>
+  </div>
+</div>
+
+<div class="mapview" id="navView">
+  <div class="mapview__bar">
+    <button class="mapview__back" id="navBack">返回</button>
+    <div class="mapview__days"><span style="font-family:var(--font-serif);font-size:.95rem">逐日导航</span></div>
+  </div>
+  <div class="nv-body">
+    <div class="nv-wrap">
+      <p class="page-desc" style="margin-top:0">把<strong>终点名</strong>整段粘进高德或百度，只搜城市名会被导到市中心。终点都写到门牌，搜不到店名就搜门牌。</p>
+    <table class="nav-table">
+      <thead><tr><th>日</th><th>导航搜索（起点 → 终点）</th><th>里程</th><th>这段路上要注意的</th></tr></thead>
+      <tbody>
+        <tr><td>D1 12/09</td><td>地窝堡国际机场 → 希尔顿（米东区红光山路1237号）</td><td>约 20 km</td><td>落地取车；两班机相差 1h40，先到的等</td></tr>
+        <tr><td>D2 12/10</td><td>希尔顿 → 阿勒泰金桥假日（市中心）</td><td>500 km</td><td>G7 京新转 S21 阿乌高速，不经克拉玛依</td></tr>
+        <tr><td>D3 12/11</td><td>金桥假日 → 禾木游客中心</td><td>209 km</td><td>阿禾公路 10:00–14:00 放行、20:00 前驶离，仅雪地胎四驱；须先预约进村</td></tr>
+        <tr><td>D4 12/12</td><td>禾木 → 喀纳斯图瓦村（停泊STAY·坐忘）</td><td>60 km</td><td>进山无加油站，出发前加满</td></tr>
+        <tr><td>D5 12/13</td><td>喀纳斯 → 布尔津（卧龙湾路酒吧一条街2号楼）→ 五彩滩</td><td>150 km</td><td>五彩滩 09:00 开园、19:00 停售、19:15 最后入园</td></tr>
+        <tr><td>D6 12/14</td><td>布尔津 → 乌尔禾（阿吾丹）→ 独山子（大庆东路13号）</td><td>330 km</td><td>魔鬼城 09:30–19:00、19:00 停售；克拉玛依黑油山顺路可停</td></tr>
+        <tr><td>D7 12/15</td><td>独山子 → 赛里木湖（西海路7号2号楼）</td><td>430 km</td><td>东门进南门出；冬季环湖路以现场通告为准</td></tr>
+        <tr><td>D8 12/16</td><td>赛湖 → 温泉县花间堂·阿日相（博格达尔景区）</td><td>90 km</td><td>下午泡汤；县城馆子 21:00 前收</td></tr>
+        <tr><td>D9 12/17</td><td>温泉县 → 乌市希尔顿（红光山路1237号）</td><td>600 km</td><td>单日最长，遇雪顺延半天、D10 早起补</td></tr>
+        <tr><td>D10 12/18</td><td>希尔顿 → 地窝堡国际机场（还车）</td><td>约 20 km</td><td>满油取还、拍照留证，预留 2h</td></tr>
+      </tbody>
+    </table>
+      <p class="nv-note">上面每条的官方原文都在「门道」页，能直接点开：阿禾公路通行通告、阿禾公路限行、喀纳斯冬季公告、魔鬼城售票时间、五彩滩营业时间。路况天天在变，出发当天先看当地交警和景区通告。</p>
+      <p class="nv-note">加油与补给：D3 进山前在阿勒泰加满（209 km 全线无加油站）；D4 禾木出发前再次加满；D9 温泉县出发前加满，中途精河补一次。</p>
+    </div>
+  </div>
+</div>
+
+<div class="mapview" id="mapView">
+  <div class="mapview__bar">
+    <button class="mapview__back" id="mapBack">返回</button>
+    <div class="mapview__days" id="mapDays"></div>
+  </div>
+  <div class="mapview__canvas" id="mapCanvas">
+    <div class="mapview__tools">
+      <button class="mapview__tool" id="mapZoomIn" aria-label="放大">+</button>
+      <button class="mapview__tool" id="mapZoomOut" aria-label="缩小">−</button>
+      <button class="mapview__tool" id="mapLocate" aria-label="定位">◎</button>
+    </div>
+    <div class="mv-legend">
+      <div><i style="background:#7a716a"></i>还没走</div>
+      <div><i style="background:#b0492a"></i>走过了</div>
+      <div><i style="background:#ff7a3d;box-shadow:0 0 0 2px rgba(255,122,61,.28)"></i>正在走</div>
+      <div><i style="background:#ffd9b0"></i>当天整段</div>
+    </div>
+    <div class="mapview__hint" id="mapHint">正在载入真实道路路线…</div>
+  </div>
+  <div class="mv-player">
+      <button class="main" id="pvPlay" aria-label="播放或暂停">▶</button>
+      <span class="read" id="pvRead">D1 · 0 km</span>
+      <input id="pvRange" type="range" min="0" max="1000" value="0" aria-label="行程进度">
+      <button id="pvPrev">上一天</button>
+      <button id="pvNext">下一天</button>
+      <button class="speed" id="pvSpeed">1×</button>
+    </div>
+  </div>
+</body>
+</html>
