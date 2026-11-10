@@ -197,6 +197,13 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .weather-card__temp{font-size:1.5rem;color:var(--accent);margin-bottom:.25rem}
 .weather-card__desc{font-size:.8rem;color:var(--text-muted)}
 .task-list{list-style:none}
+.today-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:1.4rem}
+.today-cell{background:var(--bg-card);padding:1rem 1.05rem}
+.today-cell__k{font-size:.68rem;letter-spacing:.14em;color:var(--text-muted);margin-bottom:.45rem}
+.today-cell__v{font-family:var(--font-serif);font-size:1.02rem;line-height:1.45}
+.today-cell__m{font-size:.74rem;color:var(--text-secondary);line-height:1.65;margin-top:.35rem}
+.today-cell__m a{color:var(--accent);text-decoration:none}
+@media (max-width:720px){.today-grid{grid-template-columns:1fr}}
 .task-list li{padding:.75rem 1rem;background:var(--bg-card);border:1px solid var(--border);margin-bottom:.5rem;display:flex;align-items:center;gap:.75rem;font-size:.9rem}
 .task-list li::before{content:'☐';color:var(--accent);font-size:1.1rem}
 .task-list.is-live li{cursor:pointer;user-select:none}
@@ -749,6 +756,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   </div>
   <div class="tab-panel" id="jintian"><h2 class="page-title">今天</h2>
     <p class="page-desc" id="todayStamp">—</p>
+    <div class="today-grid" id="todayGrid"></div>
     <ul class="task-list is-live" id="taskList"></ul>
     <p class="page-desc" id="todayNote" style="font-size:.78rem;margin-top:.6rem"></p></div>
   <div class="tab-panel" id="wanyi"><h2 class="page-title">万一</h2><div id="emergencyList"></div></div>
@@ -1353,6 +1361,38 @@ function tickMap(){try{return JSON.parse(localStorage.getItem(TICK_KEY)||'{}')}c
 function tickSave(o){try{localStorage.setItem(TICK_KEY,JSON.stringify(o))}catch(e){}}
 function stampNow(){const d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
 function dayIndex(){const n=new Date();const t0=new Date(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((t0-TRIP_START)/86400000);}
+/* 今天页三格速览：今天走哪、今晚住哪、今晚吃哪——车上最高频的三个问题 */
+const DAY_STAY={1:'希尔顿（乌市）',2:'金桥假日酒店（阿勒泰）',3:'无也民宿（禾木）',4:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',5:'知禾·设计师艺术民宿（布尔津）',6:'独山子玛依塔柯酒店',7:'赛里木湖逸扉酒店',8:'花间堂·阿日相（温泉县）',9:'希尔顿（乌市）'};
+const DAY_EAT={1:'馬风花·新疆菜·大盘鸡（人民电影院店）',2:'乡村馕坑肉（阿勒泰首店）',5:'煲来饱去冷水鱼（布尔津）',6:'阿吾丹·非遗手抓饭（乌尔禾店）',7:'高白鲑餐吧（克勒涌珠店）',8:'旺福楼酒店（温泉县）',9:'馬风花·新疆菜·大盘鸡（人民电影院店）'};
+function findByName(arr,n){for(var i=0;i<arr.length;i++){if(arr[i].name===n)return arr[i];}return null;}
+function mapLink(name){return '<a href="https://uri.amap.com/search?keyword='+encodeURIComponent(name)+'" target="_blank" rel="noopener">看位置↗</a>';}
+function renderToday(){
+  const grid=document.getElementById('todayGrid');
+  if(!grid)return;
+  const idx=dayIndex();
+  const i=(idx<0)?0:(idx>=TRIP_LEN?TRIP_LEN-1:idx);
+  const d=itinerary[i], day='D'+(i+1);
+  const seg=(d.date||'').split('·').pop().trim();
+  const km=/约([0-9.]+)\s*km/.exec(d.date||'');
+  const kmTxt=km?('约 '+km[1]+' 公里'):(i===0?'落地取车':(i===TRIP_LEN-1?'赶飞机回程':'—'));
+  const st=findByName(hotels,DAY_STAY[i+1]||'');
+  const et=findByName(restaurants,DAY_EAT[i+1]||'');
+  const label=(idx<0?'出发那天':'今天');
+  const cells=[];
+  cells.push('<div class="today-cell"><div class="today-cell__k">'+label+' · '+day+'</div><div class="today-cell__v">'+seg+'</div><div class="today-cell__m">'+kmTxt+'</div></div>');
+  if(st){
+    cells.push('<div class="today-cell"><div class="today-cell__k">今晚住</div><div class="today-cell__v">'+st.name+'</div><div class="today-cell__m">'+st.addr+(st.tel&&st.tel!=='—'?' · '+st.tel:'')+'<br>'+mapLink(st.name)+'</div></div>');
+  }else{
+    cells.push('<div class="today-cell"><div class="today-cell__k">今晚住</div><div class="today-cell__v">'+(i===TRIP_LEN-1?'回程，不安排住宿':'住处见下方清单')+'</div><div class="today-cell__m">—</div></div>');
+  }
+  if(et){
+    cells.push('<div class="today-cell"><div class="today-cell__k">今晚吃</div><div class="today-cell__v">'+et.name+'</div><div class="today-cell__m">'+et.price+' · '+et.hours+'<br>'+mapLink(et.name)+'</div></div>');
+  }else{
+    const last=(i===TRIP_LEN-1);
+    cells.push('<div class="today-cell"><div class="today-cell__k">今晚吃</div><div class="today-cell__v">'+(last?'路上解决':'住处解决')+'</div><div class="today-cell__m">'+(last?'返程日，机场或路上吃':'今天没有单独安排馆子，看下方清单')+'</div></div>');
+  }
+  grid.innerHTML=cells.join('');
+}
 function renderTasks(){
   const idx=dayIndex(), stamp=document.getElementById('todayStamp'), note=document.getElementById('todayNote');
   let head='', items=[], foot='';
@@ -1803,6 +1843,7 @@ renderLodgeStrip();
 renderExpenses();
 renderWeather();
 renderTasks();
+renderToday();
 renderEmergency();
 renderTips();
 decorateA11y();
