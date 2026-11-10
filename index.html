@@ -6,6 +6,17 @@
 <title>三个老男人的约定 · 北疆十天九晚</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141312'/%3E%3Cpath d='M32 11v42M15 21l34 22M49 21L15 43' stroke='%23c98a58' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#141312">
+<meta name="description" content="三个老男人，十天九晚，2875 公里，从乌鲁木齐出发绕北疆一圈再回来：阿勒泰、禾木、喀纳斯、布尔津、魔鬼城、赛里木湖、温泉县。每天怎么走、住哪、吃什么、多少钱，一页看完。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="三个老男人的约定">
+<meta property="og:title" content="三个老男人的约定 · 北疆十天九晚">
+<meta property="og:description" content="2875 公里，10 天，从乌鲁木齐出发绕北疆一圈再回来。每天怎么走、住哪、吃什么、多少钱，一页看完。">
+<meta property="og:image" content="https://xbear-coding.github.io/beijiang-9day-travel/assets/share_cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://xbear-coding.github.io/beijiang-9day-travel/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
 <style>
 :root {
   --bg-primary: #141312;
@@ -1191,7 +1202,7 @@ function cardTpl(p,kind){
   const more=imgs.length>1?`<span class="place-card__more">${imgs.length} 张</span>`:'';
   return `<div class="place-card ${kind==='hotel'?'place-card--hotel':'place-card--restaurant'} reveal" data-url="${cardUrl}" data-bucket="${bucket}" data-name="${p.name}">
     <div class="place-card__media">${media}${more}</div>
-    <div class="place-card__header"><div class="place-card__info"><div class="place-card__name">${p.name}</div><div class="place-card__type">${kind==='hotel'?'酒店':'餐厅'}</div><div class="place-card__detail">${IC.pin}${p.addr}<br>${IC.phone}${p.tel} ${p.tel!=='—'?`<a class="place-link place-link--tel" href="tel:${p.tel.replace(/[^0-9]/g,'')}" title="拨打电话">${IC.ext}<span>拨打</span></a>`:''}<br>${IC.coin}${p.price} · ${IC.clock}${p.hours}</div><div class="place-card__tags">${tags}</div>${link}</div></div><div class="place-card__warn">${p.warn}</div></div>`;
+    <div class="place-card__header"><div class="place-card__info"><div class="place-card__name">${p.name}</div><div class="place-card__type">${kind==='hotel'?'酒店':'餐厅'}</div><div class="place-card__detail">${IC.pin}${p.addr}<br>${IC.phone}${p.tel} ${p.tel!=='—'?`<a class="place-link place-link--tel" href="tel:${p.tel.replace(/[^0-9]/g,'')}" title="拨打电话">${IC.ext}<span>拨打</span></a>`:''}<br>${IC.coin}${p.price} · ${IC.clock}${p.hours}</div><div class="place-card__tags">${tags}</div>${link}<a class="place-link place-link--map" href="https://uri.amap.com/search?keyword=${encodeURIComponent(p.name)}" target="_blank" rel="noopener" title="在高德地图里搜这家店">${IC.map||IC.ext}<span>看位置</span></a></div></div><div class="place-card__warn">${p.warn}</div></div>`;
 }
 function renderExpenses(){
   let html='',grandTotal=0;
