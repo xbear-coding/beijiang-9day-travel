@@ -93,6 +93,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tab-panel{display:none;padding:2rem 1rem 4rem;max-width:1200px;margin:0 auto}
 .tab-panel.active{display:block}
 .page-title{font-family:var(--font-serif);font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5rem}
+.page-head{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.page-head .page-title{margin-bottom:.5rem}
+.copy-trip{flex:none;align-self:center;padding:.34rem .72rem;border:1px solid var(--border);border-radius:2px;background:transparent;color:var(--text-secondary);font-size:.74rem;letter-spacing:.04em;cursor:pointer;transition:var(--transition);white-space:nowrap}
+.copy-trip:hover{border-color:var(--accent);color:var(--accent)}
+.copy-trip.is-done{border-color:var(--accent);color:var(--accent)}
 .page-desc{color:var(--text-secondary);font-size:.9rem;margin-bottom:2rem;max-width:600px}
 .vertical-line{width:1px;height:2rem;background:var(--accent);margin:1.5rem 0}
 
@@ -623,7 +628,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
   <!-- 走法 -->
   <div class="tab-panel active" id="zoufa">
-    <h2 class="page-title">走法</h2>
+    <div class="page-head">
+      <h2 class="page-title">走法</h2>
+      <button class="copy-trip" id="copyTrip" type="button" aria-label="复制紧凑版行程">复制紧凑版</button>
+    </div>
     <p class="page-desc">十天九晚，按天排到小时，每天收在自己住处。</p>
     <div class="lodge-strip-wrap" id="lodgeWrap"><div class="lodge-strip" id="lodgeStrip"></div></div>
 
@@ -1719,6 +1727,45 @@ function renderItinerary(){
     return `<div class="timeline__day" data-day="${d.day}"><div class="timeline__date">${d.date}</div>${rows}${d.lodge?`<div class="timeline__lodge">${d.lodge}</div>`:''}${d.alt?`<div class="timeline__alt">${d.alt}</div>`:''}</div>`;
   }).join('');
 }
+
+/* 紧凑版：一行一天、能直接发微信的纯文本行程 */
+function tripCompact(){
+  const lines=itinerary.map(d=>{
+    const seg=(d.date||'').split('·').pop().trim();
+    const dm=(d.date||'').split('·')[0].replace('月','/').replace('日','').trim();
+    const st=(d.lodge||'').match(/<strong>(.*?)<\/strong>/);
+    const stay=st?st[1].replace(/（.*$/,'').replace(/^宿/,'').trim():'';
+    return d.day+' '+dm+' '+seg+(stay?'｜宿 '+stay:'');
+  });
+  return ['三个老男人的约定 · 北疆十天九晚'].concat(lines,['10天9晚 · 全程约2875公里 · 三人自驾']).join('\n');
+}
+function execCopy(t){
+  const ta=document.createElement('textarea');
+  ta.value=t;ta.style.position='fixed';ta.style.top='0';ta.style.left='0';ta.style.opacity='0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  let ok=false;
+  try{ok=document.execCommand('copy');}catch(e){ok=false;}
+  document.body.removeChild(ta);
+  return ok;
+}
+function copyPlain(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    return navigator.clipboard.writeText(t).then(()=>true).catch(()=>execCopy(t));
+  }
+  return Promise.resolve(execCopy(t));
+}
+(function(){
+  const btn=document.getElementById('copyTrip');
+  if(!btn)return;
+  btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    Promise.resolve(copyPlain(tripCompact())).then(ok=>{
+      btn.textContent=ok?'已复制':'复制失败';
+      btn.classList.toggle('is-done',ok);
+      setTimeout(()=>{btn.textContent='复制紧凑版';btn.classList.remove('is-done');},1800);
+    });
+  });
+})();
 
 /* 无障碍：把可点元素补成键盘可达（Tab 聚焦 + Enter/Space 触发） */
 function decorateA11y(){
