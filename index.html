@@ -25,7 +25,7 @@
   --bg-overlay: rgba(20,19,18,0.92);
   --text-primary: #f7f3ea;
   --text-secondary: #a8a098;
-  --text-muted: #6b6660;
+  --text-muted: #8a8580;
   --accent: #8a6a3f;
   --accent-hover: #a07d4a;
   --border: #2a2826;
@@ -43,8 +43,8 @@
   --bg-card: #ffffff;
   --bg-overlay: rgba(246,242,233,0.95);
   --text-primary: #1a1918;
-  --text-secondary: #5a5550;
-  --text-muted: #8a8580;
+  --text-secondary: #4d4843;
+  --text-muted: #6f6a64;
   --accent: #8a6a3f;
   --accent-hover: #6e5432;
   --border: #d8d3c8;
@@ -58,6 +58,8 @@ a{color:var(--accent);text-decoration:none;transition:var(--transition)}
 a:hover{color:var(--accent-hover)}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 .hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+/* 首页是深色照片底：文字与兜底底色都锁死，不跟着明暗主题翻转，照片加载慢也不会露出浅色底 */
+.hero{background-color:#141312;--text-primary:#f7f3ec;--text-secondary:rgba(255,255,255,.86);--text-muted:rgba(255,255,255,.74);--bg-primary:#141312}
 .hero__bg{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,18,0.3) 0%,rgba(20,19,18,0.85) 100%),url('assets/hero_beijiang.jpg') center/cover no-repeat;z-index:0}
 .hero__content{position:relative;z-index:1;text-align:center;padding:2rem}
 .hero__title{font-family:var(--font-serif);font-size:clamp(2.5rem,8vw,5rem);font-weight:700;color:var(--text-primary);letter-spacing:.1em;margin-bottom:1rem;text-shadow:0 4px 24px rgba(0,0,0,.5)}
@@ -75,7 +77,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .hero__note[aria-expanded="true"] .hero__note__arrow{transform:rotate(180deg)}
 .hero__note__body{display:none;max-width:430px;margin:1rem auto 0;font-size:.78rem;line-height:1.85;color:#f4eee6;text-shadow:0 2px 14px rgba(0,0,0,.6);text-align:center}
 .hero__note__body.show{display:block}
-.hero__btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;font-family:var(--font-serif);font-size:1.1rem;letter-spacing:.15em;border:1px solid var(--accent);color:var(--text-primary);background:transparent;transition:var(--transition);position:relative;overflow:hidden}
+.hero__btn{display:inline-flex;align-items:center;gap:.5rem;padding:1rem 2.5rem;font-family:var(--font-serif);font-size:1.1rem;letter-spacing:.15em;border:1px solid rgba(255,255,255,.42);color:#f7f3ec;background:rgba(20,19,18,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);text-shadow:0 2px 12px rgba(0,0,0,.7);transition:var(--transition);position:relative;overflow:hidden}
 .hero__btn::before{content:'';position:absolute;inset:0;background:var(--accent);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.4,0,.2,1);z-index:-1}
 .hero__btn:hover::before{transform:scaleX(1);transform-origin:left}
 .hero__btn:hover{color:var(--bg-primary);border-color:var(--accent)}
@@ -95,9 +97,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .page-title{font-family:var(--font-serif);font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5rem}
 .page-head{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
 .page-head .page-title{margin-bottom:.5rem}
-.copy-trip{flex:none;align-self:center;padding:.34rem .72rem;border:1px solid var(--border);border-radius:2px;background:transparent;color:var(--text-secondary);font-size:.74rem;letter-spacing:.04em;cursor:pointer;transition:var(--transition);white-space:nowrap}
+.copy-trip{flex:none;align-self:center;width:30px;height:30px;padding:0;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:2px;background:transparent;color:var(--text-muted);cursor:pointer;transition:var(--transition)}
 .copy-trip:hover{border-color:var(--accent);color:var(--accent)}
 .copy-trip.is-done{border-color:var(--accent);color:var(--accent)}
+.copy-trip.is-fail{border-color:var(--danger);color:var(--danger)}
+.jump-link{background:none;border:0;padding:0;font:inherit;color:inherit;cursor:pointer;border-bottom:1px dotted var(--accent)}
+.jump-link:hover,.jump-link:focus-visible{color:var(--accent)}
+.is-flash{outline:2px solid var(--accent);outline-offset:3px;box-shadow:0 0 0 6px rgba(201,138,88,.18)}
+.jump-link--chip{display:inline-block;margin-left:.4rem;font-size:.7rem;line-height:1.7;padding:0 .34rem;color:var(--text-muted);border:1px solid var(--border);border-radius:2px;vertical-align:1px;text-decoration:none}
+.jump-link--chip:hover{color:var(--accent);border-color:var(--accent)}
 .page-desc{color:var(--text-secondary);font-size:.9rem;margin-bottom:2rem;max-width:600px}
 .vertical-line{width:1px;height:2rem;background:var(--accent);margin:1.5rem 0}
 
@@ -155,6 +163,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .place-card__info{padding:1rem;flex:1}
 .place-card__name{font-family:var(--font-serif);font-size:1.15rem;margin-bottom:.25rem}
 .poi-code{display:inline-block;font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;color:#ffc79a;background:rgba(201,138,88,.14);border:1px solid rgba(201,138,88,.32);border-radius:4px;padding:3px 5px;margin-right:.42rem;vertical-align:2px}
+/* 浅色主题下卡片是白底，亮橙字压上去几乎看不见，换成深棕字 */
+.a-shell .poi-code{color:#8a4a1c;background:rgba(201,138,88,.16);border-color:rgba(201,138,88,.5)}
 .place-card__type{font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
 .place-card__detail{font-size:.85rem;color:var(--text-secondary);line-height:1.8}
 .place-card__link{display:inline-block;margin-top:.5rem;font-size:.75rem;color:var(--accent);border-bottom:1px solid currentColor}
@@ -358,10 +368,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mapview__day--all{color:#ffcfae;border-color:rgba(255,207,174,.5)}
 .mapview__day--all.active{background:#8a4a2a;border-color:#ffcfae;color:#fff}
 .mapview__canvas{flex:1;min-height:0}
-.mapview__hint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:400;background:rgba(20,19,18,.88);color:#e9e2d8;font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12)}
+.mapview__hint{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(92px + env(safe-area-inset-bottom,0px));z-index:400;background:rgba(20,19,18,.88);color:#e9e2d8;font-size:12.5px;padding:8px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.12);max-width:calc(100vw - 32px)}
 .mapview__tools{position:absolute;right:14px;top:74px;z-index:400;display:flex;flex-direction:column;gap:8px}
 .mapview__tool{width:40px;height:40px;border-radius:12px;border:1px solid rgba(255,255,255,.16);background:rgba(24,22,20,.9);color:#f3ede4;font-size:18px;line-height:1;cursor:pointer}
 .mapview__tool:hover{background:rgba(52,46,40,.95)}
+/* 常驻「下一站」：地图怎么拖，右下角一直写着接下来到哪、还有多远 */
+.mv-next{position:absolute;right:14px;bottom:calc(52px + env(safe-area-inset-bottom,0px));z-index:420;display:flex;flex-direction:column;gap:2px;max-width:min(52vw,320px);padding:9px 13px;border-radius:2px;border:1px solid rgba(255,255,255,.14);background:rgba(20,19,18,.86);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#f3ede4;box-shadow:0 8px 24px rgba(0,0,0,.35);pointer-events:none}
+.mv-next__k{font-size:10.5px;letter-spacing:.18em;color:#ffb27a}
+.mv-next__n{font-family:var(--font-serif);font-size:14.5px;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mv-next__d{font-size:11.5px;color:#cfc7bb}
 .leaflet-container{background:#0f0f0e}
 .mapview__err{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem;font-size:.9rem;line-height:1.8;color:#b9b3aa;background:#141312;z-index:2}
 
@@ -399,7 +414,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-pop{font-size:12px;line-height:1.65;color:#241f1b;min-width:158px}
 .mv-pop__t{font-weight:700;font-size:12.5px;color:#1c1714}
 .mv-pop__k{color:#7d736a;font-size:11.5px;margin:2px 0 8px}
-.mv-pop__a{display:inline-block;padding:5px 11px;border-radius:999px;background:#d94f2b;color:#fff !important;font-size:11.5px;text-decoration:none;border:0}
+.mv-pop__m{color:#7d736a;font-size:11.5px;margin:0 0 7px}
+/* 高德入口只留一个图标，不再挂一行字 */
+.mv-pop__a{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:#f4f2ef;border:1px solid rgba(0,0,0,.14);text-decoration:none}
+.mv-pop__a:active{transform:scale(.94)}
 .nav-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.86rem;line-height:1.7}
 .nav-table th,.nav-table td{border-bottom:1px solid rgba(0,0,0,.12);padding:.55rem .5rem;vertical-align:top;text-align:left}
 .nav-table th{font-weight:600;background:rgba(180,85,45,.06)}
@@ -435,7 +453,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .subnav.is-compact .subnav__label{display:none}
 .subnav__chip{flex:none;display:inline-flex;align-items:center;gap:.28rem;padding:.4rem .78rem;border-radius:2px;
   border:1px solid var(--border-light);color:var(--text-secondary);font-size:.78rem;letter-spacing:.02em;line-height:1.2;
-  background:color-mix(in oklab,var(--bg-card) 90%,transparent);cursor:pointer;white-space:nowrap;transition:var(--transition)}
+  background:var(--bg-card);cursor:pointer;white-space:nowrap;transition:var(--transition)}
 .subnav.is-compact .subnav__chip{padding:.24rem .6rem;font-size:.71rem}
 .subnav__chip:hover{border-color:var(--accent);color:var(--accent)}
 .subnav__chip.active{background:var(--accent);border-color:var(--accent);color:var(--bg-primary)}
@@ -473,7 +491,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .money-list li{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding:.38rem 0;
   font-size:.86rem;border-bottom:1px dashed var(--border-light)}
 .money-list li:last-child{border-bottom:none}
-.money-list li b{font-weight:500;color:var(--surface-face,#efe7dc)}
+.money-list li b{font-weight:500;color:var(--text-primary)}
 .money-list li span:last-child{flex:none;color:var(--text-muted);font-variant-numeric:tabular-nums}
 .money-card__s{margin-top:.55rem;padding-top:.55rem;border-top:1px solid var(--border-light);
   font-size:.9rem;font-weight:600;text-align:right;letter-spacing:.02em}
@@ -579,7 +597,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .place-card__shot{display:block;padding:0;border:0;background:var(--bg-secondary);aspect-ratio:4/3;overflow:hidden;cursor:zoom-in}
 .place-card__shot img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
 .place-card__shot:hover img{transform:scale(1.04)}
-.place-card__more{position:absolute;right:.5rem;top:.5rem;font-size:.68rem;color:#fff;background:rgba(14,13,12,.55);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.08rem .42rem}
+.place-card__more{position:absolute;right:.5rem;top:.5rem;font-size:.68rem;color:#fff;background:rgba(14,13,12,.78);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:.08rem .42rem}
 @media(max-width:700px){.place-card__media{grid-template-columns:repeat(2,1fr)}.place-card__info{padding:.85rem .8rem}}
 
 
@@ -637,7 +655,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <div class="tab-panel active" id="zoufa">
     <div class="page-head">
       <h2 class="page-title">走法</h2>
-      <button class="copy-trip" id="copyTrip" type="button" aria-label="复制紧凑版行程">复制紧凑版</button>
+      <button class="copy-trip" id="copyTrip" type="button" title="复制紧凑版行程" aria-label="复制紧凑版行程"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="1.6"/><path d="M5 15.2V6a1.6 1.6 0 0 1 1.6-1.6H15"/></svg></button>
     </div>
     <p class="page-desc">十天九晚，按天排到小时，每天收在自己住处。</p>
     <div class="lodge-strip-wrap" id="lodgeWrap"><div class="lodge-strip" id="lodgeStrip"></div></div>
@@ -745,8 +763,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <span class="sticky-tabs__tab" data-tab="jintian">今天</span>
     <span class="sticky-tabs__tab" data-tab="wanyi">万一</span>
     <span class="sticky-tabs__tab" data-tab="mendao">门道</span>
-    <span class="sticky-tabs__tab" id="navEntry" data-nav="nav">导航</span>
-    <span class="sticky-tabs__tab" id="carEntry" data-nav="car">租车</span>
+    <span class="sticky-tabs__tab" data-tab="nav">导航</span>
+    <span class="sticky-tabs__tab" data-tab="car">租车</span>
   </nav>
   <div class="tab-panel active" id="tianse">
     <div class="wx-bar"><h2 class="page-title" style="margin:0">天色</h2><button class="wx-refresh" type="button" onclick="refreshWeather()">刷新</button><span id="wxStamp" style="font-size:.75rem;color:var(--text-muted)"></span></div>
@@ -774,6 +792,34 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       <li><a href="https://www.xinjiang.gov.cn/xinjiang/dzdt/202602/e0151c84403a4e668d7a164fdc0e472f.shtml" target="_blank" rel="noopener">自治区政府网：赛里木湖冰雪旅游季（2026-02）——门票半价 35 元/人；凭赛湖门票可免费滑初级道</a></li>
       <li><a href="https://www.news.cn/local/20260803/4c0b11cad281454cb65de812d8fae976/c.html" target="_blank" rel="noopener">新疆赛里木湖景区自驾服务费调整（新华社 2026-08-03，转博州联合工作组通报）：自 2026/8/20 0 时起由按人计改为按车计——5 座及以下 120 元/车、6–7 座 180 元、8–19 座 300 元、20 座及以上 600 元</a></li>
     </ul>
+  </div>
+  <div class="tab-panel" id="nav">
+    <h2 class="page-title">逐日导航</h2>
+    <p class="page-desc">把<strong>终点名</strong>整段粘进高德或百度，只搜城市名会被导到市中心。终点都写到门牌，搜不到店名就搜门牌。</p>
+    <table class="nav-table">
+      <thead><tr><th>日</th><th>导航搜索（起点 → 终点）</th><th>里程</th><th>这段路上要注意的</th></tr></thead>
+      <tbody>
+        <tr><td>D1 12/09</td><td>地窝堡国际机场 → 希尔顿（米东区红光山路1237号）</td><td>约 20 km</td><td>落地取车；两班机相差 1h40，先到的等</td></tr>
+        <tr><td>D2 12/10</td><td>希尔顿 → 阿勒泰金桥假日（市中心）</td><td>500 km</td><td>G7 京新转 S21 阿乌高速，不经克拉玛依</td></tr>
+        <tr><td>D3 12/11</td><td>金桥假日 → 禾木游客中心</td><td>209 km</td><td>阿禾公路 10:00–14:00 放行、20:00 前驶离，仅雪地胎四驱；须先预约进村</td></tr>
+        <tr><td>D4 12/12</td><td>禾木 → 喀纳斯图瓦村（停泊STAY·坐忘）</td><td>60 km</td><td>进山无加油站，出发前加满</td></tr>
+        <tr><td>D5 12/13</td><td>喀纳斯 → 布尔津（卧龙湾路酒吧一条街2号楼）→ 五彩滩</td><td>150 km</td><td>五彩滩 09:00 开园、19:00 停售、19:15 最后入园</td></tr>
+        <tr><td>D6 12/14</td><td>布尔津 → 乌尔禾（阿吾丹）→ 独山子（大庆东路13号）</td><td>330 km</td><td>魔鬼城 09:30–19:00、19:00 停售；克拉玛依黑油山顺路可停</td></tr>
+        <tr><td>D7 12/15</td><td>独山子 → 赛里木湖（西海路7号2号楼）</td><td>430 km</td><td>东门进南门出；冬季环湖路以现场通告为准</td></tr>
+        <tr><td>D8 12/16</td><td>赛湖 → 温泉县花间堂·阿日相（博格达尔景区）</td><td>90 km</td><td>下午泡汤；县城馆子 21:00 前收</td></tr>
+        <tr><td>D9 12/17</td><td>温泉县 → 乌市希尔顿（红光山路1237号）</td><td>600 km</td><td>单日最长，遇雪顺延半天、D10 早起补</td></tr>
+        <tr><td>D10 12/18</td><td>希尔顿 → 地窝堡国际机场（还车）</td><td>约 20 km</td><td>满油取还、拍照留证，预留 2h</td></tr>
+      </tbody>
+    </table>
+    <p class="nv-note">上面每条的官方原文都在「门道」页，能直接点开：阿禾公路通行通告、阿禾公路限行、喀纳斯冬季公告、魔鬼城售票时间、五彩滩营业时间。路况天天在变，出发当天先看当地交警和景区通告。</p>
+    <p class="nv-note">加油与补给：D3 进山前在阿勒泰加满（209 km 全线无加油站）；D4 禾木出发前再次加满；D9 温泉县出发前加满，中途精河补一次。</p>
+  </div>
+  <div class="tab-panel" id="car">
+    <h2 class="page-title">租车</h2>
+    <p class="page-desc">这一段只讲车：租什么、出了事谁管。价格是公开报价，取车当天以门店核价为准。</p>
+    <div id="carList"></div>
+    <h3 class="page-title" style="font-size:1.1rem;margin-top:1.6rem">应急怎么办</h3>
+    <div id="carEmergency"></div>
   </div>
 </section>
 
@@ -1162,7 +1208,7 @@ function renderSpots(){
       const s=spots[i];
       const imgs=spotImgs(s);
       const book=s.book?(s.bookUrl?`<div class="spot-card__book"><a href="${s.bookUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.book}</a></div>`:`<div class="spot-card__book">${s.book}</div>`):'';
-      return `<div class="spot-card reveal" data-spot="${i}">
+      return `<div class="spot-card reveal" data-spot="${i}" data-jumpkey="${s.name}">
         ${galleryTpl(imgs,s.name,'spot-'+i)}
         <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${codeBadge(s.name)}${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}<div class="spot-card__ref">${s.ref}</div></div></div>`;
     }).join('');
@@ -1538,7 +1584,9 @@ function lightboxNav(dir){if(!lightboxData.length)return;lightboxIdx=(lightboxId
     if(sx===null)return;
     const dx=e.clientX-sx, dy=e.clientY-(sy||0);
     sx=null;sy=null;
-    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))lightboxNav(dx<0?1:-1);
+    if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){lightboxNav(dx<0?1:-1);return;}
+    /* 轻点图面任意位置就关掉，右上角的 × 还能用 */
+    if(Math.abs(dx)<12&&Math.abs(dy)<12)closeLightbox();
   },{passive:true});
 })();
 
@@ -1568,6 +1616,7 @@ document.querySelectorAll('.sticky-tabs__tab').forEach(tab=>{
     tab.classList.add('active');
     section.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
     section.querySelector(`#${panelId}`).classList.add('active');
+    if(panelId==='car'&&typeof renderCar==='function')renderCar();
     window.scrollTo(0,0);
     setTimeout(()=>{section.querySelectorAll(`#${panelId} .reveal`).forEach(el=>el.classList.add('visible'));},100);
   });
@@ -1622,16 +1671,6 @@ function refreshWeather(){
   weatherPoints.forEach(w=>{w.temp='…';w.desc='重新取数中';});
   paintWeather();
   renderWeather();
-}
-function openNav(){
-  closeCar();
-  document.getElementById('navView').classList.add('active');
-  document.body.style.overflow='hidden';
-  const b=document.querySelector('#navView .nv-body'); if(b) b.scrollTop=0;
-}
-function closeNav(){
-  document.getElementById('navView').classList.remove('active');
-  document.body.style.overflow='';
 }
 /* ===== 租车：选车决策 / 服务 / 应急 ===== */
 const CAR = {
@@ -1708,20 +1747,6 @@ function renderCar(){
   if(box) box.innerHTML=emg;
 }
 
-function openCar(){
-  closeNav();
-  renderCar();
-  const v=document.getElementById('carView');
-  v.classList.add('active');
-  document.body.style.overflow='hidden';
-  const b=v.querySelector('.nv-body'); if(b) b.scrollTop=0;
-}
-function closeCar(){
-  const v=document.getElementById('carView');
-  if(!v)return;
-  v.classList.remove('active');
-  document.body.style.overflow='';
-}
 function jumpTip(g){
   const t=document.getElementById('tips-'+g);
   if(!t)return;
@@ -1743,10 +1768,6 @@ function closeNote(){
 }
 document.addEventListener('click',function(e){
   if(!e.target.closest)return;
-  if(e.target.closest('#navEntry')){openNav();return;}
-  if(e.target.closest('#carEntry')){openCar();return;}
-  if(e.target.closest('#navBack')){closeNav();return;}
-  if(e.target.closest('#carBack')){closeCar();return;}
   if(e.target.id==='noteModal'){closeNote();}
 });
 document.getElementById('themeToggle').addEventListener('click',()=>{document.body.classList.toggle('a-shell');localStorage.setItem('theme',document.body.classList.contains('a-shell')?'light':'dark');});
@@ -1781,7 +1802,104 @@ function renderItinerary(){
     }).join('');
     return `<div class="timeline__day" data-day="${d.day}"><div class="timeline__date">${d.date}</div>${rows}${d.lodge?`<div class="timeline__lodge">${d.lodge}</div>`:''}${d.alt?`<div class="timeline__alt">${d.alt}</div>`:''}</div>`;
   }).join('');
+  linkTimeline();
 }
+
+/* —— 行程行里的店名/景点名 → 对应卡片：点一下直接跳到那张卡 —— */
+function normJump(n){
+  if(!n)return '';
+  return String(n).split('·')[0].split('（')[0].split('(')[0].trim();
+}
+function jumpTargets(){
+  const list=[];
+  document.querySelectorAll('.place-card[data-name]').forEach(function(c){
+    list.push({k:normJump(c.dataset.name),raw:c.dataset.name,kind:'place'});
+  });
+  document.querySelectorAll('.spot-card[data-jumpkey]').forEach(function(c){
+    list.push({k:normJump(c.dataset.jumpkey),raw:c.dataset.jumpkey,kind:'spot'});
+  });
+  list.sort(function(a,b){return b.k.length-a.k.length;});
+  return list;
+}
+/* 景点地名 → 看点卡片：手工别名表，右边一律逐字等于 spots 里的 name */
+const SPOT_ALIAS={
+  '喀纳斯湖':'喀纳斯湖冰推','喀纳斯':'喀纳斯湖冰推',
+  '禾木村':'禾木晨雾','禾木':'禾木晨雾',
+  '白哈巴':'白哈巴村','阿禾公路':'阿禾公路',
+  '五彩滩':'五彩滩日落','魔鬼城':'魔鬼城雪景',
+  '黑油山':'黑油山','赛里木湖':'赛里木湖蓝冰','大巴扎':'乌鲁木齐大巴扎','新疆博物馆':'新疆博物馆'
+};
+function dayNo(d){return String(d||'').replace(/^D/,'');}
+function mkJump(n,k,label){
+  const b=document.createElement('button');
+  b.type='button';b.className='jump-link jump-link--chip';
+  b.dataset.jump=n;b.dataset.kind=k;
+  b.textContent='↗ '+label;
+  return b;
+}
+function linkTimeline(){
+  /* 一、景点：地名命中别名，原地变成可点 */
+  document.querySelectorAll('.timeline__loc').forEach(function(sp){
+    if(sp.dataset.linked)return;
+    const tx=sp.textContent||'';
+    let best=null,pos=-1;
+    Object.keys(SPOT_ALIAS).sort(function(x,y){return y.length-x.length;}).forEach(function(k){
+      if(best)return;
+      const p=tx.indexOf(k);
+      if(p>=0){best=k;pos=p;}
+    });
+    if(!best)return;
+    sp.dataset.linked='1';
+    const nm=SPOT_ALIAS[best];
+    sp.innerHTML=tx.slice(0,pos)+'<button class="jump-link" type="button" data-jump="'+nm+'" data-kind="spot">'+best+'</button>'+tx.slice(pos+best.length);
+  });
+  /* 二、住宿：块尾挂一个直达住宿卡片的按钮，原文不动 */
+  document.querySelectorAll('.timeline__lodge').forEach(function(el){
+    if(el.dataset.jumpdone)return;
+    const day=el.closest('.timeline__day').dataset.day;
+    const nm=DAY_STAY[dayNo(day)];
+    if(!nm)return;
+    el.dataset.jumpdone='1';
+    el.appendChild(mkJump(nm,'place','住宿卡片'));
+  });
+  /* 三、用餐：当天真吃的那家，行尾挂按钮 */
+  document.querySelectorAll('.timeline__row').forEach(function(rw){
+    if(rw.dataset.jumpdone)return;
+    const day=rw.closest('.timeline__day').dataset.day;
+    const act=((rw.querySelector('.timeline__action')||{}).textContent)||'';
+    if(!/(吃|晚饭|午餐|晚餐|夜市|开饭|早饭)/.test(act))return;
+    const nm=DAY_EAT[dayNo(day)];
+    if(!nm)return;
+    rw.dataset.jumpdone='1';
+    rw.appendChild(mkJump(nm,'place','餐厅卡片'));
+  });
+}
+function flashEl(el){
+  if(!el)return;
+  el.classList.add('is-flash');
+  setTimeout(function(){el.classList.remove('is-flash');},1600);
+}
+function jumpToCard(name,kind){
+  const tab=document.querySelector('#jiutian .sticky-tabs__tab[data-tab="'+(kind==='spot'?'kandian':'chizhu')+'"]');
+  if(tab)tab.click();
+  setTimeout(function(){
+    const sel=kind==='spot'?'.spot-card[data-jumpkey]':'.place-card[data-name]';
+    let t=null;
+    document.querySelectorAll(sel).forEach(function(c){
+      if(t)return;
+      if((c.dataset.jumpkey||c.dataset.name)===name)t=c;
+    });
+    if(!t)return;
+    t.scrollIntoView({behavior:'smooth',block:'center'});
+    flashEl(t);
+  },60);
+}
+document.addEventListener('click',function(e){
+  const a=e.target&&e.target.closest?e.target.closest('.jump-link'):null;
+  if(!a)return;
+  e.preventDefault();e.stopPropagation();
+  jumpToCard(a.dataset.jump,a.dataset.kind);
+});
 
 /* 紧凑版：一行一天、能直接发微信的纯文本行程 */
 function tripCompact(){
@@ -1815,9 +1933,10 @@ function copyPlain(t){
   btn.addEventListener('click',function(e){
     e.stopPropagation();
     Promise.resolve(copyPlain(tripCompact())).then(ok=>{
-      btn.textContent=ok?'已复制':'复制失败';
-      btn.classList.toggle('is-done',ok);
-      setTimeout(()=>{btn.textContent='复制紧凑版';btn.classList.remove('is-done');},1800);
+      const st=ok?'is-done':'is-fail';
+      btn.classList.add(st);
+      btn.title=ok?'已复制到剪贴板':'没复制成功，请手动选中文字';
+      setTimeout(()=>{btn.classList.remove(st);btn.title='复制紧凑版行程';},1800);
     });
   });
 })();
@@ -1862,6 +1981,8 @@ renderToday();
 dayWatchStart();
 renderEmergency();
 renderTips();
+/* 行程行里的名字要等吃住、看点卡片都渲染完才能对上锚点 */
+linkTimeline();
 decorateA11y();
 setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('visible')),100);
 
@@ -2000,8 +2121,14 @@ function renderProgress(){
     mvCar=L.marker(ll,{icon:L.divIcon({className:'mv-car',html:'<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#ff7a3d" stroke="#fff" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>',iconSize:[24,24],iconAnchor:[12,12]}),zIndexOffset:900}).addTo(mvMap);
   }
   const nd=dayAt(PV.km);
-  if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);mvPoiRender([nd]);document.getElementById('mapView').classList.remove('mv-all-mode');}
+  if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);mvPoiReset();document.getElementById('mapView').classList.remove('mv-all-mode');}
   PV.day=nd;
+  /* 进度跳变（拖进度条、切天）就重算一遍要点，前进途中只增不减 */
+  if(PV._poiKm===undefined)PV._poiKm=PV.km;
+  if(Math.abs(PV.km-PV._poiKm)>3)mvPoiReset();
+  PV._poiKm=PV.km;
+  mvPoiSync(nd,PV.km);
+  mvNextUpdate(nd,PV.km);
   const el=document.getElementById('pvRead');
   if(el)el.textContent=PV.day+' · '+PV.km.toFixed(0)+' / '+TRIP_TOTAL.toFixed(0)+' km';
   const rg=document.getElementById('pvRange');
@@ -2013,15 +2140,23 @@ function renderProgress(){
     if(btn.scrollIntoView)btn.scrollIntoView({block:'nearest',inline:'nearest'});
   }
 }
+/* 播放时的自动跟随：先让人。手动拖/缩之后 2.6 秒内不碰视野，
+   之后也只把视野平移到车标，缩放永远由用户决定，不做任何强制回弹 */
 let lastPan=0;
+PV.manualUntil=0;
+function mvMarkManual(){
+  PV.manualUntil=performance.now()+2600;
+  /* 留一个可查的痕迹：冒烟和门禁要能断言「人手动干预被认到了」 */
+  const cv=document.getElementById('mapCanvas');
+  if(cv)cv.dataset.manual=String(Math.round(PV.manualUntil));
+}
 function follow(){
   if(!mvCar)return;
   const now=performance.now();
+  if(PV.manualUntil&&now<PV.manualUntil)return;
   if(now-lastPan<1200)return;
   lastPan=now;
   const ll=mvCar.getLatLng();
-  const z=mvMap.getZoom();
-  if(z<7){mvMap.setView(ll,8,{animate:true});return;}
   if(mvMap.distance(mvMap.getCenter(),ll)>mvMap.getSize().y*120){mvMap.panTo(ll,{animate:true,duration:0.8});}
 }
 function step(){
@@ -2038,7 +2173,7 @@ function setPlaying(v){
   PV.playing=v;
   const b=document.getElementById('pvPlay');
   if(b){b.textContent=v?'❚❚':'▶';b.setAttribute('aria-label',v?'暂停':'播放');}
-  if(v){PV.last=0;if(PV.timer)clearInterval(PV.timer);PV.timer=setInterval(step,60);}
+  if(v){PV.last=0;mvPoiReset();PV._poiKm=PV.km;if(mvLoaded)mvPoiSync(PV.day,PV.km);if(PV.timer)clearInterval(PV.timer);PV.timer=setInterval(step,60);}
   else if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
 }
 function goDay(id){
@@ -2053,26 +2188,81 @@ function goDay(id){
 /* 兴趣点：按类型上色，名称常显，跟着当天走 */
 const POI_KIND={'住宿':{c:'#4d84c7',s:'住'},'餐饮':{c:'#c9752f',s:'食'},'景点':{c:'#3f8f6a',s:'景'},'打卡':{c:'#b8901f',s:'卡'},'补给':{c:'#6f665e',s:'补'},'路况':{c:'#5c6b7a',s:'路'},'交通':{c:'#8a6ab0',s:'机'}};
 const DAY_CITY={D1:'乌鲁木齐',D2:'阿勒泰',D3:'阿勒泰',D4:'布尔津',D5:'布尔津',D6:'克拉玛依',D7:'博乐',D8:'温泉',D9:'乌鲁木齐',D10:'乌鲁木齐'};
+const MV_AMAP_SVG='<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M12 2.2c-3.7 0-6.6 2.9-6.6 6.5 0 4.9 6.6 13.2 6.6 13.2s6.6-8.3 6.6-13.2c0-3.6-2.9-6.5-6.6-6.5z" fill="#2f7cf6"/><circle cx="12" cy="8.7" r="2.5" fill="#fff"/></svg>';
+/* 某个点在当天行程里跑到第几公里：取它在当天路线顶点上最近的那一点，按顶点比例折算 */
+function mvPoiKmAt(dayId,p){
+  const tr=TRIP[DAYS.indexOf(dayId)]||{};
+  const g=tr.geom||[], start=tr.startKm||0, len=tr.km||0;
+  if(g.length<2)return start;
+  let best=1e9,bi=0;
+  for(let i=0;i<g.length;i++){
+    const a=g[i], la=(a.lat!==undefined?a.lat:a[0]), lo=(a.lng!==undefined?a.lng:a[1]);
+    const d=Math.abs(la-p[0])+Math.abs(lo-p[1]);
+    if(d<best){best=d;bi=i;}
+  }
+  return start+bi/(g.length-1)*len;
+}
+/* 分钟数转人话：90 → 1 小时 30 分 */
+function fmtDur(m){
+  m=Math.max(0,Math.round(m||0));
+  if(m<60)return m+' 分钟';
+  var h=Math.floor(m/60),r=m%60;
+  return h+' 小时'+(r?(' '+r+' 分'):'');
+}
+function mvPoiMarker(dayId,p){
+  const code=POI_CODE[dayId+'|'+p[2]]||(dayId+'-?');
+  const st=POI_KIND[p[3]]||{c:'#8a6a5a',s:'点'};
+  const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p[2]+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
+  const city=DAY_CITY[dayId]||'新疆';
+  const url='https://uri.amap.com/search?keyword='+encodeURIComponent(p[2])+'&city='+encodeURIComponent(city);
+  const di=DAYS.indexOf(dayId);
+  const tr=TRIP[di]||{km:0};
+  /* 里程与走法页同源：先取行程单标注的「约 XXX km」，取不到才退回轨迹几何值 */
+  const itn=itinerary[di]||{};
+  const dm=String(itn.date||'').match(/约\s*(\d+)\s*km|(\d+)\s*km/i);
+  const dayKm=dm?+(dm[1]||dm[2]):Math.round(tr.km||0);
+  const mins=Math.round(dayKm/55*60);
+  return L.marker([p[0],p[1]],{icon:ic,zIndexOffset:620})
+    .bindPopup('<div class="mv-pop"><div class="mv-pop__t">'+code+' · '+p[2]+'</div>'
+      +'<div class="mv-pop__k">'+p[3]+' · '+((mapDays[dayId]||{}).t||'')+'</div>'
+      +'<div class="mv-pop__m">当天约 '+dayKm+' km · 开车约 '+fmtDur(mins)+'</div>'
+      +'<a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener" title="在高德地图里打开" aria-label="在高德地图里打开">'+MV_AMAP_SVG+'</a></div>',{maxWidth:248});
+}
+const mvPoiShown={};
+function mvPoiReset(){ if(!mvPoiLayer)return; mvPoiLayer.clearLayers(); for(const k in mvPoiShown)delete mvPoiShown[k]; }
+function mvPoiPut(dayId,p){ const k=dayId+'|'+p[2]; if(mvPoiShown[k])return; mvPoiShown[k]=1; mvPoiMarker(dayId,p).addTo(mvPoiLayer); }
+/* 全量：静态看某一天、或看全程点位 */
 function mvPoiRender(ids){
   if(!mvPoiLayer)return;
-  mvPoiLayer.clearLayers();
-  const list=[];
-  (ids||[]).forEach(function(id){
-    const d=mapDays[id]; if(!d||!d.pois)return;
-    d.pois.forEach(function(p){list.push({ll:[p[0],p[1]],name:p[2],kind:p[3],day:id});});
+  mvPoiReset();
+  (ids||[]).forEach(function(id){ const d=mapDays[id]; if(!d||!d.pois)return; d.pois.forEach(function(p){mvPoiPut(id,p);}); });
+}
+/* 增量：播放时按进度把当天的要点一个个放出来，走过的名字留在图上不消失 */
+function mvPoiSync(dayId,km){
+  const d=mapDays[dayId]; if(!d||!d.pois||!mvPoiLayer)return;
+  d.pois.forEach(function(p){ if(km+1.2>=mvPoiKmAt(dayId,p))mvPoiPut(dayId,p); });
+}
+/* 常驻「下一站」提示：随时知道接下来到哪、还有多远、大概开多久 */
+function mvNextUpdate(dayId,km){
+  const el=document.getElementById('mvNext'); if(!el)return;
+  const d=mapDays[dayId];
+  if(!d||!d.pois||!d.pois.length){el.style.display='none';return;}
+  el.style.display='flex';
+  let next=null,nk=0;
+  d.pois.forEach(function(p){
+    const pkm=mvPoiKmAt(dayId,p);
+    if(pkm>=km&&(next===null||pkm<nk)){next=p;nk=pkm;}
   });
-  const seen={};
-  list.forEach(function(p){
-    const k=p.ll[0]+'|'+p.ll[1]+'|'+p.name;
-    if(seen[k])return; seen[k]=1;
-    const code=POI_CODE[p.day+'|'+p.name]||(p.day+'-?');
-    const st=POI_KIND[p.kind]||{c:'#8a6a5a',s:'点'};
-    const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p.name+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
-    const city=DAY_CITY[p.day]||'新疆';
-    const url='https://uri.amap.com/search?keyword='+encodeURIComponent(p.name)+'&city='+encodeURIComponent(city);
-    L.marker(p.ll,{icon:ic,zIndexOffset:620}).addTo(mvPoiLayer)
-      .bindPopup('<div class="mv-pop"><div class="mv-pop__t">'+code+' · '+p.name+'</div><div class="mv-pop__k">'+p.kind+' · '+((mapDays[p.day]||{}).t||'')+'</div><a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener">在高德里看这个位置</a></div>',{maxWidth:232});
-  });
+  const nm=document.getElementById('mvNextName'), dt=document.getElementById('mvNextDist');
+  if(!nm||!dt)return;
+  if(!next){
+    nm.textContent='今天的点走完了';
+    dt.textContent=(dayId===DAYS[DAYS.length-1])?'全程结束':'按「下一天」接着走';
+    return;
+  }
+  const left=Math.max(0,nk-km);
+  nm.textContent=(POI_CODE[dayId+'|'+next[2]]||'')+' '+next[2];
+  dt.textContent=(left<0.5?'马上到':(Math.round(left)+' km'))+' · 约 '+Math.max(1,Math.round(left/55*60))+' 分钟';
 }
 function mvHint(t){
   const el=document.getElementById('mapHint');
@@ -2100,7 +2290,7 @@ function mvNoLib(){
 function mvInit(){
   if(mvMap)return;
   if(typeof L==='undefined'){mvNoLib();return;}
-  mvMap=L.map('mapCanvas',{zoomControl:false,zoomAnimation:true,fadeAnimation:true,preferCanvas:false});
+  mvMap=L.map('mapCanvas',{zoomControl:false,attributionControl:false,zoomAnimation:true,fadeAnimation:true,preferCanvas:false});
   L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=2&style=8&x={x}&y={y}&z={z}',{subdomains:['1','2','3','4'],maxZoom:19,minZoom:4,keepBuffer:6,detectRetina:true,updateWhenIdle:false,updateWhenZooming:false}).addTo(mvMap);
   mvMap.setView([44.3,85.6],6);   /* 默认给全程视野，不把某一段顶到看不见 */
   mvBase=L.polyline([],{color:'#6f665e',weight:3.2,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
@@ -2109,8 +2299,11 @@ function mvInit(){
   mvGlow=L.polyline([],{color:'#ffb27a',weight:14,opacity:.3,lineCap:'round',lineJoin:'round',interactive:false}).addTo(mvMap);
   mvHi=L.polyline([],{color:'#ffe6c9',weight:9,opacity:.9,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
   mvProg=L.polyline([],{color:'#ff7a3d',weight:5.5,opacity:1,lineCap:'round',lineJoin:'round'}).addTo(mvMap);
-  L.control.scale({imperial:false,position:'bottomright'}).addTo(mvMap);
+  L.control.scale({imperial:false,position:'bottomleft'}).addTo(mvMap);
   mvPoiLayer=L.layerGroup().addTo(mvMap);
+  /* 只要是人手上的动作（滚轮、按下、双指），就让自动跟随退让 2.6 秒 */
+  const _cv=document.getElementById('mapCanvas');
+  if(_cv){['wheel','pointerdown','touchstart'].forEach(function(ev){_cv.addEventListener(ev,mvMarkManual,{passive:true});});}
   mvMap.on('zoomend',function(){
     const v=document.getElementById('mapView');if(!v)return;
     v.classList.toggle('mv-lowzoom',mvMap.getZoom()<8.4);
@@ -2177,16 +2370,14 @@ function mvInit(){
       const en=d.geom[d.geom.length-1];
       const pois=(mapDays[DAYS[i]]||{}).pois||[];
       const near=function(pt){return pois.some(function(p){return Math.abs(p[0]-pt[0])<0.02&&Math.abs(p[1]-pt[1])<0.02;});};
+      /* 起终点本身就是行程要点时，编号标签已经说清楚了，不再叠一层没名字的白心圆点或半透明小药丸 */
       if(!near(st)){
-        mvDayMarks.push(L.circleMarker(st,{radius:4,color:'#7a716a',weight:2,fillColor:'#fff',fillOpacity:.9})
-          .addTo(mvMap).bindTooltip(DAYS[i]+' 起点'));
+        L.marker(st,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
+          html:'<span>'+DAYS[i]+' 起</span>',iconSize:[0,0],iconAnchor:[0,-9]})}).addTo(mvMap);
       }
       if(!near(en)){
         L.marker(en,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
           html:'<span>'+DAYS[i]+' · '+(DAY_PLACE[i]||'')+'</span>',iconSize:[0,0],iconAnchor:[0,i===8?-30:-9]})}).addTo(mvMap);
-      }else{
-        L.marker(en,{interactive:false,zIndexOffset:560,icon:L.divIcon({className:'mv-dest',
-          html:'<span style="opacity:.68">'+DAYS[i]+'</span>',iconSize:[0,0],iconAnchor:[0,-30]})}).addTo(mvMap);
       }
     });
     PV.km=0;PV.maxKm=0;renderProgress();
@@ -2225,50 +2416,6 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
 
 </script>
 
-<div class="mapview" id="carView">
-  <div class="mapview__bar">
-    <button class="mapview__back" id="carBack">返回</button>
-    <div class="mapview__days"><span style="font-family:var(--font-serif);font-size:.95rem">租车 · 车型与服务</span></div>
-  </div>
-  <div class="nv-body">
-    <div class="nv-wrap" id="carWrap">
-      <p class="page-desc" style="margin-top:0">这一段只讲车：租什么、多少钱、出了事谁管。价格是公开报价，取车当天以门店核价为准。</p>
-      <div id="carList"></div>
-      <h3 class="page-title" style="font-size:1.1rem;margin-top:1.6rem">应急怎么办</h3>
-      <div id="carEmergency"></div>
-    </div>
-  </div>
-</div>
-
-<div class="mapview" id="navView">
-  <div class="mapview__bar">
-    <button class="mapview__back" id="navBack">返回</button>
-    <div class="mapview__days"><span style="font-family:var(--font-serif);font-size:.95rem">逐日导航</span></div>
-  </div>
-  <div class="nv-body">
-    <div class="nv-wrap">
-      <p class="page-desc" style="margin-top:0">把<strong>终点名</strong>整段粘进高德或百度，只搜城市名会被导到市中心。终点都写到门牌，搜不到店名就搜门牌。</p>
-    <table class="nav-table">
-      <thead><tr><th>日</th><th>导航搜索（起点 → 终点）</th><th>里程</th><th>这段路上要注意的</th></tr></thead>
-      <tbody>
-        <tr><td>D1 12/09</td><td>地窝堡国际机场 → 希尔顿（米东区红光山路1237号）</td><td>约 20 km</td><td>落地取车；两班机相差 1h40，先到的等</td></tr>
-        <tr><td>D2 12/10</td><td>希尔顿 → 阿勒泰金桥假日（市中心）</td><td>500 km</td><td>G7 京新转 S21 阿乌高速，不经克拉玛依</td></tr>
-        <tr><td>D3 12/11</td><td>金桥假日 → 禾木游客中心</td><td>209 km</td><td>阿禾公路 10:00–14:00 放行、20:00 前驶离，仅雪地胎四驱；须先预约进村</td></tr>
-        <tr><td>D4 12/12</td><td>禾木 → 喀纳斯图瓦村（停泊STAY·坐忘）</td><td>60 km</td><td>进山无加油站，出发前加满</td></tr>
-        <tr><td>D5 12/13</td><td>喀纳斯 → 布尔津（卧龙湾路酒吧一条街2号楼）→ 五彩滩</td><td>150 km</td><td>五彩滩 09:00 开园、19:00 停售、19:15 最后入园</td></tr>
-        <tr><td>D6 12/14</td><td>布尔津 → 乌尔禾（阿吾丹）→ 独山子（大庆东路13号）</td><td>330 km</td><td>魔鬼城 09:30–19:00、19:00 停售；克拉玛依黑油山顺路可停</td></tr>
-        <tr><td>D7 12/15</td><td>独山子 → 赛里木湖（西海路7号2号楼）</td><td>430 km</td><td>东门进南门出；冬季环湖路以现场通告为准</td></tr>
-        <tr><td>D8 12/16</td><td>赛湖 → 温泉县花间堂·阿日相（博格达尔景区）</td><td>90 km</td><td>下午泡汤；县城馆子 21:00 前收</td></tr>
-        <tr><td>D9 12/17</td><td>温泉县 → 乌市希尔顿（红光山路1237号）</td><td>600 km</td><td>单日最长，遇雪顺延半天、D10 早起补</td></tr>
-        <tr><td>D10 12/18</td><td>希尔顿 → 地窝堡国际机场（还车）</td><td>约 20 km</td><td>满油取还、拍照留证，预留 2h</td></tr>
-      </tbody>
-    </table>
-      <p class="nv-note">上面每条的官方原文都在「门道」页，能直接点开：阿禾公路通行通告、阿禾公路限行、喀纳斯冬季公告、魔鬼城售票时间、五彩滩营业时间。路况天天在变，出发当天先看当地交警和景区通告。</p>
-      <p class="nv-note">加油与补给：D3 进山前在阿勒泰加满（209 km 全线无加油站）；D4 禾木出发前再次加满；D9 温泉县出发前加满，中途精河补一次。</p>
-    </div>
-  </div>
-</div>
-
 <div class="mapview" id="mapView">
   <div class="mapview__bar">
     <button class="mapview__back" id="mapBack">返回</button>
@@ -2292,6 +2439,7 @@ if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded'
       </div>
     </div>
     <div class="mapview__hint" id="mapHint">正在载入真实道路路线…</div>
+    <div class="mv-next" id="mvNext" aria-live="polite"><span class="mv-next__k">下一站</span><span class="mv-next__n" id="mvNextName">—</span><span class="mv-next__d" id="mvNextDist">—</span></div>
   </div>
   <div class="mv-player">
       <button class="main" id="pvPlay" aria-label="播放或暂停">▶</button>
