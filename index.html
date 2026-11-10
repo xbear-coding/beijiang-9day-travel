@@ -367,6 +367,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-all-mode .mv-dest{display:none}
 .mv-all-mode .mv-poi__name{display:none}
 .mv-lowzoom .mv-poi__name{display:none}
+.mv-poi__name i{font-style:normal;color:#ffc79a;margin-right:4px;font-weight:700}
+.mv-pop{font-size:12px;line-height:1.65;color:#241f1b;min-width:158px}
+.mv-pop__t{font-weight:700;font-size:12.5px;color:#1c1714}
+.mv-pop__k{color:#7d736a;font-size:11.5px;margin:2px 0 8px}
+.mv-pop__a{display:inline-block;padding:5px 11px;border-radius:999px;background:#d94f2b;color:#fff !important;font-size:11.5px;text-decoration:none;border:0}
 .nav-table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.86rem;line-height:1.7}
 .nav-table th,.nav-table td{border-bottom:1px solid rgba(0,0,0,.12);padding:.55rem .5rem;vertical-align:top;text-align:left}
 .nav-table th{font-weight:600;background:rgba(180,85,45,.06)}
@@ -1909,6 +1914,7 @@ function goDay(id){
 }
 /* 兴趣点：按类型上色，名称常显，跟着当天走 */
 const POI_KIND={'住宿':{c:'#4d84c7',s:'住'},'餐饮':{c:'#c9752f',s:'食'},'景点':{c:'#3f8f6a',s:'景'},'打卡':{c:'#b8901f',s:'卡'},'补给':{c:'#6f665e',s:'补'},'路况':{c:'#5c6b7a',s:'路'},'交通':{c:'#8a6ab0',s:'机'}};
+const DAY_CITY={D1:'乌鲁木齐',D2:'阿勒泰',D3:'阿勒泰',D4:'布尔津',D5:'布尔津',D6:'克拉玛依',D7:'博乐',D8:'温泉',D9:'乌鲁木齐',D10:'乌鲁木齐'};
 function mvPoiRender(ids){
   if(!mvPoiLayer)return;
   mvPoiLayer.clearLayers();
@@ -1917,13 +1923,18 @@ function mvPoiRender(ids){
     const d=mapDays[id]; if(!d||!d.pois)return;
     d.pois.forEach(function(p){list.push({ll:[p[0],p[1]],name:p[2],kind:p[3],day:id});});
   });
-  const seen={};
+  const seen={},seqOf={};
   list.forEach(function(p){
     const k=p.ll[0]+'|'+p.ll[1]+'|'+p.name;
     if(seen[k])return; seen[k]=1;
+    seqOf[p.day]=(seqOf[p.day]||0)+1;
+    const seq=seqOf[p.day],code=p.day+'-'+seq;
     const st=POI_KIND[p.kind]||{c:'#8a6a5a',s:'点'};
-    const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name">'+p.name+'</span></span>',iconSize:[0,0],iconAnchor:[0,0]});
-    L.marker(p.ll,{icon:ic,zIndexOffset:620}).addTo(mvPoiLayer).bindTooltip(p.day+' · '+p.kind+' · '+p.name,{direction:'top',offset:[0,-14],opacity:.95});
+    const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p.name+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
+    const city=DAY_CITY[p.day]||'新疆';
+    const url='https://uri.amap.com/search?keyword='+encodeURIComponent(p.name)+'&city='+encodeURIComponent(city);
+    L.marker(p.ll,{icon:ic,zIndexOffset:620}).addTo(mvPoiLayer)
+      .bindPopup('<div class="mv-pop"><div class="mv-pop__t">'+code+' · '+p.name+'</div><div class="mv-pop__k">'+p.kind+' · '+((mapDays[p.day]||{}).t||'')+'</div><a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener">在高德里看这个位置</a></div>',{maxWidth:232});
   });
 }
 function mvHint(t){
