@@ -149,6 +149,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .place-card__img{width:180px;height:130px;object-fit:cover;flex-shrink:0}
 .place-card__info{padding:1rem;flex:1}
 .place-card__name{font-family:var(--font-serif);font-size:1.15rem;margin-bottom:.25rem}
+.poi-code{display:inline-block;font:700 .62rem/1 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.06em;color:#ffc79a;background:rgba(201,138,88,.14);border:1px solid rgba(201,138,88,.32);border-radius:4px;padding:3px 5px;margin-right:.42rem;vertical-align:2px}
 .place-card__type{font-size:.75rem;color:var(--accent);margin-bottom:.5rem}
 .place-card__detail{font-size:.85rem;color:var(--text-secondary);line-height:1.8}
 .place-card__link{display:inline-block;margin-top:.5rem;font-size:.75rem;color:var(--accent);border-bottom:1px solid currentColor}
@@ -1143,7 +1144,7 @@ function renderSpots(){
       const book=s.book?(s.bookUrl?`<div class="spot-card__book"><a href="${s.bookUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.book}</a></div>`:`<div class="spot-card__book">${s.book}</div>`):'';
       return `<div class="spot-card reveal" data-spot="${i}">
         ${galleryTpl(imgs,s.name,'spot-'+i)}
-        <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}<div class="spot-card__ref">${s.ref}</div></div></div>`;
+        <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${codeBadge(s.name)}${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}<div class="spot-card__ref">${s.ref}</div></div></div>`;
     }).join('');
     return `<div class="region-head anchor-block" id="reg-${reg}"><span class="region-head__name">${reg}</span><span class="region-head__meta">${idxs.length} 处</span></div><div class="spots-grid">${cards}</div>`;
   }).join('');
@@ -1202,7 +1203,7 @@ function cardTpl(p,kind){
   const more=imgs.length>1?`<span class="place-card__more">${imgs.length} 张</span>`:'';
   return `<div class="place-card ${kind==='hotel'?'place-card--hotel':'place-card--restaurant'} reveal" data-url="${cardUrl}" data-bucket="${bucket}" data-name="${p.name}">
     <div class="place-card__media">${media}${more}</div>
-    <div class="place-card__header"><div class="place-card__info"><div class="place-card__name">${p.name}</div><div class="place-card__type">${kind==='hotel'?'酒店':'餐厅'}</div><div class="place-card__detail">${IC.pin}${p.addr}<br>${IC.phone}${p.tel} ${p.tel!=='—'?`<a class="place-link place-link--tel" href="tel:${p.tel.replace(/[^0-9]/g,'')}" title="拨打电话">${IC.ext}<span>拨打</span></a>`:''}<br>${IC.coin}${p.price} · ${IC.clock}${p.hours}</div><div class="place-card__tags">${tags}</div>${link}<a class="place-link place-link--map" href="https://uri.amap.com/search?keyword=${encodeURIComponent(p.name)}" target="_blank" rel="noopener" title="在高德地图里搜这家店">${IC.map||IC.ext}<span>看位置</span></a></div></div><div class="place-card__warn">${p.warn}</div></div>`;
+    <div class="place-card__header"><div class="place-card__info"><div class="place-card__name">${codeBadge(p.name)}${p.name}</div><div class="place-card__type">${kind==='hotel'?'酒店':'餐厅'}</div><div class="place-card__detail">${IC.pin}${p.addr}<br>${IC.phone}${p.tel} ${p.tel!=='—'?`<a class="place-link place-link--tel" href="tel:${p.tel.replace(/[^0-9]/g,'')}" title="拨打电话">${IC.ext}<span>拨打</span></a>`:''}<br>${IC.coin}${p.price} · ${IC.clock}${p.hours}</div><div class="place-card__tags">${tags}</div>${link}<a class="place-link place-link--map" href="https://uri.amap.com/search?keyword=${encodeURIComponent(p.name)}" target="_blank" rel="noopener" title="在高德地图里搜这家店">${IC.map||IC.ext}<span>看位置</span></a></div></div><div class="place-card__warn">${p.warn}</div></div>`;
 }
 function renderExpenses(){
   let html='',grandTotal=0;
@@ -1727,6 +1728,21 @@ function decorateA11y(){
   if(img&&spots.length)img.src=spots[0].img;
 }
 
+/* 卡片上的站点编号：只标地图上真放得出的点，其余不标——编号就是"去地图上找这个点" */
+const CARD_CODE={
+  '希尔顿（乌市）':['D1-2','D9-2'],
+  '馬风花·新疆菜·大盘鸡（人民电影院店）':['D1-3'],
+  '金桥假日酒店（阿勒泰）':['D2-2'],
+  '独山子玛依塔柯酒店':['D6-2'],
+  '赛里木湖逸扉酒店':['D7-3'],
+  '花间堂·阿日相（温泉县）':['D8-1'],
+  '布尔津河堤夜市':['D5-2'],
+  '魔鬼城雪景':['D6-1'],
+  '赛里木湖蓝冰':['D7-2'],
+  '乌鲁木齐大巴扎':['D9-3']
+};
+function codeBadge(n){var c=CARD_CODE[n];return (c&&c.length)?'<span class="poi-code">'+c.join('/')+'</span>':'';}
+
 /* 初始化 */
 renderItinerary();
 renderSpots();
@@ -1755,6 +1771,9 @@ const mapDays = {
   D10:{t:'乌鲁木齐 → 机场', pts:[[43.830,87.630],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
 };
 const DAYS = Object.keys(mapDays);
+
+/* 站点编号全量表：按天顺序、每天从 1 开始，与当前视图无关——单天看和全程看，同一个点永远同一个号 */
+const POI_CODE=(function(){var m={};DAYS.forEach(function(d){var i=0;((mapDays[d]||{}).pois||[]).forEach(function(p){i++;m[d+'|'+p[2]]=d+'-'+i;});});return m;})();
 const KMPS = 15;                 /* 1× = 15 km/秒，全程约 190 秒 */
 
 let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[],mvPoiLayer=null;
@@ -1934,12 +1953,11 @@ function mvPoiRender(ids){
     const d=mapDays[id]; if(!d||!d.pois)return;
     d.pois.forEach(function(p){list.push({ll:[p[0],p[1]],name:p[2],kind:p[3],day:id});});
   });
-  const seen={},seqOf={};
+  const seen={};
   list.forEach(function(p){
     const k=p.ll[0]+'|'+p.ll[1]+'|'+p.name;
     if(seen[k])return; seen[k]=1;
-    seqOf[p.day]=(seqOf[p.day]||0)+1;
-    const seq=seqOf[p.day],code=p.day+'-'+seq;
+    const code=POI_CODE[p.day+'|'+p.name]||(p.day+'-?');
     const st=POI_KIND[p.kind]||{c:'#8a6a5a',s:'点'};
     const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p.name+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
     const city=DAY_CITY[p.day]||'新疆';
