@@ -1,0 +1,16 @@
+<!doctype html><html><head><meta charset="utf-8"><title>wx-smoke</title>
+<style>
+html,body{margin:0;padding:0;background:#fff}
+#f{width:375px;height:812px;border:0;display:block}
+#SMOKEOUT{position:fixed;left:-9999px;top:0;margin:0;padding:0;white-space:pre;font:12px monospace}
+</style></head><body>
+<iframe id="f" src="_smoke_wechat.html"></iframe>
+<pre id="SMOKEOUT">PENDING-WRAPPER</pre>
+<script>
+window.addEventListener("message", function(e){
+  var d = e.data;
+  if (typeof d === "string" && d.indexOf("WXSMOKE:") === 0) {
+    document.getElementById("SMOKEOUT").textContent = d.slice(8);
+  }
+});
+</script></body></html>
