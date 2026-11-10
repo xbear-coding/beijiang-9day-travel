@@ -27,7 +27,7 @@
   --text-secondary: #a8a098;
   --text-muted: #8a8580;
   --accent: #8a6a3f;
-  --accent-hover: #a07d4a;
+  --accent-hover: #b08a52;
   --border: #2a2826;
   --border-light: #3a3734;
   --danger: #c4453c;
@@ -145,9 +145,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .spot-card__book{font-size:.76rem;margin-top:.4rem;color:var(--text-secondary);line-height:1.5}
 .spot-card__book a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
 .spot-card__book a:hover{opacity:.75}
-.spot-card__map{display:inline-flex;align-items:center;gap:.35rem;margin-top:.55rem;padding:.28rem .58rem;border:1px solid var(--border);border-radius:0;background:transparent;color:var(--text-secondary);font:inherit;font-size:.74rem;line-height:1.5;cursor:pointer;transition:var(--transition)}
-.spot-card__map:hover{border-color:var(--accent);color:var(--accent)}
-.spot-card__map svg{width:12px;height:12px;flex:none;opacity:.72}
+.spot-card__map{display:inline-flex;align-items:center;gap:.35rem;margin-top:.55rem;padding:.28rem .58rem;border:1px solid var(--border-light);border-radius:0;background:transparent;color:var(--text-secondary);font:inherit;font-size:.74rem;line-height:1.5;cursor:pointer;transition:var(--transition)}
+.spot-card__map:hover{border-color:var(--accent-hover);color:var(--accent-hover)}
+.spot-card__map svg{width:12px;height:12px;flex:none;opacity:.9}
 
 .lightbox{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:2rem}
 .lightbox.active{display:flex}
@@ -1047,10 +1047,10 @@ const hotels = [
   {name:'花间堂·阿日相（温泉县）',ll:[44.981236,81.036499],geo:'area',addr:'温泉县博格达尔景区',tel:'—',price:'双床 1,146 起（实价）',hours:'24h前台',img:'assets/hotel_huajiantang.jpg',imgs:['assets/hotel_huajiantang_1.jpg','assets/hotel_huajiantang_2.jpg','assets/hotel_huajiantang_3.jpg','assets/hotel_huajiantang_4.jpg'],tags:['独栋别墅','私汤入户','雪山景'],warn:'D8 首选；泡池每人约 288，晚饭可在酒店膳祥餐厅解决',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
   {name:'希尔顿（乌市）',ll:[43.876259,87.615089],geo:'door',addr:'乌市米东区红光山路1237号',tel:'—',price:'双床 780（实价）',hours:'24h前台',img:'assets/hotel_hilton.jpg',imgs:['assets/hotel_hilton_1.jpg','assets/hotel_hilton_2.jpg','assets/hotel_hilton_3.jpg','assets/hotel_hilton_4.jpg'],tags:['地暖','独立卫浴','24h热水','免费寄存'],warn:'到乌市第一晚与返程两晚，住市区连锁最稳',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-10'},
   {name:'金桥假日酒店（阿勒泰）',ll:[47.827000,88.132603],geo:'area',addr:'阿勒泰市中心',tel:'0906-2171111',price:'双床 418 含双早（实价）',hours:'24h前台',img:'assets/hotel_jinqiao.jpg',imgs:['assets/hotel_jinqiao_1.jpg','assets/hotel_jinqiao_2.jpg','assets/hotel_jinqiao_3.jpg','assets/hotel_jinqiao_4.jpg'],tags:['智能客房','自助早餐','暖气'],warn:'距将军山雪场5分钟，早起赶阿禾公路首选',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
-  {name:'西融·禾木民宿',ll:[48.564461,87.423411],geo:'village',addr:'禾木河边',tel:'—',price:'800-1200/晚',hours:'含早',img:'assets/hotel_xirong.jpg',imgs:['assets/hotel_xirong_1.jpg','assets/hotel_xirong_2.jpg','assets/hotel_xirong_3.jpg','assets/hotel_xirong_4.jpg'],tags:['甲级民宿','7栋木屋','地暖','独立卫浴'],warn:'全国首批甲级旅游民宿。订房必问：24h供暖还是分时段？热水是否限时？',ref:'中华民宿网↗',refUrl:'http://zhminsu.com/?list_18/178.html'},
-  {name:'崇野集·枝几·Yeelen观景木屋',ll:[48.581604,87.444049],geo:'village',addr:'禾木新村响泉路05号',tel:'—',price:'1000+/晚',hours:'含早',img:'assets/hotel_chongyeji.jpg',imgs:['assets/hotel_chongyeji.jpg','assets/hotel_chongyeji_1.jpg','assets/hotel_chongyeji_2.jpg','assets/hotel_chongyeji_3.jpg'],score:['4.5分','223条'],tags:['4星','地暖','浴缸','管家服务'],warn:'4星观景木屋，条件最好的一档，元旦春节可能上浮到1500-3000',ref:'携程禾木列表↗',refUrl:'https://hotels.ctrip.com/hotel/D816_3327/sl4202170'},
-  {name:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',ll:[48.693902,87.007144],geo:'village',addr:'哈纳斯村观鱼台路西八巷02号（喀纳斯新村，距图瓦村地标约950米）',tel:'—',price:'大床 1,455 含早（实价）',hours:'24h',img:'assets/hotel_tingbo.jpg',imgs:['assets/hotel_tingbo_1.jpg','assets/hotel_tingbo_2.jpg','assets/hotel_tingbo_3.jpg','assets/hotel_tingbo_4.jpg'],score:['评分4.9'],tags:['雪山草场','暖气'],warn:'忘归大床 1,455，含早；同档备选 停泊·自怡（哈纳斯新村）¥1,180',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
-  {name:'云中歌民宿',ll:[48.694502,87.007744],geo:'village',addr:'喀纳斯新村85号',tel:'18097506067',price:'700-1000/晚',hours:'含早',img:'assets/hotel_yunzhongge.jpg',imgs:['assets/hotel_yunzhongge_1.jpg','assets/hotel_yunzhongge_2.jpg','assets/hotel_yunzhongge_3.jpg','assets/hotel_yunzhongge_4.jpg'],score:['评分4.7'],tags:['地暖'],warn:'老村木屋，需确认车辆能否到门口',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131678182.html'},
+  {name:'西融·禾木民宿',ll:[48.585206,87.446947],geo:'door',addr:'禾木新村160号（新村3号站）',tel:'—',price:'800-1200/晚',hours:'含早',img:'assets/hotel_xirong.jpg',imgs:['assets/hotel_xirong_1.jpg','assets/hotel_xirong_2.jpg','assets/hotel_xirong_3.jpg','assets/hotel_xirong_4.jpg'],tags:['甲级民宿','7栋木屋','地暖','独立卫浴'],warn:'全国首批甲级旅游民宿。订房必问：24h供暖还是分时段？热水是否限时？',ref:'中华民宿网↗',refUrl:'http://zhminsu.com/?list_18/178.html'},
+  {name:'崇野集·枝几·Yeelen观景木屋',ll:[48.687919,87.00733],geo:'door',addr:'哈纳斯新村响泉路05号',tel:'—',price:'1000+/晚',hours:'含早',img:'assets/hotel_chongyeji.jpg',imgs:['assets/hotel_chongyeji.jpg','assets/hotel_chongyeji_1.jpg','assets/hotel_chongyeji_2.jpg','assets/hotel_chongyeji_3.jpg'],score:['4.5分','223条'],tags:['4星','地暖','浴缸','管家服务'],warn:'4星观景木屋，条件最好的一档，元旦春节可能上浮到1500-3000',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131825295.html'},
+  {name:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',ll:[48.698999,87.00435],geo:'door',addr:'哈纳斯村观鱼台路西八巷02号（喀纳斯新村，距图瓦村地标约950米）',tel:'—',price:'大床 1,455 含早（实价）',hours:'24h',img:'assets/hotel_tingbo.jpg',imgs:['assets/hotel_tingbo_1.jpg','assets/hotel_tingbo_2.jpg','assets/hotel_tingbo_3.jpg','assets/hotel_tingbo_4.jpg'],score:['评分4.9'],tags:['雪山草场','暖气'],warn:'忘归大床 1,455，含早；同档备选 停泊·自怡（哈纳斯新村）¥1,180',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
+  {name:'云中歌民宿',ll:[48.696375,87.007525],geo:'door',addr:'喀纳斯新村85号',tel:'18097506067',price:'700-1000/晚',hours:'含早',img:'assets/hotel_yunzhongge.jpg',imgs:['assets/hotel_yunzhongge_1.jpg','assets/hotel_yunzhongge_2.jpg','assets/hotel_yunzhongge_3.jpg','assets/hotel_yunzhongge_4.jpg'],score:['评分4.7'],tags:['地暖'],warn:'老村木屋，需确认车辆能否到门口',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131678182.html'},
   {name:'知禾·设计师艺术民宿（布尔津）',ll:[47.694121,86.873797],geo:'door',addr:'布尔津卧龙湾路酒吧一条街2号楼',tel:'—',price:'双床 394 含早（实价）',hours:'含早',img:'assets/hotel_zhihe.jpg',imgs:['assets/hotel_zhihe_1.jpg','assets/hotel_zhihe_2.jpg','assets/hotel_zhihe_3.jpg','assets/hotel_zhihe_4.jpg'],score:['4.7分','345条'],tags:['额尔齐斯河畔','设计感大堂','免费取消'],warn:'D5 首选，高档型民宿，紧邻额尔齐斯河与人工湖，走到河堤夜市约 10 分钟。银泰、喀纳斯旅游酒店歇业到 2027-05-01，凯旋门与七彩河假日不接受预订，别按老方案订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
   {name:'赛里木湖逸扉酒店',ll:[44.608595,81.118984],geo:'area',addr:'博乐赛湖景区西海路7号 2号楼',tel:'—',price:'园景双床 462 / 湖景 558（实价）',hours:'24h前台',img:'assets/hotel_yifei.jpg',imgs:['assets/hotel_yifei_1.jpg','assets/hotel_yifei_2.jpg','assets/hotel_yifei_3.jpg','assets/hotel_yifei_4.jpg'],score:['4.7分','522条'],tags:['硫磺温泉','5钻','景区内'],warn:'D7 首选，塔玛暇尔集群 2 号楼，出门即湖边，明早看日出不用赶路。西海盛宴、湖光帐影那两家不接受预订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
 ];
@@ -1963,14 +1963,14 @@ const CARD_CODE={
   '独山子玛依塔柯酒店':['D6-4'],
   '赛里木湖逸扉酒店':['D7-3'],
   '花间堂·阿日相（温泉县）':['D8-1'],
-  '布尔津河堤夜市':['D5-2'],'乡村馕坑肉（阿勒泰首店）':['D2-3'],'无也民宿（禾木）':['D3-4'],'西融·禾木民宿':['D3-5'],'崇野集·枝几·Yeelen观景木屋':['D3-6'],'停泊STAY·坐忘民宿（喀纳斯图瓦村）':['D4-2'],'云中歌民宿':['D4-3'],'煲来饱去冷水鱼（布尔津）':['D5-3'],'知禾·设计师艺术民宿（布尔津）':['D5-4'],'阿吾丹·非遗手抓饭（乌尔禾店）':['D6-3'],'高白鲑餐吧（克勒涌珠店）':['D7-4'],'花间堂·阿日相（温泉县）':['D8-1'],'旺福楼酒店（温泉县）':['D8-2'],'丝路有约（万宴城店）':['D9-4'],
+  '布尔津河堤夜市':['D5-2'],'乡村馕坑肉（阿勒泰首店）':['D2-3'],'无也民宿（禾木）':['D3-4'],'西融·禾木民宿':['D3-5'],'崇野集·枝几·Yeelen观景木屋':['D4-4'],'停泊STAY·坐忘民宿（喀纳斯图瓦村）':['D4-2'],'云中歌民宿':['D4-3'],'煲来饱去冷水鱼（布尔津）':['D5-3'],'知禾·设计师艺术民宿（布尔津）':['D5-4'],'阿吾丹·非遗手抓饭（乌尔禾店）':['D6-3'],'高白鲑餐吧（克勒涌珠店）':['D7-4'],'花间堂·阿日相（温泉县）':['D8-1'],'旺福楼酒店（温泉县）':['D8-2'],'丝路有约（万宴城店）':['D9-4'],
   '魔鬼城雪景':['D6-1'],
   '赛里木湖蓝冰':['D7-2'],
-  '乌鲁木齐大巴扎':['D9-3']
+  '乌鲁木齐大巴扎':['D9-2']
 };
 const MV_SPOT_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>';
 /* 看点 → 当天编号：'D3-3' 表示回 D3 地图定位该点，'D5' 只表示在这天的路上 */
-const SPOT_MAP={'禾木晨雾':'D3-2','喀纳斯湖冰推':'D4-1','布尔津河堤夜市':'D5-2','赛里木湖蓝冰':'D7-2','魔鬼城雪景':'D6-1','阿禾公路':'D3','乌鲁木齐大巴扎':'D9-2','五彩滩日落':'D5','黑油山':'D6','哈登观景台':'D3-3','禾木桥':'D3','独库公路零公里':'D6','喀纳斯三湾':'D4','温泉圣泉':'D8-1'};
+const SPOT_MAP={'禾木晨雾':'D3-2','喀纳斯湖冰推':'D4-1','布尔津河堤夜市':'D5-2','赛里木湖蓝冰':'D7-2','魔鬼城雪景':'D6-1','阿禾公路':'D3','乌鲁木齐大巴扎':'D9-2','五彩滩日落':'D5','黑油山':'D6','哈登观景台':'D3-3','禾木桥':'D3-6','独库公路零公里':'D6-5','喀纳斯三湾':'D4-5','温泉圣泉':'D8-3'};
 function mapBtn(s,i){
   const c=SPOT_MAP[s.name]; if(!c)return '';
   const pin=c.indexOf('-')>0;
@@ -2000,12 +2000,12 @@ setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classLi
 const mapDays = {
   D1: {t:'各地 → 乌鲁木齐', pts:[[43.905,87.472],[43.876259,87.615089]], pois:[[43.905,87.472,'乌市机场','交通'],[43.876259,87.615089,'乌市希尔顿','住宿'],[43.798587,87.616025,'馬风花','餐饮']]},
   D2: {t:'乌市 → 阿勒泰', pts:[[43.876259,87.615089],[45.200,88.200],[47.827,88.132603]], pois:[[45.200,88.200,'三个泉子服务区','补给'],[47.827,88.132603,'金桥假日','住宿'],[47.829092,88.130120,'乡村馕坑肉','餐饮']]},
-  D3: {t:'阿勒泰 → 禾木', pts:[[47.827,88.132603],[47.900,88.300],[48.300,87.700],[48.571918,87.432881]], pois:[[47.900,88.300,'小东沟检查站','路况'],[48.566,87.437,'禾木村','景点'],[48.575,87.450,'哈登观景台','打卡'],[48.571918,87.432881,'无也民宿','住宿'],[48.564461,87.423411,'西融民宿','住宿'],[48.581604,87.444049,'崇野集','住宿']]},
-  D4: {t:'禾木 → 喀纳斯', pts:[[48.571918,87.432881],[48.600,87.200],[48.693902,87.007144]], pois:[[48.716,87.017,'喀纳斯湖','景点'],[48.693902,87.007144,'停泊STAY','住宿'],[48.694502,87.007744,'云中歌','住宿']]},
-  D5: {t:'喀纳斯 → 布尔津', pts:[[48.693902,87.007144],[48.300,87.100],[47.694121,86.873797]], pois:[[48.300,87.100,'冲乎尔河谷','打卡'],[47.702,86.874,'河堤夜市','景点'],[47.701771,86.862080,'煲来饱去','餐饮'],[47.694121,86.873797,'知禾民宿','住宿']]},
-  D6: {t:'布尔津 → 克拉玛依', pts:[[47.694121,86.873797],[46.183,85.833],[46.089542,85.692495],[45.595,84.874],[44.329022,84.886880]], pois:[[46.183,85.833,'世界魔鬼城','景点'],[45.595,84.874,'克拉玛依','补给'],[46.089542,85.692495,'阿吾丹','餐饮'],[44.329022,84.886880,'玛依塔柯','住宿']]},
+  D3: {t:'阿勒泰 → 禾木', pts:[[47.827,88.132603],[47.900,88.300],[48.300,87.700],[48.571918,87.432881]], pois:[[47.900,88.300,'小东沟检查站','路况'],[48.566,87.437,'禾木村','景点'],[48.575,87.450,'哈登观景台','打卡'],[48.571918,87.432881,'无也民宿','住宿'],[48.585206,87.446947,'西融民宿','住宿'],[48.571849,87.430858,'禾木桥','打卡']]},
+  D4: {t:'禾木 → 喀纳斯', pts:[[48.571918,87.432881],[48.600,87.200],[48.698999,87.00435]], pois:[[48.716,87.017,'喀纳斯湖','景点'],[48.698999,87.00435,'停泊STAY','住宿'],[48.696375,87.007525,'云中歌','住宿'],[48.687919,87.00733,'崇野集','住宿'],[48.64093,87.045609,'喀纳斯三湾','景点']]},
+  D5: {t:'喀纳斯 → 布尔津', pts:[[48.698999,87.00435],[48.300,87.100],[47.694121,86.873797]], pois:[[48.300,87.100,'冲乎尔河谷','打卡'],[47.702,86.874,'河堤夜市','景点'],[47.701771,86.862080,'煲来饱去','餐饮'],[47.694121,86.873797,'知禾民宿','住宿']]},
+  D6: {t:'布尔津 → 克拉玛依', pts:[[47.694121,86.873797],[46.183,85.833],[46.089542,85.692495],[45.595,84.874],[44.329022,84.886880]], pois:[[46.183,85.833,'世界魔鬼城','景点'],[45.595,84.874,'克拉玛依','补给'],[46.089542,85.692495,'阿吾丹','餐饮'],[44.329022,84.886880,'玛依塔柯','住宿'],[44.317356,84.882747,'独库零起点','打卡']]},
   D7: {t:'克拉玛依 → 赛里木湖', pts:[[44.329022,84.886880],[44.420,84.900],[44.600,81.170],[44.608595,81.118984]], pois:[[44.420,84.900,'奎屯','补给'],[44.600,81.170,'赛湖东门','景点'],[44.608595,81.118984,'逸扉酒店','住宿'],[44.561239,81.021960,'高白鲑','餐饮']]},
-  D8: {t:'赛里木湖 → 温泉县', pts:[[44.608595,81.118984],[44.970,81.020],[44.981236,81.036499]], pois:[[44.981236,81.036499,'花间堂','住宿'],[44.973197,81.030711,'旺福楼','餐饮']]},
+  D8: {t:'赛里木湖 → 温泉县', pts:[[44.608595,81.118984],[44.970,81.020],[44.981236,81.036499]], pois:[[44.981236,81.036499,'花间堂','住宿'],[44.973197,81.030711,'旺福楼','餐饮'],[44.982455,81.032196,'博格达圣泉','打卡']]},
   D9: {t:'温泉县 → 乌鲁木齐', pts:[[44.981236,81.036499],[44.420,84.900],[43.876259,87.615089]], pois:[[44.420,84.900,'奎屯','补给'],[43.828,87.600,'大巴扎','景点'],[43.798587,87.616025,'馬风花','餐饮'],[43.794474,87.621188,'丝路有约','餐饮'],[43.876259,87.615089,'乌市希尔顿','住宿']]},
   D10:{t:'乌鲁木齐 → 机场', pts:[[43.876259,87.615089],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
 };
