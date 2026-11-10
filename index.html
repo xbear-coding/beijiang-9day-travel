@@ -1393,6 +1393,21 @@ function renderToday(){
   }
   grid.innerHTML=cells.join('');
 }
+/* 跨零点自动翻页：定时器在手机息屏时会被系统节流甚至停摆，所以除了轮询，页面重新可见和重新获得焦点时都补查一次 */
+const DAY_WATCH={stamp:stampNow(),timer:null};
+function dayTick(){
+  const s=stampNow();
+  if(s===DAY_WATCH.stamp)return;
+  DAY_WATCH.stamp=s;
+  renderTasks();
+  renderToday();
+}
+function dayWatchStart(){
+  if(DAY_WATCH.timer)return;
+  DAY_WATCH.timer=setInterval(dayTick,60000);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)dayTick();});
+  window.addEventListener('focus',dayTick);
+}
 function renderTasks(){
   const idx=dayIndex(), stamp=document.getElementById('todayStamp'), note=document.getElementById('todayNote');
   let head='', items=[], foot='';
@@ -1844,6 +1859,7 @@ renderExpenses();
 renderWeather();
 renderTasks();
 renderToday();
+dayWatchStart();
 renderEmergency();
 renderTips();
 decorateA11y();
