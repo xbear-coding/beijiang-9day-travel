@@ -145,6 +145,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .spot-card__book{font-size:.76rem;margin-top:.4rem;color:var(--text-secondary);line-height:1.5}
 .spot-card__book a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
 .spot-card__book a:hover{opacity:.75}
+.spot-card__map{display:inline-flex;align-items:center;gap:.35rem;margin-top:.55rem;padding:.28rem .58rem;border:1px solid var(--border);border-radius:0;background:transparent;color:var(--text-secondary);font:inherit;font-size:.74rem;line-height:1.5;cursor:pointer;transition:var(--transition)}
+.spot-card__map:hover{border-color:var(--accent);color:var(--accent)}
+.spot-card__map svg{width:12px;height:12px;flex:none;opacity:.72}
 
 .lightbox{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:2rem}
 .lightbox.active{display:flex}
@@ -1017,10 +1020,10 @@ const itinerary = [
   },
 ];
 
-const spotKinds = ['网红','小众','备选','人文','网红','打卡','小众','人文','备选','打卡','人文','机位','机位','打卡'];
+const spotKinds = ['网红','小众','备选','人文','网红','打卡','小众','人文','备选','打卡','人文','机位','机位','打卡','机位','人文'];
 const spots = [
   {name:'禾木晨雾',region:'阿勒泰',desc:'日出时哈登观景台，炊烟、晨雾、木屋群。12 月初日出约 09:30。冬季全域票 100 元/人·3 天，含禾木。村里车位少，自驾进村要先预约，没约上就停游客中心换免费区间车。',img:'assets/spot_hemu.jpg',ref:'实景图·VCG',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
-  {name:'喀纳斯湖冰推',region:'阿勒泰',desc:'12 月初湖面开始结冰，冰块被风推到岸边堆起来。全域票已含喀纳斯。哈纳斯村冬季可自驾进、在指定区域停车。观鱼台冬天常封闭，到了问一句。',img:'assets/spot_kanas.jpg',ref:'实景图·VCG',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
+  {name:'喀纳斯湖冰推',region:'阿勒泰',desc:'12 月初湖面开始结冰，冰块被风推到岸边堆起来。全域票已含喀纳斯。哈纳斯村冬季可自驾进、在指定区域停车。观鱼台 2026 年 10 月 7 日起已季节性关闭、徒步线路同步停开，这条别惦记。',img:'assets/spot_kanas.jpg',ref:'实景图·VCG',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
   {name:'白哈巴村',region:'阿勒泰',desc:'这次不去，要边防证。留作下次：西北第一村，中哈边境。',img:'assets/spot_baihaba.jpg',ref:'实景图·VCG',book:'本次不去，不用买票',bookUrl:''},
   {name:'布尔津河堤夜市',region:'布尔津',desc:'冷水鱼一条街。烤狗鱼、五道黑，晚上才热闹。',img:'assets/spot_nightmarket.jpg',ref:'实景图·今日头条',book:'街区免费，吃饭按店结账',bookUrl:''},
   {name:'赛里木湖蓝冰',region:'博州',desc:'12 月初只有冰推冰裂，成片蓝冰要等 1 月中下旬。冬季门票半价 35 元/人；自驾服务费按车算，5 座及以下 120 元。东门进南门出，逆时针环湖。',img:'assets/spot_sayram.jpg',ref:'实景图·人民图片',book:'景区官方平台在线预约门票↗',bookUrl:'https://h5.visitor.xjslmhlt.cn/'},
@@ -1033,6 +1036,8 @@ const spots = [
   {name:'哈登观景台',region:'阿勒泰',desc:'禾木村旁边的山坡观景台，日出、晨雾、炊烟和整片屋顶都在这儿一眼收下。12 月初日出约 09:30，提前 40 分钟往上走占位；雪坡滑，鞋底要有齿。票含在禾木全域票里，不另收。',img:'assets/spot_hadeng.jpg',ref:'实景图·千图网',book:'含在喀纳斯全域票（100 元/人·3 天）内',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
   {name:'禾木桥',region:'阿勒泰',desc:'跨在禾木河上的木桥，全村最有辨识度的一段。冬天河水还在流，桥下腾着白雾，两侧白桦挂着雪。早上人少，侧逆光能把木桥、雪山、流水三样同框收进一张。',img:'assets/spot_hemubridge.jpg',ref:'实景图·VCG',book:'免费，就在村里，不用买票',bookUrl:''},
   {name:'独库公路零公里',region:'克拉玛依',desc:'G217 独库公路的起点碑，在独山子城区，从玛依塔柯酒店过去很近。要注意这条路 12 月是封的：自治区交通运输厅通告，2026 年 10 月 8 日 20 时起冬季封闭、禁止社会车辆通行，一般次年 6 月才恢复。所以只拍碑，别打算开进去。',img:'assets/spot_duku0.jpg',ref:'来源：自治区交通运输厅通告↗',refUrl:'https://jtyst.xinjiang.gov.cn/xjjtysj/c115584/202610/51492d5769d8457a931374927313c6d9.shtml',book:'免费，路边打卡；公路本身冬季禁行↗',bookUrl:'https://jtyst.xinjiang.gov.cn/xjjtysj/c115584/202610/51492d5769d8457a931374927313c6d9.shtml'},
+  {name:'喀纳斯三湾',region:'阿勒泰',desc:'卧龙湾、月亮湾、神仙湾在喀纳斯河下游依次排开，园内区间车有停靠点，冬天照走。12 月初河面冰封、主河道还是碧绿的，两岸松枝挂满雾凇；但雪把河湾盖住大半，秋天那种彩色河湾是看不到了，别按秋天的照片期待。',img:'assets/spot_sanwan.jpg',ref:'实景图·视觉中国',book:'官方渠道：小程序「喀纳斯景区」「原行网」· 无网页购票',bookUrl:'https://kns.gov.cn/005/005002/20251023/9b6b36ac-c16d-4b28-84a6-dda609d72f5c.html'},
+  {name:'温泉圣泉',region:'博州',desc:'温泉县城边上的博格达尔温泉，当地人叫它「圣泉」，主泉眼常年 40–62℃。花间堂就在这个景区里，D8 住下不用出景区就能泡；景区全年全天开放，白天有免费泡脚的池子，正对雪山和湿地。泡池是酒店自己的，另收费。',img:'assets/spot_shengquan.jpg',ref:'实景图·今日头条',book:'景区免费进入；泡池按酒店单独收费',bookUrl:''},
 ];
 
 /* 酒店（九晚住处） */
@@ -1205,7 +1210,7 @@ function renderSpots(){
       const book=s.book?(s.bookUrl?`<div class="spot-card__book"><a href="${s.bookUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${s.book}</a></div>`:`<div class="spot-card__book">${s.book}</div>`):'';
       return `<div class="spot-card reveal" data-spot="${i}" data-jumpkey="${s.name}">
         ${galleryTpl(imgs,s.name,'spot-'+i)}
-        <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${codeBadge(s.name)}${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}<div class="spot-card__ref">${s.ref}</div></div></div>`;
+        <div class="spot-card__body"><div class="spot-card__name"><span class="spot-card__kind">${spotKinds[i]||'看点'}</span>${codeBadge(s.name)}${s.name}</div><div class="spot-card__desc">${s.desc}</div>${book}${mapBtn(s,i)}<div class="spot-card__ref">${s.ref}</div></div></div>`;
     }).join('');
     return `<div class="region-head anchor-block" id="reg-${reg}"><span class="region-head__name">${reg}</span><span class="region-head__meta">${idxs.length} 处</span></div><div class="spots-grid">${cards}</div>`;
   }).join('');
@@ -1818,6 +1823,7 @@ function jumpTargets(){
 }
 /* 景点地名 → 看点卡片：手工别名表，右边一律逐字等于 spots 里的 name */
 const SPOT_ALIAS={
+  '喀纳斯三湾':'喀纳斯三湾','三湾':'喀纳斯三湾','月亮湾':'喀纳斯三湾','卧龙湾':'喀纳斯三湾','神仙湾':'喀纳斯三湾','温泉圣泉':'温泉圣泉','圣泉':'温泉圣泉','博格达尔':'温泉圣泉',
   '喀纳斯湖':'喀纳斯湖冰推','喀纳斯':'喀纳斯湖冰推',
   '禾木村':'禾木晨雾','禾木':'禾木晨雾',
   '白哈巴':'白哈巴村','阿禾公路':'阿禾公路',
@@ -1962,6 +1968,14 @@ const CARD_CODE={
   '赛里木湖蓝冰':['D7-2'],
   '乌鲁木齐大巴扎':['D9-3']
 };
+const MV_SPOT_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-6.5-6.1-6.5-11a6.5 6.5 0 0 1 13 0c0 4.9-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.4"/></svg>';
+/* 看点 → 当天编号：'D3-3' 表示回 D3 地图定位该点，'D5' 只表示在这天的路上 */
+const SPOT_MAP={'禾木晨雾':'D3-2','喀纳斯湖冰推':'D4-1','布尔津河堤夜市':'D5-2','赛里木湖蓝冰':'D7-2','魔鬼城雪景':'D6-1','阿禾公路':'D3','乌鲁木齐大巴扎':'D9-2','五彩滩日落':'D5','黑油山':'D6','哈登观景台':'D3-3','禾木桥':'D3','独库公路零公里':'D6','喀纳斯三湾':'D4','温泉圣泉':'D8-1'};
+function mapBtn(s,i){
+  const c=SPOT_MAP[s.name]; if(!c)return '';
+  const pin=c.indexOf('-')>0;
+  return '<button class="spot-card__map" type="button" data-spotmap="'+i+'" title="'+(pin?'在地图上定位这个点':'看这一天的整条线路')+'">'+MV_SPOT_SVG+'<span>'+(pin?'地图定位':'D'+c.slice(1)+' 路上')+'</span></button>';
+}
 function codeBadge(n){var c=CARD_CODE[n];return (c&&c.length)?'<span class="poi-code">'+c.join('/')+'</span>':'';}
 
 /* 初始化 */
@@ -1999,6 +2013,8 @@ const DAYS = Object.keys(mapDays);
 
 /* 站点编号全量表：按天顺序、每天从 1 开始，与当前视图无关——单天看和全程看，同一个点永远同一个号 */
 const POI_CODE=(function(){var m={};DAYS.forEach(function(d){var i=0;((mapDays[d]||{}).pois||[]).forEach(function(p){i++;m[d+'|'+p[2]]=d+'-'+i;});});return m;})();
+/* 反向表：'D3-3' → {day,p}，供看点卡跳地图用 */
+const CODE_POI=(function(){var m={};DAYS.forEach(function(d){var i=0;((mapDays[d]||{}).pois||[]).forEach(function(p){i++;m[d+'-'+i]={day:d,p:p};});});return m;})();
 const KMPS = 15;                 /* 1× = 15 km/秒，全程约 190 秒 */
 
 let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[],mvPoiLayer=null;
@@ -2418,6 +2434,10 @@ function mvInit(){
 
   loadRoutes(function(){
     mvLoaded=true;
+    if(mvPendingSpot!==null){
+      var _pend=mvPendingSpot; mvPendingSpot=null;
+      setTimeout(function(){ try{spotJump(_pend);}catch(e){} },320);
+    }
     buildTrip();
     mvBase.setLatLngs(GPTS);
     const DAY_PLACE=['乌市','阿勒泰','禾木','喀纳斯','布尔津','乌尔禾·独山子','赛里木湖','温泉县','乌市','机场还车'];
@@ -2443,6 +2463,45 @@ function mvInit(){
     if(PV._wantPlay){PV._wantPlay=false;setPlaying(true);}
   });
 }
+let mvSpotLayer=null;
+let mvPendingSpot=null;   /* 路线还没加载完时，先把要看的看点存下来 */
+/* 从看点卡跳到地图：开地图 → 切到那天 → 定位并弹卡；没有精确点位的只给当天整条线 */
+function spotJump(idx){
+  const s=spots[idx]; if(!s)return;
+  const code=SPOT_MAP[s.name]; if(!code)return;
+  const mvs=document.getElementById('mapView'); if(!mvs)return;
+  if(!mvs.classList.contains('active')){ mvs.classList.add('active'); if(!mvMap) mvInit(); }
+  /* loadRoutes 是异步的：路线没就绪时地图上还没有当天的点和线，先把请求挂起 */
+  if(typeof mvLoaded!=='undefined' && !mvLoaded && !mvPendingSpot){
+    mvPendingSpot=idx;
+    setTimeout(function(){ try{mvHint('地图正在加载路线，加载完就带你去「'+s.name+'」');}catch(e){} },300);
+    return;
+  }
+  if(mvPendingSpot===idx) mvPendingSpot=null;
+  setTimeout(function(){
+    if(!mvMap)return;
+    try{mvMap.invalidateSize();}catch(e){}
+    try{setPlaying(false);}catch(e){}
+    const day=code.split('-')[0];
+    try{goDay(day);}catch(e){}
+    if(!mvSpotLayer){ mvSpotLayer=L.layerGroup().addTo(mvMap); }
+    mvSpotLayer.clearLayers();
+    const hit=CODE_POI[code];
+    if(hit){
+      const mk=mvPoiMarker(hit.day,hit.p).addTo(mvSpotLayer);
+      mvMap.setView([hit.p[0],hit.p[1]],12.8,{animate:true,duration:0.8});
+      setTimeout(function(){ try{mk.openPopup();}catch(e){} },340);
+    } else {
+      try{mvHint('这一天路上会经过「'+s.name+'」，地图给的是当天整条线');}catch(e){}
+    }
+  },480);
+}
+document.addEventListener('click',function(e){
+  const b=e.target&&e.target.closest?e.target.closest('[data-spotmap]'):null;
+  if(!b)return;
+  e.preventDefault(); e.stopPropagation();
+  spotJump(Number(b.dataset.spotmap));
+},true);
 function mvBootstrap(){
   var btn=document.createElement('button');
   btn.className='map-entry';btn.type='button';btn.textContent='路书地图';
