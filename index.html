@@ -408,6 +408,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-all-mode .mv-dest{display:none}
 .mv-all-mode .mv-poi__name{display:none}
 .mv-lowzoom .mv-poi__name{display:none}
+.mv-lowzoom .mv-poi--stay .mv-poi__name{display:inline-flex}
 .mv-poi__name i{font-style:normal;color:#ffc79a;margin-right:4px;font-weight:700}
 .mv-pop{font-size:12px;line-height:1.65;color:#241f1b;min-width:158px}
 .mv-pop__t{font-weight:700;font-size:12.5px;color:#1c1714}
@@ -1033,28 +1034,28 @@ const spots = [
 
 /* 酒店（九晚住处） */
 const hotels = [
-  {name:'无也民宿（禾木）',addr:'禾木乡东哈拉68号',tel:'—',price:'双床 1,764 / 三人间 2,545（实价）',hours:'含早',img:'assets/hotel_wuye.jpg',imgs:['assets/hotel_wuye_1.jpg','assets/hotel_wuye_2.jpg','assets/hotel_wuye_3.jpg','assets/hotel_wuye_4.jpg'],tags:['全屋地暖','雪景窗','滑雪班车'],warn:'D3 首选，院子就在禾木河边；房型有三人间（3 张 1.2 米床·30㎡）与家庭房（1.8 米+1.2 米·28㎡），三床档在这里成立；订房必问供暖是否 24 小时、热水限时吗',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
-  {name:'独山子玛依塔柯酒店',addr:'独山子大庆东路13号',tel:'0992-3886866',price:'双床 288 含双早（实价）',hours:'24h前台',img:'assets/hotel_maitake.jpg',imgs:['assets/hotel_maitake_1.jpg','assets/hotel_maitake_2.jpg','assets/hotel_maitake_3.jpg','assets/hotel_maitake_4.jpg'],tags:['五星级旅游饭店','集中供暖','免费停车'],warn:'D6 首选，独库公路零公里起点；房型以双床/大床为主，三人要三间',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/699198.html'},
-  {name:'花间堂·阿日相（温泉县）',addr:'温泉县博格达尔景区',tel:'—',price:'双床 1,146 起（实价）',hours:'24h前台',img:'assets/hotel_huajiantang.jpg',imgs:['assets/hotel_huajiantang_1.jpg','assets/hotel_huajiantang_2.jpg','assets/hotel_huajiantang_3.jpg','assets/hotel_huajiantang_4.jpg'],tags:['独栋别墅','私汤入户','雪山景'],warn:'D8 首选；泡池每人约 288，晚饭可在酒店膳祥餐厅解决',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
-  {name:'希尔顿（乌市）',addr:'乌市米东区红光山路1237号',tel:'—',price:'双床 780（实价）',hours:'24h前台',img:'assets/hotel_hilton.jpg',imgs:['assets/hotel_hilton_1.jpg','assets/hotel_hilton_2.jpg','assets/hotel_hilton_3.jpg','assets/hotel_hilton_4.jpg'],tags:['地暖','独立卫浴','24h热水','免费寄存'],warn:'到乌市第一晚与返程两晚，住市区连锁最稳',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-10'},
-  {name:'金桥假日酒店（阿勒泰）',addr:'阿勒泰市中心',tel:'0906-2171111',price:'双床 418 含双早（实价）',hours:'24h前台',img:'assets/hotel_jinqiao.jpg',imgs:['assets/hotel_jinqiao_1.jpg','assets/hotel_jinqiao_2.jpg','assets/hotel_jinqiao_3.jpg','assets/hotel_jinqiao_4.jpg'],tags:['智能客房','自助早餐','暖气'],warn:'距将军山雪场5分钟，早起赶阿禾公路首选',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
-  {name:'西融·禾木民宿',addr:'禾木河边',tel:'—',price:'800-1200/晚',hours:'含早',img:'assets/hotel_xirong.jpg',tags:['甲级民宿','7栋木屋','地暖','独立卫浴'],warn:'全国首批甲级旅游民宿。订房必问：24h供暖还是分时段？热水是否限时？',ref:'中华民宿网↗',refUrl:'http://zhminsu.com/?list_18/178.html'},
-  {name:'崇野集·枝几·Yeelen观景木屋',addr:'禾木新村响泉路05号',tel:'—',price:'1000+/晚',hours:'含早',img:'assets/hotel_chongyeji.jpg',tags:['4星','地暖','浴缸','管家服务'],warn:'4星观景木屋，条件最好的一档，元旦春节可能上浮到1500-3000',ref:'携程禾木列表↗',refUrl:'https://hotels.ctrip.com/hotel/D816_3327/sl4202170'},
-  {name:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',addr:'哈纳斯村观鱼台路西八巷02号（喀纳斯新村，距图瓦村地标约950米）',tel:'—',price:'大床 1,455 含早（实价）',hours:'24h',img:'assets/hotel_tingbo.jpg',imgs:['assets/hotel_tingbo_1.jpg','assets/hotel_tingbo_2.jpg','assets/hotel_tingbo_3.jpg','assets/hotel_tingbo_4.jpg'],score:['评分4.9'],tags:['雪山草场','暖气'],warn:'忘归大床 1,455，含早；同档备选 停泊·自怡（哈纳斯新村）¥1,180',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
-  {name:'云中歌民宿',addr:'喀纳斯新村85号',tel:'18097506067',price:'700-1000/晚',hours:'含早',img:'assets/hotel_yunzhongge.jpg',imgs:['assets/hotel_yunzhongge_1.jpg','assets/hotel_yunzhongge_2.jpg','assets/hotel_yunzhongge_3.jpg','assets/hotel_yunzhongge_4.jpg'],score:['评分4.7'],tags:['地暖'],warn:'老村木屋，需确认车辆能否到门口',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131678182.html'},
-  {name:'知禾·设计师艺术民宿（布尔津）',addr:'布尔津卧龙湾路酒吧一条街2号楼',tel:'—',price:'双床 394 含早（实价）',hours:'含早',img:'assets/hotel_zhihe.jpg',imgs:['assets/hotel_zhihe_1.jpg','assets/hotel_zhihe_2.jpg','assets/hotel_zhihe_3.jpg','assets/hotel_zhihe_4.jpg'],score:['4.7分','345条'],tags:['额尔齐斯河畔','设计感大堂','免费取消'],warn:'D5 首选，高档型民宿，紧邻额尔齐斯河与人工湖，走到河堤夜市约 10 分钟。银泰、喀纳斯旅游酒店歇业到 2027-05-01，凯旋门与七彩河假日不接受预订，别按老方案订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
-  {name:'赛里木湖逸扉酒店',addr:'博乐赛湖景区西海路7号 2号楼',tel:'—',price:'园景双床 462 / 湖景 558（实价）',hours:'24h前台',img:'assets/hotel_yifei.jpg',imgs:['assets/hotel_yifei_1.jpg','assets/hotel_yifei_2.jpg','assets/hotel_yifei_3.jpg','assets/hotel_yifei_4.jpg'],score:['4.7分','522条'],tags:['硫磺温泉','5钻','景区内'],warn:'D7 首选，塔玛暇尔集群 2 号楼，出门即湖边，明早看日出不用赶路。西海盛宴、湖光帐影那两家不接受预订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
+  {name:'无也民宿（禾木）',ll:[48.571918,87.432881],geo:'street',addr:'禾木乡东哈拉68号',tel:'—',price:'双床 1,764 / 三人间 2,545（实价）',hours:'含早',img:'assets/hotel_wuye.jpg',imgs:['assets/hotel_wuye_1.jpg','assets/hotel_wuye_2.jpg','assets/hotel_wuye_3.jpg','assets/hotel_wuye_4.jpg'],tags:['全屋地暖','雪景窗','滑雪班车'],warn:'D3 首选，院子就在禾木河边；房型有三人间（3 张 1.2 米床·30㎡）与家庭房（1.8 米+1.2 米·28㎡），三床档在这里成立；订房必问供暖是否 24 小时、热水限时吗',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
+  {name:'独山子玛依塔柯酒店',ll:[44.329022,84.886880],geo:'street',addr:'独山子大庆东路13号',tel:'0992-3886866',price:'双床 288 含双早（实价）',hours:'24h前台',img:'assets/hotel_maitake.jpg',imgs:['assets/hotel_maitake_1.jpg','assets/hotel_maitake_2.jpg','assets/hotel_maitake_3.jpg','assets/hotel_maitake_4.jpg'],tags:['五星级旅游饭店','集中供暖','免费停车'],warn:'D6 首选，独库公路零公里起点；房型以双床/大床为主，三人要三间',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/699198.html'},
+  {name:'花间堂·阿日相（温泉县）',ll:[44.981236,81.036499],geo:'area',addr:'温泉县博格达尔景区',tel:'—',price:'双床 1,146 起（实价）',hours:'24h前台',img:'assets/hotel_huajiantang.jpg',imgs:['assets/hotel_huajiantang_1.jpg','assets/hotel_huajiantang_2.jpg','assets/hotel_huajiantang_3.jpg','assets/hotel_huajiantang_4.jpg'],tags:['独栋别墅','私汤入户','雪山景'],warn:'D8 首选；泡池每人约 288，晚饭可在酒店膳祥餐厅解决',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
+  {name:'希尔顿（乌市）',ll:[43.876259,87.615089],geo:'door',addr:'乌市米东区红光山路1237号',tel:'—',price:'双床 780（实价）',hours:'24h前台',img:'assets/hotel_hilton.jpg',imgs:['assets/hotel_hilton_1.jpg','assets/hotel_hilton_2.jpg','assets/hotel_hilton_3.jpg','assets/hotel_hilton_4.jpg'],tags:['地暖','独立卫浴','24h热水','免费寄存'],warn:'到乌市第一晚与返程两晚，住市区连锁最稳',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-10'},
+  {name:'金桥假日酒店（阿勒泰）',ll:[47.827000,88.132603],geo:'area',addr:'阿勒泰市中心',tel:'0906-2171111',price:'双床 418 含双早（实价）',hours:'24h前台',img:'assets/hotel_jinqiao.jpg',imgs:['assets/hotel_jinqiao_1.jpg','assets/hotel_jinqiao_2.jpg','assets/hotel_jinqiao_3.jpg','assets/hotel_jinqiao_4.jpg'],tags:['智能客房','自助早餐','暖气'],warn:'距将军山雪场5分钟，早起赶阿禾公路首选',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
+  {name:'西融·禾木民宿',ll:[48.564461,87.423411],geo:'village',addr:'禾木河边',tel:'—',price:'800-1200/晚',hours:'含早',img:'assets/hotel_xirong.jpg',tags:['甲级民宿','7栋木屋','地暖','独立卫浴'],warn:'全国首批甲级旅游民宿。订房必问：24h供暖还是分时段？热水是否限时？',ref:'中华民宿网↗',refUrl:'http://zhminsu.com/?list_18/178.html'},
+  {name:'崇野集·枝几·Yeelen观景木屋',ll:[48.581604,87.444049],geo:'village',addr:'禾木新村响泉路05号',tel:'—',price:'1000+/晚',hours:'含早',img:'assets/hotel_chongyeji.jpg',tags:['4星','地暖','浴缸','管家服务'],warn:'4星观景木屋，条件最好的一档，元旦春节可能上浮到1500-3000',ref:'携程禾木列表↗',refUrl:'https://hotels.ctrip.com/hotel/D816_3327/sl4202170'},
+  {name:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',ll:[48.693902,87.007144],geo:'village',addr:'哈纳斯村观鱼台路西八巷02号（喀纳斯新村，距图瓦村地标约950米）',tel:'—',price:'大床 1,455 含早（实价）',hours:'24h',img:'assets/hotel_tingbo.jpg',imgs:['assets/hotel_tingbo_1.jpg','assets/hotel_tingbo_2.jpg','assets/hotel_tingbo_3.jpg','assets/hotel_tingbo_4.jpg'],score:['评分4.9'],tags:['雪山草场','暖气'],warn:'忘归大床 1,455，含早；同档备选 停泊·自怡（哈纳斯新村）¥1,180',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
+  {name:'云中歌民宿',ll:[48.694502,87.007744],geo:'village',addr:'喀纳斯新村85号',tel:'18097506067',price:'700-1000/晚',hours:'含早',img:'assets/hotel_yunzhongge.jpg',imgs:['assets/hotel_yunzhongge_1.jpg','assets/hotel_yunzhongge_2.jpg','assets/hotel_yunzhongge_3.jpg','assets/hotel_yunzhongge_4.jpg'],score:['评分4.7'],tags:['地暖'],warn:'老村木屋，需确认车辆能否到门口',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131678182.html'},
+  {name:'知禾·设计师艺术民宿（布尔津）',ll:[47.694121,86.873797],geo:'door',addr:'布尔津卧龙湾路酒吧一条街2号楼',tel:'—',price:'双床 394 含早（实价）',hours:'含早',img:'assets/hotel_zhihe.jpg',imgs:['assets/hotel_zhihe_1.jpg','assets/hotel_zhihe_2.jpg','assets/hotel_zhihe_3.jpg','assets/hotel_zhihe_4.jpg'],score:['4.7分','345条'],tags:['额尔齐斯河畔','设计感大堂','免费取消'],warn:'D5 首选，高档型民宿，紧邻额尔齐斯河与人工湖，走到河堤夜市约 10 分钟。银泰、喀纳斯旅游酒店歇业到 2027-05-01，凯旋门与七彩河假日不接受预订，别按老方案订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
+  {name:'赛里木湖逸扉酒店',ll:[44.608595,81.118984],geo:'area',addr:'博乐赛湖景区西海路7号 2号楼',tel:'—',price:'园景双床 462 / 湖景 558（实价）',hours:'24h前台',img:'assets/hotel_yifei.jpg',imgs:['assets/hotel_yifei_1.jpg','assets/hotel_yifei_2.jpg','assets/hotel_yifei_3.jpg','assets/hotel_yifei_4.jpg'],score:['4.7分','522条'],tags:['硫磺温泉','5钻','景区内'],warn:'D7 首选，塔玛暇尔集群 2 号楼，出门即湖边，明早看日出不用赶路。西海盛宴、湖光帐影那两家不接受预订',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
 ];
 
 /* 餐厅 */
 const restaurants = [
-  {name:'馬风花·新疆菜·大盘鸡（人民电影院店）',addr:'乌市天山区建设路成基大厦1楼底商（近国际大巴扎）',tel:'—',price:'人均50',hours:'12:00-次日',img:'assets/food_mafenghua.jpg',imgs:['assets/food_mafenghua_1.jpg','assets/food_mafenghua_2.jpg','assets/food_mafenghua_3.jpg','assets/food_mafenghua_4.jpg'],score:['点评4.7','15228条'],tags:['乌鲁木齐美食热门榜第1'],warn:'D1 落地第一顿、D9 逛完大巴扎的夜宵，都定这家——走 300 米就到。12:00 才开门，别上午去；有包厢大桌，三人到店直接说要大桌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l87PzE1sWwA03Rgo'},
-  {name:'乡村馕坑肉（阿勒泰首店）',addr:'阿勒泰市团结路十区173-1栋',tel:'—',price:'人均83',hours:'12:00-次日',img:'assets/food_xiangcun.jpg',imgs:['assets/food_xiangcun_1.jpg','assets/food_xiangcun_2.jpg','assets/food_xiangcun_3.jpg','assets/food_xiangcun_4.jpg'],score:['点评4.1','5238条'],tags:['阿勒泰新疆菜榜第2'],warn:'D2 晚饭。馕坑肉、烤羊排、自制酸奶是前三名推荐；免费停车，冬天车别停外面过夜',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/Ew0MxjJQa6r1rZAT'},
-  {name:'煲来饱去冷水鱼（布尔津）',addr:'布尔津友谊峰路美食四季夜市一楼二楼',tel:'—',price:'人均75',hours:'营业至02:00',img:'assets/food_baolai.jpg',imgs:['assets/food_baolai_1.jpg','assets/food_baolai_2.jpg','assets/food_baolai_3.jpg','assets/food_baolai_4.jpg'],score:['点评4.4','3415条'],tags:['狗鱼一鱼两吃'],warn:'D5 晚饭。642 人推荐爆炒野生狗鱼块，429 人推荐红烧狗鱼——点一条狗鱼两吃最划算。夜市同一家店上下两层，先看菜单再落座，问清按条还是按斤',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H4swvmAqdrEiNyvS'},
-  {name:'阿吾丹·非遗手抓饭（乌尔禾店）',addr:'克拉玛依乌尔禾区柳树街8-121号',tel:'—',price:'人均59',hours:'08:00-次日',img:'assets/food_awudan.jpg',imgs:['assets/food_awudan_1.jpg','assets/food_awudan_2.jpg','assets/food_awudan_3.jpg','assets/food_awudan_4.jpg'],score:['点评4.6','1354条'],tags:['乌尔禾美食热门榜第1'],warn:'D6 看完魔鬼城的午饭，就在镇中心，比景区门口强一档。羊拐抓饭、碎肉抓饭、现榨沙棘汁；08:00 开门，赶早不排队',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l3gAGB8eERXy9cEi'},
-  {name:'高白鲑餐吧（克勒涌珠店）',addr:'博乐小营盘镇203县道克勒涌珠北',tel:'—',price:'人均78',hours:'09:00-',img:'assets/food_gaobai.jpg',imgs:['assets/food_gaobai_1.jpg','assets/food_gaobai_2.jpg','assets/food_gaobai_3.jpg','assets/food_gaobai_4.jpg'],score:['点评4.0','180条'],tags:['赛湖特产高白鲑'],warn:'D7 赛湖这顿的唯一正经鱼馆。这家营业状态不稳，去之前一定先打电话或在酒店问一句；不开就退回酒店餐厅。香煎高白鲑、鱼肉饺是招牌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/k4tEone1rCxlvYfW'},
-  {name:'旺福楼酒店（温泉县）',addr:'温泉县孟克特街与团结路交叉口往东约200米',tel:'—',price:'人均70',hours:'11:00-',img:'assets/food_wangfulou.jpg',imgs:['assets/food_wangfulou_1.jpg','assets/food_wangfulou_2.jpg','assets/food_wangfulou_3.jpg','assets/food_wangfulou_4.jpg'],score:['点评4.2','300条'],tags:['温泉县热门榜第2'],warn:'D8 晚饭的外食选项。铜锅奶茶、农家跑地鸡、烤三文鱼串；县城馆子 21:00 前收，别拖。不想出门就用花间堂膳祥餐厅',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9HMlSjpf7GPTcaz'},
-  {name:'丝路有约（万宴城店）',addr:'乌市天山区中山路万宴城二楼',tel:'19990123781',price:'人均93',hours:'13:00-22:30',img:'assets/food_siluyouyue_1.jpg',imgs:['assets/food_siluyouyue_1.jpg','assets/food_siluyouyue_2.jpg','assets/food_siluyouyue_3.jpg','assets/food_siluyouyue_4.jpg'],score:['点评4.6','9853条'],tags:['2026年上榜餐厅'],warn:'备选。只用咸盐烤的羊肉串、小龙虾烤包子、黄油卡瓦斯是前三；商场店好停车，适合 D9 中午到乌市先垫一顿',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9O822L7aXtkQW3m'},
+  {name:'馬风花·新疆菜·大盘鸡（人民电影院店）',ll:[43.798587,87.616025],geo:'area',addr:'乌市天山区建设路成基大厦1楼底商（近国际大巴扎）',tel:'—',price:'人均50',hours:'12:00-次日',img:'assets/food_mafenghua.jpg',imgs:['assets/food_mafenghua_1.jpg','assets/food_mafenghua_2.jpg','assets/food_mafenghua_3.jpg','assets/food_mafenghua_4.jpg'],score:['点评4.7','15228条'],tags:['乌鲁木齐美食热门榜第1'],warn:'D1 落地第一顿、D9 逛完大巴扎的夜宵，都定这家——走 300 米就到。12:00 才开门，别上午去；有包厢大桌，三人到店直接说要大桌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l87PzE1sWwA03Rgo'},
+  {name:'乡村馕坑肉（阿勒泰首店）',ll:[47.829092,88.130120],geo:'street',addr:'阿勒泰市团结路十区173-1栋',tel:'—',price:'人均83',hours:'12:00-次日',img:'assets/food_xiangcun.jpg',imgs:['assets/food_xiangcun_1.jpg','assets/food_xiangcun_2.jpg','assets/food_xiangcun_3.jpg','assets/food_xiangcun_4.jpg'],score:['点评4.1','5238条'],tags:['阿勒泰新疆菜榜第2'],warn:'D2 晚饭。馕坑肉、烤羊排、自制酸奶是前三名推荐；免费停车，冬天车别停外面过夜',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/Ew0MxjJQa6r1rZAT'},
+  {name:'煲来饱去冷水鱼（布尔津）',ll:[47.701771,86.862080],geo:'door',addr:'布尔津友谊峰路美食四季夜市一楼二楼',tel:'—',price:'人均75',hours:'营业至02:00',img:'assets/food_baolai.jpg',imgs:['assets/food_baolai_1.jpg','assets/food_baolai_2.jpg','assets/food_baolai_3.jpg','assets/food_baolai_4.jpg'],score:['点评4.4','3415条'],tags:['狗鱼一鱼两吃'],warn:'D5 晚饭。642 人推荐爆炒野生狗鱼块，429 人推荐红烧狗鱼——点一条狗鱼两吃最划算。夜市同一家店上下两层，先看菜单再落座，问清按条还是按斤',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H4swvmAqdrEiNyvS'},
+  {name:'阿吾丹·非遗手抓饭（乌尔禾店）',ll:[46.089542,85.692495],geo:'street',addr:'克拉玛依乌尔禾区柳树街8-121号',tel:'—',price:'人均59',hours:'08:00-次日',img:'assets/food_awudan.jpg',imgs:['assets/food_awudan_1.jpg','assets/food_awudan_2.jpg','assets/food_awudan_3.jpg','assets/food_awudan_4.jpg'],score:['点评4.6','1354条'],tags:['乌尔禾美食热门榜第1'],warn:'D6 看完魔鬼城的午饭，就在镇中心，比景区门口强一档。羊拐抓饭、碎肉抓饭、现榨沙棘汁；08:00 开门，赶早不排队',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l3gAGB8eERXy9cEi'},
+  {name:'高白鲑餐吧（克勒涌珠店）',ll:[44.561239,81.021960],geo:'area',addr:'博乐小营盘镇203县道克勒涌珠北',tel:'—',price:'人均78',hours:'09:00-',img:'assets/food_gaobai.jpg',imgs:['assets/food_gaobai_1.jpg','assets/food_gaobai_2.jpg','assets/food_gaobai_3.jpg','assets/food_gaobai_4.jpg'],score:['点评4.0','180条'],tags:['赛湖特产高白鲑'],warn:'D7 赛湖这顿的唯一正经鱼馆。这家营业状态不稳，去之前一定先打电话或在酒店问一句；不开就退回酒店餐厅。香煎高白鲑、鱼肉饺是招牌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/k4tEone1rCxlvYfW'},
+  {name:'旺福楼酒店（温泉县）',ll:[44.973197,81.030711],geo:'street',addr:'温泉县孟克特街与团结路交叉口往东约200米',tel:'—',price:'人均70',hours:'11:00-',img:'assets/food_wangfulou.jpg',imgs:['assets/food_wangfulou_1.jpg','assets/food_wangfulou_2.jpg','assets/food_wangfulou_3.jpg','assets/food_wangfulou_4.jpg'],score:['点评4.2','300条'],tags:['温泉县热门榜第2'],warn:'D8 晚饭的外食选项。铜锅奶茶、农家跑地鸡、烤三文鱼串；县城馆子 21:00 前收，别拖。不想出门就用花间堂膳祥餐厅',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9HMlSjpf7GPTcaz'},
+  {name:'丝路有约（万宴城店）',ll:[43.794474,87.621188],geo:'door',addr:'乌市天山区中山路万宴城二楼',tel:'19990123781',price:'人均93',hours:'13:00-22:30',img:'assets/food_siluyouyue_1.jpg',imgs:['assets/food_siluyouyue_1.jpg','assets/food_siluyouyue_2.jpg','assets/food_siluyouyue_3.jpg','assets/food_siluyouyue_4.jpg'],score:['点评4.6','9853条'],tags:['2026年上榜餐厅'],warn:'备选。只用咸盐烤的羊肉串、小龙虾烤包子、黄油卡瓦斯是前三；商场店好停车，适合 D9 中午到乌市先垫一顿',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H9O822L7aXtkQW3m'},
 ];
 const expenses = [
   {cat:'机票（三人）',items:[
@@ -1946,13 +1947,13 @@ function decorateA11y(){
 
 /* 卡片上的站点编号：只标地图上真放得出的点，其余不标——编号就是"去地图上找这个点" */
 const CARD_CODE={
-  '希尔顿（乌市）':['D1-2','D9-2'],
-  '馬风花·新疆菜·大盘鸡（人民电影院店）':['D1-3'],
+  '希尔顿（乌市）':['D1-2','D9-5'],
+  '馬风花·新疆菜·大盘鸡（人民电影院店）':['D1-3','D9-3'],
   '金桥假日酒店（阿勒泰）':['D2-2'],
-  '独山子玛依塔柯酒店':['D6-2'],
+  '独山子玛依塔柯酒店':['D6-4'],
   '赛里木湖逸扉酒店':['D7-3'],
   '花间堂·阿日相（温泉县）':['D8-1'],
-  '布尔津河堤夜市':['D5-2'],
+  '布尔津河堤夜市':['D5-2'],'乡村馕坑肉（阿勒泰首店）':['D2-3'],'无也民宿（禾木）':['D3-4'],'西融·禾木民宿':['D3-5'],'崇野集·枝几·Yeelen观景木屋':['D3-6'],'停泊STAY·坐忘民宿（喀纳斯图瓦村）':['D4-2'],'云中歌民宿':['D4-3'],'煲来饱去冷水鱼（布尔津）':['D5-3'],'知禾·设计师艺术民宿（布尔津）':['D5-4'],'阿吾丹·非遗手抓饭（乌尔禾店）':['D6-3'],'高白鲑餐吧（克勒涌珠店）':['D7-4'],'花间堂·阿日相（温泉县）':['D8-1'],'旺福楼酒店（温泉县）':['D8-2'],'丝路有约（万宴城店）':['D9-4'],
   '魔鬼城雪景':['D6-1'],
   '赛里木湖蓝冰':['D7-2'],
   '乌鲁木齐大巴扎':['D9-3']
@@ -1979,16 +1980,16 @@ setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classLi
 
 /* ===== 独立页面：路书地图（真实道路 + 播放控制） ===== */
 const mapDays = {
-  D1: {t:'各地 → 乌鲁木齐', pts:[[43.905,87.472],[43.830,87.630]], pois:[[43.905,87.472,'乌市机场','交通'],[43.830,87.630,'乌市希尔顿','住宿'],[43.782,87.617,'馬风花','餐饮']]},
-  D2: {t:'乌市 → 阿勒泰', pts:[[43.830,87.630],[45.200,88.200],[47.845,88.140]], pois:[[45.200,88.200,'三个泉子服务区','补给'],[47.845,88.130,'金桥假日','住宿']]},
-  D3: {t:'阿勒泰 → 禾木', pts:[[47.845,88.140],[47.900,88.300],[48.300,87.700],[48.566,87.437]], pois:[[47.900,88.300,'小东沟检查站','路况'],[48.566,87.437,'禾木村','景点'],[48.575,87.450,'哈登观景台','打卡']]},
-  D4: {t:'禾木 → 喀纳斯', pts:[[48.566,87.437],[48.600,87.200],[48.716,87.017]], pois:[[48.716,87.017,'喀纳斯湖','景点']]},
-  D5: {t:'喀纳斯 → 布尔津', pts:[[48.716,87.017],[48.300,87.100],[47.702,86.874]], pois:[[48.300,87.100,'冲乎尔河谷','打卡'],[47.702,86.874,'河堤夜市','餐饮']]},
-  D6: {t:'布尔津 → 克拉玛依', pts:[[47.702,86.874],[46.183,85.833],[45.595,84.874]], pois:[[46.183,85.833,'世界魔鬼城','景点'],[45.595,84.874,'独山子','住宿']]},
-  D7: {t:'克拉玛依 → 赛里木湖', pts:[[45.595,84.874],[44.420,84.900],[44.600,81.170]], pois:[[44.420,84.900,'奎屯','补给'],[44.600,81.170,'赛湖东门','景点'],[44.600,81.120,'逸扉酒店','住宿']]},
-  D8: {t:'赛里木湖 → 温泉县', pts:[[44.600,81.170],[44.970,81.020]], pois:[[44.970,81.020,'温泉县','住宿']]},
-  D9: {t:'温泉县 → 乌鲁木齐', pts:[[44.970,81.020],[44.420,84.900],[43.830,87.630]], pois:[[44.420,84.900,'奎屯','补给'],[43.830,87.630,'乌市希尔顿','住宿'],[43.828,87.600,'大巴扎','景点']]},
-  D10:{t:'乌鲁木齐 → 机场', pts:[[43.830,87.630],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
+  D1: {t:'各地 → 乌鲁木齐', pts:[[43.905,87.472],[43.876259,87.615089]], pois:[[43.905,87.472,'乌市机场','交通'],[43.876259,87.615089,'乌市希尔顿','住宿'],[43.798587,87.616025,'馬风花','餐饮']]},
+  D2: {t:'乌市 → 阿勒泰', pts:[[43.876259,87.615089],[45.200,88.200],[47.827,88.132603]], pois:[[45.200,88.200,'三个泉子服务区','补给'],[47.827,88.132603,'金桥假日','住宿'],[47.829092,88.130120,'乡村馕坑肉','餐饮']]},
+  D3: {t:'阿勒泰 → 禾木', pts:[[47.827,88.132603],[47.900,88.300],[48.300,87.700],[48.571918,87.432881]], pois:[[47.900,88.300,'小东沟检查站','路况'],[48.566,87.437,'禾木村','景点'],[48.575,87.450,'哈登观景台','打卡'],[48.571918,87.432881,'无也民宿','住宿'],[48.564461,87.423411,'西融民宿','住宿'],[48.581604,87.444049,'崇野集','住宿']]},
+  D4: {t:'禾木 → 喀纳斯', pts:[[48.571918,87.432881],[48.600,87.200],[48.693902,87.007144]], pois:[[48.716,87.017,'喀纳斯湖','景点'],[48.693902,87.007144,'停泊STAY','住宿'],[48.694502,87.007744,'云中歌','住宿']]},
+  D5: {t:'喀纳斯 → 布尔津', pts:[[48.693902,87.007144],[48.300,87.100],[47.694121,86.873797]], pois:[[48.300,87.100,'冲乎尔河谷','打卡'],[47.702,86.874,'河堤夜市','景点'],[47.701771,86.862080,'煲来饱去','餐饮'],[47.694121,86.873797,'知禾民宿','住宿']]},
+  D6: {t:'布尔津 → 克拉玛依', pts:[[47.694121,86.873797],[46.183,85.833],[46.089542,85.692495],[45.595,84.874],[44.329022,84.886880]], pois:[[46.183,85.833,'世界魔鬼城','景点'],[45.595,84.874,'克拉玛依','补给'],[46.089542,85.692495,'阿吾丹','餐饮'],[44.329022,84.886880,'玛依塔柯','住宿']]},
+  D7: {t:'克拉玛依 → 赛里木湖', pts:[[44.329022,84.886880],[44.420,84.900],[44.600,81.170],[44.608595,81.118984]], pois:[[44.420,84.900,'奎屯','补给'],[44.600,81.170,'赛湖东门','景点'],[44.608595,81.118984,'逸扉酒店','住宿'],[44.561239,81.021960,'高白鲑','餐饮']]},
+  D8: {t:'赛里木湖 → 温泉县', pts:[[44.608595,81.118984],[44.970,81.020],[44.981236,81.036499]], pois:[[44.981236,81.036499,'花间堂','住宿'],[44.973197,81.030711,'旺福楼','餐饮']]},
+  D9: {t:'温泉县 → 乌鲁木齐', pts:[[44.981236,81.036499],[44.420,84.900],[43.876259,87.615089]], pois:[[44.420,84.900,'奎屯','补给'],[43.828,87.600,'大巴扎','景点'],[43.798587,87.616025,'馬风花','餐饮'],[43.794474,87.621188,'丝路有约','餐饮'],[43.876259,87.615089,'乌市希尔顿','住宿']]},
+  D10:{t:'乌鲁木齐 → 机场', pts:[[43.876259,87.615089],[43.905,87.472]], pois:[[43.905,87.472,'乌市机场','交通']]}
 };
 const DAYS = Object.keys(mapDays);
 
@@ -2136,10 +2137,24 @@ function renderProgress(){
 let lastPan=0;
 PV.manualUntil=0;
 function mvMarkManual(){
-  PV.manualUntil=performance.now()+2600;
+  const _now=performance.now();
+  PV.manualUntil=_now+2600;
+  /* 用户手动缩放的那个比例先原样保留 1 秒，之后再平滑接回自动跟随 */
+  PV.zoomLockUntil=_now+1100;
   /* 手动动过就留个记号，验证时能看见确实让路了 */
   const cv=document.getElementById('mapCanvas');
   if(cv)cv.dataset.manual=String(Math.round(PV.manualUntil));
+}
+/* 自动缩放的目标级别：按车标前后各 25 km 的轨迹跨度算，
+   跨度大就退、路段密就进，所以播放过程中缩放会跟着路走，而不是一路顶到最大。
+   算出来的目标再夹在 8.5–12.5，遇到退化包围盒（只剩一个点）不会炸到 19 级 */
+let lastZoomFit=0;
+function mvTargetZoom(){
+  const win=sliceRange(Math.max(0,PV.km-25),Math.min(TRIP_TOTAL,PV.km+25));
+  if(win.length<2)return null;
+  const b=L.latLngBounds(win);
+  const z=mvMap.getBoundsZoom(b,false,[52,52]);
+  return Math.max(8.5,Math.min(12.5,z));
 }
 function follow(){
   if(!mvCar)return;
@@ -2148,6 +2163,18 @@ function follow(){
   if(now-lastPan<1200)return;
   lastPan=now;
   const ll=mvCar.getLatLng();
+  /* 缩放：用户手动缩过就先让他看满 1 秒；之后每 2 秒最多追一次，
+     每次最多挪 2 级并带 1 秒缓动，避免突然跳变或来回抖 */
+  if(!(PV.zoomLockUntil&&now<PV.zoomLockUntil)&&now-lastZoomFit>2000&&!mvMap._animatingZoom){
+    const tz=mvTargetZoom();
+    const cur=mvMap.getZoom();
+    if(tz!==null&&Math.abs(cur-tz)>0.9){
+      lastZoomFit=now;
+      const step=tz>cur?Math.min(tz,cur+2):Math.max(tz,cur-2);
+      mvMap.setView(ll,step,{animate:true,duration:1.0});
+      return;
+    }
+  }
   if(mvMap.distance(mvMap.getCenter(),ll)>mvMap.getSize().y*120){mvMap.panTo(ll,{animate:true,duration:0.8});}
 }
 function step(){
@@ -2169,7 +2196,7 @@ function setPlaying(v){
 }
 function goDay(id){
   const di=DAYS.indexOf(id),d=TRIP[di];if(!d)return;
-  PV.km=d.startKm;
+  PV.km=d.startKm;PV.day=id;PV._poiKm=PV.km;
   mvHi.setLatLngs(d.geom);
   mvPoiRender([id]);
   mvMap.flyToBounds(L.latLngBounds(d.geom),{padding:[70,70],duration:1.0,maxZoom:10});
@@ -2203,7 +2230,8 @@ function fmtDur(m){
 function mvPoiMarker(dayId,p){
   const code=POI_CODE[dayId+'|'+p[2]]||(dayId+'-?');
   const st=POI_KIND[p[3]]||{c:'#8a6a5a',s:'点'};
-  const ic=L.divIcon({className:'mv-poi',html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'">'+st.s+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p[2]+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
+  const kc=(p[3]==='住宿')?'mv-poi--stay':'mv-poi--other';
+  const ic=L.divIcon({className:'mv-poi '+kc,html:'<span class="mv-poi__pin"><span class="mv-poi__dot" style="background:'+st.c+'" title="'+p[3]+'">'+(code.split('-')[1]||st.s)+'</span><span class="mv-poi__name"><i>'+code+'</i>'+p[2]+'</span></span>',iconSize:[24,24],iconAnchor:[12,12]});
   const city=DAY_CITY[dayId]||'新疆';
   const url='https://uri.amap.com/search?keyword='+encodeURIComponent(p[2])+'&city='+encodeURIComponent(city);
   const di=DAYS.indexOf(dayId);
@@ -2219,6 +2247,35 @@ function mvPoiMarker(dayId,p){
       +'<div class="mv-pop__m">当天约 '+dayKm+' km · 开车约 '+fmtDur(mins)+'</div>'
       +'<a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener" title="在高德地图里打开" aria-label="在高德地图里打开">'+MV_AMAP_SVG+'</a></div>',{maxWidth:248});
 }
+/* 同簇点位（如禾木村 5 个候选住宿）在地图上只差十几像素，名字会糊成一团：
+   圆点保持真实位置不动，只把名字标签依次向下错开，避免叠字 */
+let mvDeTimer=null;
+function mvPoiDeoverlapSoon(ms){
+  if(mvDeTimer)clearTimeout(mvDeTimer);
+  mvDeTimer=setTimeout(function(){mvDeTimer=null;mvPoiDeoverlap();}, ms||140);
+}
+function mvPoiDeoverlap(){
+  if(!mvPoiLayer)return;
+  const ms=Array.prototype.slice.call(document.querySelectorAll('#mapCanvas .mv-poi'));
+  if(!ms.length)return;
+  ms.forEach(function(m){const nm=m.querySelector('.mv-poi__name');if(nm)nm.style.marginTop='0px';});
+  const placed=[];
+  ms.forEach(function(m){
+    const nm=m.querySelector('.mv-poi__name'),dot=m.querySelector('.mv-poi__dot');
+    if(!nm||!dot)return;
+    const dr=dot.getBoundingClientRect(), nr=nm.getBoundingClientRect();
+    const w=nr.width||90, h=(nr.height||20)+2;
+    let off=0;
+    for(let g=0;g<20;g++){
+      nm.style.marginTop=off+'px';
+      const cur=nm.getBoundingClientRect();
+      const clash=placed.some(function(p){return Math.abs(p.x-cur.left)<w&&Math.abs(p.y-cur.top)<h;});
+      if(!clash)break;
+      off+=h;
+    }
+    placed.push({x:nm.getBoundingClientRect().left,y:nm.getBoundingClientRect().top});
+  });
+}
 const mvPoiShown={};
 function mvPoiReset(){ if(!mvPoiLayer)return; mvPoiLayer.clearLayers(); for(const k in mvPoiShown)delete mvPoiShown[k]; }
 function mvPoiPut(dayId,p){ const k=dayId+'|'+p[2]; if(mvPoiShown[k])return; mvPoiShown[k]=1; mvPoiMarker(dayId,p).addTo(mvPoiLayer); }
@@ -2227,6 +2284,7 @@ function mvPoiRender(ids){
   if(!mvPoiLayer)return;
   mvPoiReset();
   (ids||[]).forEach(function(id){ const d=mapDays[id]; if(!d||!d.pois)return; d.pois.forEach(function(p){mvPoiPut(id,p);}); });
+  mvPoiDeoverlapSoon(160);
 }
 /* 增量：播放时按进度把当天的要点一个个放出来，走过的名字留在图上不消失 */
 function mvPoiSync(dayId,km){
@@ -2298,7 +2356,10 @@ function mvInit(){
   mvMap.on('zoomend',function(){
     const v=document.getElementById('mapView');if(!v)return;
     v.classList.toggle('mv-lowzoom',mvMap.getZoom()<8.4);
+    mvPoiDeoverlapSoon(180);
   });
+  mvMap.on('moveend',function(){ mvPoiDeoverlapSoon(200); });
+  mvMap.on('dblclick',mvMarkManual);
 
   document.getElementById('mapDays').innerHTML=DAYS.map(function(id,i){
     return '<button class="mapview__day'+(i===0?' active':'')+'" data-day="'+id+'">'+id+' '+mapDays[id].t+'</button>';
@@ -2321,8 +2382,8 @@ function mvInit(){
       goDay(id);
     });
   });
-  document.getElementById('mapZoomIn').addEventListener('click',function(){mvMap.zoomIn(1,{animate:true});});
-  document.getElementById('mapZoomOut').addEventListener('click',function(){mvMap.zoomOut(1,{animate:true});});
+  document.getElementById('mapZoomIn').addEventListener('click',function(){mvMarkManual();mvMap.zoomIn(1,{animate:true});});
+  document.getElementById('mapZoomOut').addEventListener('click',function(){mvMarkManual();mvMap.zoomOut(1,{animate:true});});
   document.getElementById('mapLocate').addEventListener('click',mvLocate);
   document.getElementById('pvPlay').addEventListener('click',function(){
     if(!mvLoaded){PV._wantPlay=true;mvHint('路线加载完就开播');return;}
