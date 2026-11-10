@@ -278,8 +278,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .section{padding-bottom:84px}
 .disclaimer{padding-bottom:calc(5.5rem + env(safe-area-inset-bottom,0px))}
 .subnav{padding-right:1.2rem}
-#navView .nv-wrap{padding:0 .25rem}
-#navView .nav-table td,#navView .nav-table th{padding:.55rem .4rem}
+#nav .nav-table td,#nav .nav-table th{padding:.55rem .4rem}
 .sticky-tabs__tab{padding:.7rem .52rem;font-size:.72rem}
 }
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
@@ -349,8 +348,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .nav-table td:nth-child(3){display:block!important;color:var(--text-secondary)}
 .nav-table td:nth-child(3)::before{content:'里程　';color:var(--text-muted);font-size:.71rem}
 .nav-table td:nth-child(4)::before{content:'约束　';color:var(--text-muted);font-size:.71rem}
-.nv-wrap{padding:0 .6rem}
-.nv-wrap > .page-desc,.nv-note{padding-left:0;padding-right:0}
+.nv-note{padding-left:0;padding-right:0}
 
 .spot-card__book{flex-wrap:wrap}
 }
@@ -430,12 +428,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .wx-bar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-bottom:.6rem}
 .wx-refresh{border:1px solid var(--border);background:transparent;color:var(--accent);font-size:.8rem;padding:.4rem .9rem;border-radius:999px;cursor:pointer;transition:var(--transition)}
 .wx-refresh:hover{border-color:var(--accent);background:rgba(180,85,45,.08)}
-#navView{display:none}
-#navView.active{display:block}
-.nv-body{position:absolute;top:var(--bar-h);left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--bg-page);padding:1.2rem 0 3.5rem}
-.nv-wrap > .page-desc,.nv-note{padding-left:1rem;padding-right:1rem}
-.nv-wrap{max-width:none;margin:0 auto}
-.nv-wrap .page-desc{max-width:none}
+.nv-note{padding-left:1rem;padding-right:1rem}
 .nv-note{font-size:.8rem;color:var(--text-muted);line-height:1.7;margin:.4rem 0 1.2rem}
 @media (max-width:500px){.sticky-tabs__entry{padding:.75rem .6rem;font-size:.8rem}}
 
@@ -552,9 +545,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   background:linear-gradient(100deg,rgba(14,13,12,.9) 0%,rgba(14,13,12,.72) 46%,rgba(14,13,12,.9) 100%);
   backdrop-filter:blur(14px) saturate(1.15);-webkit-backdrop-filter:blur(14px) saturate(1.15)}
 .mapview__bar > *{position:relative;z-index:1}
-#navView .mapview__bar{background-image:url('assets/hero_beijiang.jpg')}
 #mapView .mapview__bar{background-image:url('assets/spot_sayram.jpg')}
-#carView .mapview__bar{background-image:url('assets/spot_aheroad.jpg')}
 .mapview__bar .mapview__back{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);backdrop-filter:blur(6px)}
 .mapview__bar .mapview__day{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.2)}
 
@@ -1981,7 +1972,7 @@ renderToday();
 dayWatchStart();
 renderEmergency();
 renderTips();
-/* 行程行里的名字要等吃住、看点卡片都渲染完才能对上锚点 */
+/* 行程行里的名字，要等店卡和看点卡都出来之后才能配对 */
 linkTimeline();
 decorateA11y();
 setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classList.add('visible')),100);
@@ -2146,7 +2137,7 @@ let lastPan=0;
 PV.manualUntil=0;
 function mvMarkManual(){
   PV.manualUntil=performance.now()+2600;
-  /* 留一个可查的痕迹：冒烟和门禁要能断言「人手动干预被认到了」 */
+  /* 手动动过就留个记号，验证时能看见确实让路了 */
   const cv=document.getElementById('mapCanvas');
   if(cv)cv.dataset.manual=String(Math.round(PV.manualUntil));
 }
