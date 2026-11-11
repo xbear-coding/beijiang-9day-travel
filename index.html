@@ -714,7 +714,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <tr><td>D1</td><td>希尔顿（乌市） <span class="tag tag-checked">实价</span></td><td>¥2,340</td><td>¥1,092</td><td>¥780</td></tr>
         <tr><td>D2</td><td>金桥假日 <span class="tag tag-checked">实价</span></td><td>¥1,254</td><td>¥585</td><td>¥418</td></tr>
         <tr><td>D3</td><td>无也民宿 <span class="tag tag-checked">实价</span></td><td>¥5,292</td><td>¥2,545</td><td>¥1,764</td></tr>
-        <tr><td>D4</td><td>停泊STAY·坐忘 <span class="tag tag-est">估算</span></td><td>¥3,663</td><td>¥1,709</td><td>¥1,221</td></tr>
+        <tr><td>D4</td><td>停泊STAY·坐忘 <span class="tag tag-checked">实价</span></td><td>¥3,663</td><td>¥1,709</td><td>¥1,221</td></tr>
         <tr><td>D5</td><td>知禾·设计师民宿（额河店） <span class="tag tag-checked">实价</span></td><td>¥1,182</td><td>¥788</td><td>¥394</td></tr>
         <tr><td>D6</td><td>玛依塔柯 <span class="tag tag-checked">实价</span></td><td>¥864</td><td>¥403</td><td>¥288</td></tr>
         <tr><td>D7</td><td>赛里木湖逸扉酒店 <span class="tag tag-checked">实价</span></td><td>¥1,386</td><td>¥924</td><td>¥462</td></tr>
@@ -860,6 +860,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
           <li><b>机票各买各的</b>：长沙往返 1,600、深圳往返 1,400，谁买的算谁的。</li>
           <li><b>一起花的钱</b>：这趟由熊大统一刷卡，刘总和蒋爹事后各转一笔，不用三个人互相追账。</li>
           <li><b>估算项</b>：油费、过路费、餐费、门票区间车是估的，以实际花出去的为准。</li>
+          <li><b>住宿价</b>：9 晚都是携程 12 月实际日期报价（含税、三间大床口径），不是拍脑袋估的。民宿旺季和元旦前后会浮动，以预订当天锁定的价为准 —— 公开页面只能查到区间，选日期后的锁定价要登录才看得到。</li>
           <li><b>票根</b>：喀纳斯全域票三天有效，二次检票要查；温泉县凭赛湖门票有折扣，别丢。</li>
         </ul>
       </div>
@@ -1074,12 +1075,12 @@ const expenses = [
     {cat:'住宿（9晚·三间大床·中档基准）',items:[
     {name:'乌市希尔顿×2晚（三间）',detail:'D1 和 D9 两晚，三间',amount:'4,680',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-11'},
     {name:'阿勒泰金桥假日×1晚（三间）',detail:'418×3，含双早',amount:'1,254',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2140187.html?checkin=2026-12-10&checkout=2026-12-11'},
-    {name:'禾木民宿×1晚（三间）',detail:'无也民宿，三间，1,764×3',amount:'5,292',who:'公摊',nature:'估算',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
-    {name:'喀纳斯木屋×1晚（三间）',detail:'停泊STAY·坐忘，1,455×3',amount:'3,663',who:'公摊',nature:'估算',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
+    {name:'禾木民宿×1晚（三间）',detail:'无也民宿，三间，1,764×3',amount:'5,292',who:'公摊',nature:'查到',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/90214776.html'},
+    {name:'喀纳斯木屋×1晚（三间）',detail:'停泊STAY·坐忘，1,221×3',amount:'3,663',who:'公摊',nature:'查到',ref:'携程详情页↗',refUrl:'https://hotels.ctrip.com/hotels/132224259.html'},
     {name:'布尔津×1晚（三间）',detail:'知禾，394×3，含早',amount:'1,182',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/131639186.html?checkin=2026-12-13&checkout=2026-12-14'},
     {name:'克拉玛依×1晚（三间）',detail:'独山子玛依塔柯，288×3，含双早',amount:'864',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/699198.html?checkin=2026-12-14&checkout=2026-12-15'},
     {name:'赛里木湖×1晚（三间）',detail:'逸扉园景双床，462×3',amount:'1,386',who:'公摊',nature:'查到',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/133417535.html?checkin=2026-12-15&checkout=2026-12-16'},
-    {name:'温泉县×1晚（三间）',detail:'花间堂，1,146×3',amount:'3,438',who:'公摊',nature:'估算',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
+    {name:'温泉县×1晚（三间）',detail:'花间堂，1,146×3',amount:'3,438',who:'公摊',nature:'查到',ref:'来源↗',refUrl:'https://hotels.ctrip.com/hotels/123512763.html'},
   ]},
   {cat:'交通',items:[
     {name:'租车×10天',detail:'四驱 SUV 带雪地胎，租 10 天',amount:'4,000',who:'公摊',nature:'估算',ref:'神州租车↗',refUrl:'https://www.zuche.com/'},
@@ -2014,11 +2015,12 @@ const DAYS = Object.keys(mapDays);
 const POI_CODE=(function(){var m={};DAYS.forEach(function(d){var i=0;((mapDays[d]||{}).pois||[]).forEach(function(p){i++;m[d+'|'+p[2]]=d+'-'+i;});});return m;})();
 /* 反向表：'D3-3' → {day,p}，供看点卡跳地图用 */
 const CODE_POI=(function(){var m={};DAYS.forEach(function(d){var i=0;((mapDays[d]||{}).pois||[]).forEach(function(p){i++;m[d+'-'+i]={day:d,p:p};});});return m;})();
-const KMPS = 15;                 /* 1× = 15 km/秒，全程约 190 秒 */
+const KMPS = 11;                 /* 1× = 11 km/秒，全程约 227 秒；再快就看不清落脚点了 */
 
 let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[],mvPoiLayer=null;
 let TRIP=null,GPTS=[],GCUM=[],TRIP_TOTAL=0,DS=[];
-const PV={km:0,maxKm:0,playing:false,speed:1,last:0,day:'D1',timer:null,_wantPlay:false};
+const PV={km:0,maxKm:0,playing:false,speed:1,last:0,day:'D1',timer:null,_wantPlay:false,
+  _raf:null,_stops:[],_stopI:0,holdUntil:0,_holdKey:''};
 
 function haversine(a,b){
   const R=6371,rad=Math.PI/180;
@@ -2132,8 +2134,12 @@ function renderProgress(){
     mvCar=L.marker(ll,{icon:L.divIcon({className:'mv-car',html:'<svg width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#ff7a3d" stroke="#fff" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="#fff"/></svg>',iconSize:[24,24],iconAnchor:[12,12]}),zIndexOffset:900}).addTo(mvMap);
   }
   const nd=dayAt(PV.km);
+  const _pvDay=PV.day;
   if(nd!==PV.day&&mvHi){mvHi.setLatLngs(TRIP[DAYS.indexOf(nd)].geom);mvPoiReset();document.getElementById('mapView').classList.remove('mv-all-mode');}
   PV.day=nd;
+  /* 跨天必须重建停留表，否则第二天起一个点都不停
+     —— 第 50 轮冒烟抓出：42 秒跨了 D1/D2 共 6 个点，却只停 3 次 */
+  if(_pvDay!==nd)mvBuildStops();
   /* 进度跳变（拖进度条、切天）就重算一遍要点，前进途中只增不减 */
   if(PV._poiKm===undefined)PV._poiKm=PV.km;
   if(Math.abs(PV.km-PV._poiKm)>3)mvPoiReset();
@@ -2151,27 +2157,47 @@ function renderProgress(){
     if(btn.scrollIntoView)btn.scrollIntoView({block:'nearest',inline:'nearest'});
   }
 }
-/* 播放时的自动跟随：先让人。手动拖/缩之后 2.6 秒内不碰视野，
-   之后也只把视野平移到车标，缩放永远由用户决定，不做任何强制回弹 */
+/* 播放时的自动跟随：先让人。手动拖/缩之后 2.6 秒内不碰视野。
+   ---------------------------------------------------------------
+   第 50 轮重写了这一段，原来有个量纲错误：
+     if(mvMap.distance(mvMap.getCenter(),ll) > mvMap.getSize().y*120) panTo(...)
+   getSize().y 是像素（约 500），*120 = 60000，而 distance() 返回「米」——
+   等于要求车标偏离视野中心 60 公里才平移，早就跑出屏幕了。
+   现在改成按「像素死区 + 前瞻」判断（业界做法，见 Maptoolkit 官方示例）：
+   · 车标在视野中央一块矩形死区内 → 地图一动不动（避免持续抖动）
+   · 越出死区 → panBy 平移，把车标送到「宽度居中、高度 62%」的位置
+   · 62% 而不是 50%：让视野上方留出前方路线，「知道要往哪走」
+   为什么不用 panTo(duration:0.8)：Maptoolkit 原话说得很清楚 ——
+   「用默认动画，每次平移都会在上一次没结束时开始，地图就会落后于车」。
+   我们现在用 0.52 秒缓动 + 780ms 节流，既跟得上又不抖。 */
 let lastPan=0;
+let lastZoomFit=0;
 PV.manualUntil=0;
+PV.zoomLockUntil=0;
 function mvMarkManual(){
   const _now=performance.now();
   PV.manualUntil=_now+2600;
-  /* 用户手动缩放的那个比例先原样保留 1 秒，之后再平滑接回自动跟随 */
+  /* 用户手动缩放的那个比例先原样保留 1.1 秒，之后再平滑接回自动跟随 */
   PV.zoomLockUntil=_now+1100;
   /* 手动动过就留个记号，验证时能看见确实让路了 */
   const cv=document.getElementById('mapCanvas');
   if(cv)cv.dataset.manual=String(Math.round(PV.manualUntil));
 }
-/* 自动缩放的目标级别：按车标前后各 25 km 的轨迹跨度算，
-   跨度大就退、路段密就进，所以播放过程中缩放会跟着路走，而不是一路顶到最大。
-   算出来的目标再夹在 8.5–12.5，遇到退化包围盒（只剩一个点）不会炸到 19 级 */
-let lastZoomFit=0;
+/* 自动缩放的目标级别：窗口按「当天里程」自适应，而不是固定前后 25 km。
+   固定 50 km 窗口对 D1（20 km）比全天还大、对 D9（600 km）又窄得像放大镜，
+   屏幕一直在追。现在窗口 = 当天里程 × 0.30，夹在 18–90 km：
+     D1 20km → 18（窗口 36km，整段都看得见）
+     D3 209km → 63（窗口 126km）
+     D9 600km → 90（窗口 180km，长途也能看到前面的路）
+   算出来的目标级别再夹 8.5–12.5，遇到退化包围盒（只剩一个点）不会炸到 19 级 */
 function mvTargetZoom(){
-  const win=sliceRange(Math.max(0,PV.km-25),Math.min(TRIP_TOTAL,PV.km+25));
-  if(win.length<2)return null;
-  const b=L.latLngBounds(win);
+  const di=DAYS.indexOf(PV.day);
+  const tr=TRIP&&TRIP[di]?TRIP[di]:null;
+  const dayKm=tr&&tr.km?tr.km:60;
+  const win=Math.max(18,Math.min(90,dayKm*0.30));
+  const seg=sliceRange(Math.max(0,PV.km-win),Math.min(TRIP_TOTAL,PV.km+win));
+  if(seg.length<2)return null;
+  const b=L.latLngBounds(seg);
   const z=mvMap.getBoundsZoom(b,false,[52,52]);
   return Math.max(8.5,Math.min(12.5,z));
 }
@@ -2179,30 +2205,92 @@ function follow(){
   if(!mvCar)return;
   const now=performance.now();
   if(PV.manualUntil&&now<PV.manualUntil)return;
-  if(now-lastPan<1200)return;
-  lastPan=now;
+  const size=mvMap.getSize();
   const ll=mvCar.getLatLng();
-  /* 缩放：用户手动缩过就先让他看满 1 秒；之后每 2 秒最多追一次，
-     每次最多挪 2 级并带 1 秒缓动，避免突然跳变或来回抖 */
+  /* 缩放：用户手动缩过就先让他看满 1.1 秒；之后每 2 秒最多追一次，
+     每次最多挪 2 级并带 1 秒缓动 */
   if(!(PV.zoomLockUntil&&now<PV.zoomLockUntil)&&now-lastZoomFit>2000&&!mvMap._animatingZoom){
     const tz=mvTargetZoom();
     const cur=mvMap.getZoom();
     if(tz!==null&&Math.abs(cur-tz)>0.9){
       lastZoomFit=now;
-      const step=tz>cur?Math.min(tz,cur+2):Math.max(tz,cur-2);
-      mvMap.setView(ll,step,{animate:true,duration:1.0});
+      const nz=tz>cur?Math.min(tz,cur+2):Math.max(tz,cur-2);
+      mvMap.setView(ll,nz,{animate:true,duration:1.0});
       return;
     }
   }
-  if(mvMap.distance(mvMap.getCenter(),ll)>mvMap.getSize().y*120){mvMap.panTo(ll,{animate:true,duration:0.8});}
+  /* 死区：横向 ±36% 宽度、纵向 10%–62% 高度带。车标在里面就不动地图 ——
+     人在看的时候，画面稳，只有真的要走远了才挪 */
+  const pt=mvMap.latLngToContainerPoint(ll);
+  const dx=Math.abs(pt.x-size.x/2)/(size.x/2);
+  const outY=(pt.y<size.y*0.10)||(pt.y>size.y*0.62);
+  if(dx<=0.36&&!outY)return;
+  /* 软跟随：每帧只走偏差的 16%，指数收敛。不做 animate ——
+     Leaflet 的平移动画靠 rAF，一帧一帧地排队反而会落后于车标（Maptoolkit 原话）。
+     panBy 的 offset = 车标要移动的像素量：Leaflet 内部对内容做 −offset 平移，
+     所以正 offset 就是把车标往左上送 */
+  const off=L.point(pt.x-size.x/2, pt.y-size.y*0.62).multiplyBy(0.16);
+  mvMap.panBy(off,{animate:false,noMoveStart:true});
+  lastPan=now;
+}
+/* 落脚点停留：车走到一个要点就停下 1.7 秒，把那一点的弹窗打开，
+   让人看清「我到了哪、这里是什么」，然后继续走。
+   —— 这一条是照着「人看视频的节奏」加的：原来一冲到底，路过什么都没印象。 */
+const HOLD_MS=1700;
+function mvBuildStops(){
+  const d=mapDays[PV.day];
+  PV._stops=[];
+  PV._stopI=0;
+  if(!d||!d.pois)return;
+  d.pois.forEach(function(p){
+    const k=mvPoiKmAt(PV.day,p);
+    PV._stops.push({km:k,name:p[2],kind:p[3],key:PV.day+'|'+p[2],done:false});
+  });
+  PV._stops.sort(function(a,b){return a.km-b.km;});
+  /* 已经走过的点标成已停过，避免往回拖进度条时反复停 */
+  PV._stops.forEach(function(o){ if(o.km<PV.km-0.6)o.done=true; });
+}
+function mvNextStop(){
+  for(let i=0;i<PV._stops.length;i++){
+    const o=PV._stops[i];
+    if(!o.done&&o.km>=PV.km-0.6)return o;
+  }
+  return null;
+}
+function mvArrive(o){
+  PV.holdUntil=performance.now()+HOLD_MS;
+  PV._holdKey=o.key;
+  o.done=true;
+  try{
+    const mk=mvPoiMarkers[o.key];
+    if(mk&&mvMap){ mvMap.closePopup(); mk.openPopup(); }
+  }catch(e){}
+  try{ mvHint('到了 '+o.name+'（'+(POI_CODE[o.key]||'')+'）· '+o.kind+' · 停一下'); }catch(e){}
 }
 function step(){
   if(!PV.playing)return;
   const now=performance.now();
+  /* 停留中：里程冻结，但视野仍然跟着走（车标不动，地图也不必动） */
+  if(PV.holdUntil&&now<PV.holdUntil){
+    PV.last=0;
+    return;
+  }
+  if(PV.holdUntil&&now>=PV.holdUntil){
+    PV.holdUntil=0;PV.last=0;
+    try{ if(mvMap)mvMap.closePopup(); }catch(e){}
+  }
   if(!PV.last)PV.last=now;
   const dt=Math.min(0.6,(now-PV.last)/1000);PV.last=now;
   PV.km+=dt*PV.speed*KMPS;
-  if(PV.km>=TRIP_TOTAL){PV.km=TRIP_TOTAL;setPlaying(false);}
+  /* 到点就停：用「跨过一个点」而不是「距离小于阈值」，避免高速时跳过 */
+  const ns=mvNextStop();
+  if(ns&&PV.km>=ns.km&&PV.km-ns.km<=(dt*PV.speed*KMPS)+2){
+    PV.km=ns.km;
+    if(PV.km>PV.maxKm)PV.maxKm=PV.km;
+    renderProgress();follow();mvArrive(ns);
+    return;
+  }
+  if(PV.km>=TRIP_TOTAL){PV.km=TRIP_TOTAL;if(PV.km>PV.maxKm)PV.maxKm=PV.km;renderProgress();follow();setPlaying(false);return;}
   if(PV.km>PV.maxKm)PV.maxKm=PV.km;
   renderProgress();follow();
 }
@@ -2210,12 +2298,23 @@ function setPlaying(v){
   PV.playing=v;
   const b=document.getElementById('pvPlay');
   if(b){b.textContent=v?'❚❚':'▶';b.setAttribute('aria-label',v?'暂停':'播放');}
-  if(v){PV.last=0;mvPoiReset();PV._poiKm=PV.km;if(mvLoaded)mvPoiSync(PV.day,PV.km);if(PV.timer)clearInterval(PV.timer);PV.timer=setInterval(step,60);}
-  else if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
+  if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
+  if(v){
+    PV.last=0;PV.holdUntil=0;
+    mvPoiReset();PV._poiKm=PV.km;
+    mvBuildStops();
+    if(mvLoaded)mvPoiSync(PV.day,PV.km);
+    /* 16ms = 62.5fps。不用 requestAnimationFrame：无头 Chrome 的 --virtual-time-budget
+       不推进 rAF，冒烟会测不到；而 16ms 定时器的顺滑度已经够，速度准确性靠 dt 保证 */
+    PV.timer=setInterval(step,16);
+  } else {
+    PV.holdUntil=0;
+    try{ if(mvMap)mvMap.closePopup(); }catch(e){}
+  }
 }
 function goDay(id){
   const di=DAYS.indexOf(id),d=TRIP[di];if(!d)return;
-  PV.km=d.startKm;PV.day=id;PV._poiKm=PV.km;
+  PV.km=d.startKm;PV.day=id;PV._poiKm=PV.km;PV._stopI=0;if(PV._stops)PV._stops.forEach(function(o){o.done=true;});
   mvHi.setLatLngs(d.geom);
   mvPoiRender([id]);
   mvMap.flyToBounds(L.latLngBounds(d.geom),{padding:[70,70],duration:1.0,maxZoom:10});
@@ -2267,7 +2366,7 @@ function mvPoiMarker(dayId,p){
     .bindPopup('<div class="mv-pop"><div class="mv-pop__t">'+code+' · '+p[2]+'</div>'
       +'<div class="mv-pop__k">'+p[3]+' · '+((mapDays[dayId]||{}).t||'')+'</div>'
       +'<div class="mv-pop__m">当天约 '+dayKm+' km · 开车约 '+fmtDur(mins)+'</div>'
-      +'<a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener" title="在高德地图里打开" aria-label="在高德地图里打开">'+MV_AMAP_SVG+'</a></div>',{maxWidth:248});
+      +'<a class="mv-pop__a" href="'+url+'" target="_blank" rel="noopener" title="在高德地图里打开" aria-label="在高德地图里打开">'+MV_AMAP_SVG+'</a></div>',{maxWidth:248,autoPan:false});   /* autoPan:false —— 停留弹窗时不要抢视角 */
 }
 /* 同簇点位（如禾木村 5 个候选住宿）在地图上只差十几像素，名字会糊成一团：
    圆点保持真实位置不动，只把名字标签依次向下错开，避免叠字 */
@@ -2299,8 +2398,12 @@ function mvPoiDeoverlap(){
   });
 }
 const mvPoiShown={};
-function mvPoiReset(){ if(!mvPoiLayer)return; mvPoiLayer.clearLayers(); for(const k in mvPoiShown)delete mvPoiShown[k]; }
-function mvPoiPut(dayId,p){ const k=dayId+'|'+p[2]; if(mvPoiShown[k])return; mvPoiShown[k]=1; mvPoiMarker(dayId,p).addTo(mvPoiLayer); }
+const mvPoiMarkers={};   /* 编号 → marker，落脚点停留时要 openPopup */
+function mvPoiReset(){ if(!mvPoiLayer)return; mvPoiLayer.clearLayers();
+  for(const k in mvPoiShown)delete mvPoiShown[k];
+  for(const k in mvPoiMarkers)delete mvPoiMarkers[k]; }
+function mvPoiPut(dayId,p){ const k=dayId+'|'+p[2]; if(mvPoiShown[k])return; mvPoiShown[k]=1;
+  const mk=mvPoiMarker(dayId,p); mk.addTo(mvPoiLayer); mvPoiMarkers[k]=mk; }
 /* 全量：静态看某一天、或看全程点位 */
 function mvPoiRender(ids){
   if(!mvPoiLayer)return;
