@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>三个老男人的约定 · 北疆十天九晚</title>
+<title>{{slogan}} · 北疆十天九晚</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141312'/%3E%3Cpath d='M32 11v42M15 21l34 22M49 21L15 43' stroke='%23c98a58' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <meta name="theme-color" content="#141312">
-<meta name="description" content="三个老男人，十天九晚，2,502 公里，从乌鲁木齐出发绕北疆一圈再回来：阿勒泰、禾木、喀纳斯、布尔津、魔鬼城、赛里木湖、温泉县。每天怎么走、住哪、吃什么、多少钱，一页看完。">
+<meta name="description" content="{{slogan}}，十天九晚，2,502 公里，从乌鲁木齐出发绕北疆一圈再回来：阿勒泰、禾木、喀纳斯、布尔津、魔鬼城、赛里木湖、温泉县。每天怎么走、住哪、吃什么、多少钱，一页看完。">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="三个老男人的约定">
-<meta property="og:title" content="三个老男人的约定 · 北疆十天九晚">
+<meta property="og:site_name" content="{{slogan}}的约定">
+<meta property="og:title" content="{{slogan}} · 北疆十天九晚">
 <meta property="og:description" content="2,502 公里，10 天，从乌鲁木齐出发绕北疆一圈再回来。每天怎么走、住哪、吃什么、多少钱，一页看完。">
 <meta property="og:image" content="https://xbear-coding.github.io/beijiang-9day-travel/assets/share_cover.jpg">
 <meta property="og:image:width" content="1200">
@@ -620,8 +620,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 <section class="hero" id="hero">
   <div class="hero__bg"></div>
   <div class="hero__content reveal">
-    <h1 class="hero__title">三个老男人的约定</h1>
-    <p class="hero__subtitle">刘总 · 熊大 · 蒋爹</p>
+    <h1 class="hero__title">{{slogan}}的约定</h1>
+    <p class="hero__subtitle">{{members}}</p>
     <div class="hero__meta"><span>2026.12.09 — 12.18</span><span>长沙 · 深圳 → 乌鲁木齐 → 北疆</span></div>
     <div class="hero__entries">
       <button class="hero__btn" onclick="enterSection('jiutian')">十天</button>
@@ -702,8 +702,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <table class="lodge-table lodge-table--plans">
       <thead><tr><th>方案</th><th>住法</th><th>9晚住宿</th><th>全程总价</th><th>人均</th></tr></thead>
       <tbody>
-        <tr><td>三间大床</td><td>三人各住一间，逐晚实价×3</td><td>¥21,759</td><td>¥46,554</td><td>¥15,518</td></tr>
-        <tr><td>一间三床</td><td>三人同房（三人间/家庭房；D5、D7 无此房型，按两间双床计）</td><td>¥10,742</td><td>¥35,807</td><td>¥11,936</td></tr>
+        <tr><td>三间大床</td><td>{{peopleCN}}人各住一间，逐晚实价×{{people}}</td><td>¥21,759</td><td>¥46,554</td><td id="planPerCap3">¥15,518</td></tr>
+        <tr><td>一间三床</td><td>{{peopleCN}}人同房（三人间/家庭房；D5、D7 无此房型，按两间双床计）</td><td>¥10,742</td><td>¥35,807</td><td>¥11,936</td></tr>
         <tr><td>一间标间（2 人）</td><td>两人出行，1 间标间或大床，人均分摊</td><td>¥7,253</td><td>—</td><td>房费人均 ¥3,627</td></tr>
       </tbody>
     </table>
@@ -737,12 +737,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   <!-- 算账 -->
   <div class="tab-panel" id="suanzhang">
     <h2 class="page-title">算账</h2>
-    <p class="page-desc">三个人十天的钱，一笔一笔摊开。谁自己花的、谁该分多少，最后都算到元。</p>
+    <p class="page-desc">{{peopleCN}}个人十天的钱，一笔一笔摊开。谁自己花的、谁该分多少，最后都算到元。</p>
     <nav class="subnav" id="moneySubnav" data-target="#suanzhang">
       <span class="subnav__label">按人看</span>
-      <span class="subnav__chip active" data-mwho="刘总">刘总</span>
-      <span class="subnav__chip" data-mwho="蒋爹">蒋爹</span>
-      <span class="subnav__chip" data-mwho="熊大">熊大</span>
+<span id="moneySubnavMembers"></span>
     </nav>
     <div id="moneyTabs"></div>
     <div><table class="expense-table"><thead><tr><th>分类</th><th>项目</th><th>说明</th><th>金额</th><th>谁付</th><th>怎么来的</th><th>出处</th></tr></thead><tbody id="expenseBody"></tbody></table></div>
@@ -858,7 +856,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
         <div class="note-sec__title">钱怎么算</div>
         <ul class="note-sec__list">
           <li><b>机票各买各的</b>：长沙往返 1,600、深圳往返 1,400，谁买的算谁的。</li>
-          <li><b>一起花的钱</b>：这趟由熊大统一刷卡，刘总和蒋爹事后各转一笔，不用三个人互相追账。</li>
+          <li><b>一起花的钱</b>：这趟由{{payer}}统一刷卡，{{others}}事后各转一笔，不用{{peopleCN}}个人互相追账。</li>
           <li><b>估算项</b>：油费、过路费、餐费、门票区间车是估的，以实际花出去的为准。</li>
           <li><b>住宿价</b>：9 晚都是携程 12 月实际日期报价（含税、三间大床口径），不是拍脑袋估的。民宿旺季和元旦前后会浮动，以预订当天锁定的价为准 —— 公开页面只能查到区间，选日期后的锁定价要登录才看得到。</li>
           <li><b>票根</b>：喀纳斯全域票三天有效，二次检票要查；温泉县凭赛湖门票有折扣，别丢。</li>
@@ -890,12 +888,48 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 
 <script>
 /* ============================================================
+   0) CONFIG —— 人数、人名、垫付人、标语
+   换人 / 改人数只动这一段，下面所有结算与文案都从它取。
+
+   ⚠ 改人数后有两处必须人工处理，不随 CONFIG 自动变：
+     ① 「房型计价」表的三档住宿总价与门票 —— 那是查来的实价，要重采
+     ② 住宿策略说明段（几个人住几间、哪晚没有三人间）—— 是策略不是算术
+   ============================================================ */
+const CONFIG = {
+  people: 3,                               /* ← 改人数只改这个数 */
+  members: ['刘总', '蒋爹', '熊大'],        /* ← 改人名改这个数组，顺序=行程叙事里的 m0/m1/m2 */
+  payer: '熊大'                             /* ← 谁统一刷卡 */
+};
+const CN_NUM = ['零','一','二','三','四','五','六','七','八','九','十'];
+const _P = CONFIG.people;
+const _PCN = CN_NUM[_P] || String(_P);      /* 中文人数：三 / 四 / 五 */
+const _M = CONFIG.members;
+const _PAY = CONFIG.payer;
+const _OTHERS = _M.filter(function(x){ return x !== _PAY; });
+
+/* 文案占位符：{{people}} {{peopleCN}} {{m0}} {{m1}} {{m2}} {{payer}} {{others}} {{slogan}} */
+function cfgFill(t){
+  if (typeof t !== 'string') return t;
+  return t
+    .replace(/\{\{peopleCN\}\}/g, _PCN)
+    .replace(/\{\{people\}\}/g, _P)
+    .replace(/\{\{members\}\}/g, _M.join(' · '))
+    .replace(/\{\{m0\}\}/g, _M[0] || '')
+    .replace(/\{\{m1\}\}/g, _M[1] || '')
+    .replace(/\{\{m2\}\}/g, _M[2] || '')
+    .replace(/\{\{payer\}\}/g, _PAY)
+    .replace(/\{\{others\}\}/g, _OTHERS.join('和'))
+    .replace(/\{\{slogan\}\}/g, CONFIG.slogan || '');
+}
+CONFIG.slogan = CONFIG.slogan || '三个老男人';
+
+/* ============================================================
    行程数据 —— 换内容只改这一段，不用动下面的程序
    0) itinerary    10 天行程时间线（daily rows，改文案只动它）
    1) spots        9 个看点（img 指向 assets/ 下的实景图）
    2) hotels       9 家住宿（九晚住处，含实景照与详情页链接）
    3) restaurants  6 家餐厅
-   4) expenses     费用明细（who 写"刘总/熊大/蒋爹"=个人垫付，写"公摊"=三人平摊）
+   4) expenses     费用明细（who 写人名=个人垫付，写"公摊"=全员平摊；人名见 CONFIG.members）
    5) lodgingNights 住宿一览条（横向那条，D1–D9）
    6) weatherPoints 天气卡取点
    改完保存、浏览器刷新即可生效。
@@ -1068,9 +1102,9 @@ const restaurants = [
 ];
 const expenses = [
   {cat:'机票（三人）',items:[
-    {name:'长沙→乌市往返（刘总）',detail:'CZ6882＋CZ6881，与蒋爹同机',amount:'1,600',who:'刘总',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
-    {name:'长沙→乌市往返（蒋爹）',detail:'CZ6882＋CZ6881，与刘总同机',amount:'1,600',who:'蒋爹',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
-    {name:'深圳→乌市往返（熊大）',detail:'ZH9241＋ZH9242',amount:'1,400',who:'熊大',nature:'查到',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'},
+    {name:'长沙→乌市往返（'+_M[0]+'）',detail:'CZ6882＋CZ6881，与'+_M[1]+'同机',amount:'1,600',who:_M[0],nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
+    {name:'长沙→乌市往返（'+_M[1]+'）',detail:'CZ6882＋CZ6881，与'+_M[0]+'同机',amount:'1,600',who:_M[1],nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
+    {name:'深圳→乌市往返（'+_M[2]+'）',detail:'ZH9241＋ZH9242',amount:'1,400',who:_M[2],nature:'查到',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'},
   ]},
     {cat:'住宿（9晚·三间大床·中档基准）',items:[
     {name:'乌市希尔顿×2晚（三间）',detail:'D1 和 D9 两晚，三间',amount:'4,680',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-11'},
@@ -1097,7 +1131,7 @@ const expenses = [
     {name:'禾木区间车',detail:'三人，禾木门票含在通票里，这里只算区间车',amount:'450',who:'公摊',nature:'估算',ref:'管委会公告↗',refUrl:'https://kns.gov.cn/001/001004/20230520/06b83d7b-65e1-4c93-b5e2-a65cfb502998.html'},
     {name:'赛里木湖门票+自驾服务费',detail:'门票 35×3＝105＋自驾服务费 120/车（官方），共 225',amount:'225',who:'公摊',nature:'查到',ref:'新华网·票价调整↗',refUrl:'https://www.news.cn/local/20260803/4c0b11cad281454cb65de812d8fae976/c.html'},
     {name:'温泉泡池（三人）',detail:'县城泡汤，三个人',amount:'300',who:'公摊',nature:'估算',ref:'—',refUrl:'—'},
-    {name:'滑雪（可选）',detail:'将军山或吉克普林，刘总自己玩',amount:'1,000',who:'刘总',nature:'预留',ref:'—',refUrl:'—'},
+    {name:'滑雪（可选）',detail:'将军山或吉克普林，'+_M[0]+'自己玩',amount:'1,000',who:_M[0],nature:'预留',ref:'—',refUrl:'—'},
   ]},
   {cat:'装备杂项',items:[
     {name:'防滑链',detail:'备用',amount:'200',who:'公摊',nature:'预留',ref:'—',refUrl:'—'},
@@ -1283,15 +1317,15 @@ function renderExpenses(){
       const tagClass=item.nature==='查到'?'tag-checked':item.nature==='估算'?'tag-est':'tag-reserve';
       const natureZh={'查到':'实价','估算':'估的','预留':'留的余量'}[item.nature]||item.nature;
       const refLink=item.refUrl!=='—'?`<a class="source-link" href="${item.refUrl}" target="_blank">${item.ref}</a>`:item.ref;
-      html+=`<tr><td></td><td>${item.name}</td><td>${item.detail}</td><td>¥${item.amount}</td><td>${item.who==='公摊'?'三人一起':item.who+'自己'}</td><td><span class="tag ${tagClass}">${natureZh}</span></td><td>${refLink}</td></tr>`;
+      html+=`<tr><td></td><td>${item.name}</td><td>${item.detail}</td><td>¥${item.amount}</td><td>${item.who==='公摊'?_PCN+'人一起':item.who+'自己'}</td><td><span class="tag ${tagClass}">${natureZh}</span></td><td>${refLink}</td></tr>`;
     });
     html+=`<tr class="subtotal"><td colspan="3">${cat.cat} 小计</td><td>¥${catTotal.toLocaleString()}</td><td colspan="3"></td></tr>`;
     grandTotal+=catTotal;
   });
-  html+=`<tr class="total"><td colspan="3">总合计</td><td>¥${grandTotal.toLocaleString()}</td><td colspan="3">人均 ¥${Math.round(grandTotal/3).toLocaleString()}</td></tr>`;
+  html+=`<tr class="total"><td colspan="3">总合计</td><td>¥${grandTotal.toLocaleString()}</td><td colspan="3">人均 ¥${Math.round(grandTotal/_P).toLocaleString()}</td></tr>`;
   document.getElementById('expenseBody').innerHTML=html;
-  const members=['刘总','蒋爹','熊大'];
-  const selfPaid={'刘总':0,'蒋爹':0,'熊大':0};
+  const members=_M.slice();
+  const selfPaid={}; _M.forEach(function(x){ selfPaid[x]=0; });
   let sharedTotal=0;
   expenses.forEach(c=>c.items.forEach(it=>{
     const amt=parseInt(it.amount.replace(/,/g,''))||0;
@@ -1310,14 +1344,14 @@ function renderExpenses(){
   }).join('、');
   const oneShare=(sharedTotal/members.length);
   const rows=members.map(m=>{
-    if(m==='熊大')return `<div class="settlement__row"><span>熊大</span><span>先垫 ¥${sharedTotal.toLocaleString()}，自己那份 ¥${share[m].toLocaleString()} 自己担；另外机票 1,400 自付</span></div>`;
-    return `<div class="settlement__row"><span>${m} → 转给熊大</span><span>¥${share[m].toLocaleString()}（自己那 ¥${selfPaid[m].toLocaleString()} 已自付）</span></div>`;
+    if(m===_PAY)return `<div class="settlement__row"><span>${_PAY}</span><span>先垫 ¥${sharedTotal.toLocaleString()}，自己那份 ¥${share[m].toLocaleString()} 自己担；另外机票 1,400 自付</span></div>`;
+    return `<div class="settlement__row"><span>${m} → 转给${_PAY}</span><span>¥${share[m].toLocaleString()}（自己那 ¥${selfPaid[m].toLocaleString()} 已自付）</span></div>`;
   }).join('');
   document.getElementById('settlement').innerHTML=`
     <div class="settlement__title">这笔账怎么分</div>
     <p class="settle-rule">自己那份自己付，不进平摊：${selfLine}。</p>
-    <p class="settle-rule">剩下的 ¥${sharedTotal.toLocaleString()} 是三个人一起花的，一人一份 ${oneShare.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}；凑整后刘总 ¥${share['刘总'].toLocaleString()}、蒋爹 ¥${share['蒋爹'].toLocaleString()}、熊大 ¥${share['熊大'].toLocaleString()}，多出的 1 元记刘总。</p>
-    <p class="settle-rule">这趟说好由熊大统一刷卡，刘总和蒋爹不用先掏钱，回来各转一笔就完事。</p>
+    <p class="settle-rule">剩下的 ¥${sharedTotal.toLocaleString()} 是${_PCN}个人一起花的，一人一份 ${oneShare.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}；凑整后刘总 ¥${share['刘总'].toLocaleString()}、蒋爹 ¥${share['蒋爹'].toLocaleString()}、熊大 ¥${share['熊大'].toLocaleString()}，多出的 1 元记刘总。</p>
+    <p class="settle-rule">这趟说好由${_PAY}统一刷卡，${_OTHERS.join('和')}不用先掏钱，回来各转一笔就完事。</p>
     ${rows}
     <div class="settlement__row"><span>三个人一共</span><span>刘总 ¥${due['刘总'].toLocaleString()} · 蒋爹 ¥${due['蒋爹'].toLocaleString()} · 熊大 ¥${due['熊大'].toLocaleString()} ＝ ¥${(due['刘总']+due['蒋爹']+due['熊大']).toLocaleString()}</span></div>
     <p class="settle-note">每个人该出多少 = 自己那几笔 + 平摊的一份。三档合计 ¥46,554，摊成一样是每人 ¥15,518；机票各买各的，所以按上面那列给。</p>`;
@@ -2684,6 +2718,52 @@ function mvBootstrap(){
   });
 }
 if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',mvBootstrap);}else{mvBootstrap();}
+
+
+/* ============================================================
+   CONFIG 落地：把 {{}} 换成人数/人名/标语，并按 CONFIG 生成人名标签
+   改 CONFIG 后刷新页面即可，不需要动代码
+   ============================================================ */
+function applyConfig(){
+  var rep = cfgFill;
+
+  /* 1) body 文本节点 */
+  var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null), n, list = [];
+  while (n = w.nextNode()) { if (n.nodeValue && n.nodeValue.indexOf('{{') >= 0) list.push(n); }
+  list.forEach(function(x){ x.nodeValue = rep(x.nodeValue); });
+
+  /* 2) 元素属性（data-mwho 之类） */
+  var els = document.body.querySelectorAll('*');
+  for (var i = 0; i < els.length; i++) {
+    var at = els[i].attributes;
+    for (var j = 0; j < at.length; j++) {
+      if (at[j].value && at[j].value.indexOf('{{') >= 0) at[j].value = rep(at[j].value);
+    }
+  }
+
+  /* 3) head 里的标题与分享卡 */
+  document.title = rep(document.title);
+  var ms = document.querySelectorAll('meta[name="description"],meta[property^="og:"]');
+  for (var k = 0; k < ms.length; k++) {
+    var c = ms[k].getAttribute('content');
+    if (c) ms[k].setAttribute('content', rep(c));
+  }
+
+  /* 4) 人名标签：按 CONFIG.members 顺序生成，点击照旧走 document 上的委托 */
+  var box = document.getElementById('moneySubnavMembers');
+  if (box) box.innerHTML = _M.map(function(x, idx){
+    return '<span class="subnav__chip' + (idx === 0 ? ' active' : '') + '" data-mwho="' + x + '">' + x + '</span>';
+  }).join('');
+
+  /* 5) 房型计价表的人均：与结算区同源，用明细合计 / 人数 */
+  var pc = document.getElementById('planPerCap3');
+  if (pc) {
+    var tot = 0;
+    expenses.forEach(function(c){ c.items.forEach(function(it){ tot += parseInt(it.amount.replace(/,/g, '')) || 0; }); });
+    pc.textContent = '¥' + Math.round(tot / (CONFIG.people || 1)).toLocaleString();
+  }
+}
+if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', applyConfig); } else { applyConfig(); }
 
 </script>
 
