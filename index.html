@@ -2020,7 +2020,7 @@ const KMPS = 11;                 /* 1× = 11 km/秒，全程约 227 秒；再快
 let mvMap=null,mvBase=null,mvTrail=null,mvGlow=null,mvProg=null,mvHi=null,mvCar=null,mvMe=null,mvWatch=null,mvLoaded=false,mvDayMarks=[],mvPoiLayer=null;
 let TRIP=null,GPTS=[],GCUM=[],TRIP_TOTAL=0,DS=[];
 const PV={km:0,maxKm:0,playing:false,speed:1,last:0,day:'D1',timer:null,_wantPlay:false,
-  _raf:null,_stops:[],_stopI:0,holdUntil:0,_holdKey:''};
+  _raf:null,_rafSeen:0,_drvGuard:null,_stops:[],_stopI:0,holdUntil:0,_holdKey:''};
 
 function haversine(a,b){
   const R=6371,rad=Math.PI/180;
@@ -2230,7 +2230,16 @@ function follow(){
      panBy 的 offset = 车标要移动的像素量：Leaflet 内部对内容做 −offset 平移，
      所以正 offset 就是把车标往左上送 */
   const off=L.point(pt.x-size.x/2, pt.y-size.y*0.62).multiplyBy(0.16);
-  mvMap.panBy(off,{animate:false,noMoveStart:true});
+  /* 位移 < 1.2px 时不能走 panBy —— 它首行是 toPoint(offset).round()，取整成 0 就直接 return，
+     于是每 3 帧才挪 1 像素，观感就是「一顿一顿」。改走 _rawPanBy：它内部是
+     DomUtil.setPosition → translate3d(x,y,0)，支持亚像素、不取整。
+     位移够大时仍走 panBy，保证 _pixelOrigin 正常推进，瓦片边界不漂。 */
+  const mag=Math.max(Math.abs(off.x),Math.abs(off.y));
+  if(mag>=1.2||typeof mvMap._rawPanBy!=='function'){
+    mvMap.panBy(off,{animate:false,noMoveStart:true});
+  }else{
+    mvMap._rawPanBy(off);
+  }
   lastPan=now;
 }
 /* 落脚点停留：车走到一个要点就停下 1.7 秒，把那一点的弹窗打开，
@@ -2280,25 +2289,67 @@ function step(){
     try{ if(mvMap)mvMap.closePopup(); }catch(e){}
   }
   if(!PV.last)PV.last=now;
-  const dt=Math.min(0.6,(now-PV.last)/1000);PV.last=now;
-  PV.km+=dt*PV.speed*KMPS;
-  /* 到点就停：用「跨过一个点」而不是「距离小于阈值」，避免高速时跳过 */
-  const ns=mvNextStop();
-  if(ns&&PV.km>=ns.km&&PV.km-ns.km<=(dt*PV.speed*KMPS)+2){
-    PV.km=ns.km;
-    if(PV.km>PV.maxKm)PV.maxKm=PV.km;
-    renderProgress();follow();mvArrive(ns);
-    return;
+  let dt=Math.min(0.6,(now-PV.last)/1000);PV.last=now;
+  /* 固定子步推进，每步不超过 40ms（≈0.44km）。
+     为什么不能直接拿 dt 一步走完：dt 上限是 0.6s，乘 11km/s 就是 6.6km 一步，
+     而 D1 全程只有 20.6km、三个落脚点挤在几公里内 —— 一帧就能把中间的点整段跨过去，
+     mvNextStop 的条件是「o.km >= PV.km-0.6」，被跨过的点此后永远找不回来，直接漏停。
+     真机上浏览器卡一下、后台标签页被节流，都会让 dt 变成 0.3~0.6s，同样漏。
+     子步只推进里程与停留判定，画面每帧只重绘一次（末尾统一刷新）。 */
+  let arrivedThisFrame=null;
+  while(dt>0&&PV.playing){
+    const sub=Math.min(0.04,dt);
+    dt-=sub;
+    const adv=sub*PV.speed*KMPS;
+    PV.km+=adv;
+    /* 到点就停：用「跨过一个点」而不是「距离小于阈值」 */
+    const ns=mvNextStop();
+    if(ns&&PV.km>=ns.km&&PV.km-ns.km<=adv+2){
+      PV.km=ns.km;
+      if(PV.km>PV.maxKm)PV.maxKm=PV.km;
+      arrivedThisFrame=ns;
+      break;
+    }
+    if(PV.km>=TRIP_TOTAL){
+      PV.km=TRIP_TOTAL;if(PV.km>PV.maxKm)PV.maxKm=PV.km;
+      renderProgress();follow();setPlaying(false);return;
+    }
   }
-  if(PV.km>=TRIP_TOTAL){PV.km=TRIP_TOTAL;if(PV.km>PV.maxKm)PV.maxKm=PV.km;renderProgress();follow();setPlaying(false);return;}
   if(PV.km>PV.maxKm)PV.maxKm=PV.km;
   renderProgress();follow();
+  if(arrivedThisFrame)mvArrive(arrivedThisFrame);
+}
+/* 驱动：rAF 为主 + 定时器兜底。
+   为什么要 rAF：setInterval(16) 与 60Hz 合成帧(16.67ms)拍频，会周期性「这帧不动、下帧动两格」，
+   人眼看到的就是轻微抖动。rAF 天然跟合成帧对齐。
+   为什么要兜底：无头 Chrome 的 --virtual-time-budget 不推进 rAF（无合成器），
+   后台标签页 rAF 也会暂停 —— 没有兜底，冒烟测不到、切后台回来会卡死。
+   兜底条件：50ms 内 rAF 一次都没回来，就由定时器补一帧。 */
+function mvDriveStart(){
+  mvDriveStop();
+  PV._rafSeen=performance.now();
+  const loop=function(){
+    if(!PV.playing)return;
+    PV._rafSeen=performance.now();
+    try{step();}catch(e){}
+    PV._raf=requestAnimationFrame(loop);
+  };
+  PV._raf=requestAnimationFrame(loop);
+  PV._drvGuard=setInterval(function(){
+    if(!PV.playing)return;
+    if(performance.now()-PV._rafSeen>50){PV._rafSeen=performance.now();try{step();}catch(e){}}
+  },25);
+}
+function mvDriveStop(){
+  if(PV._raf){try{cancelAnimationFrame(PV._raf);}catch(e){}PV._raf=null;}
+  if(PV._drvGuard){clearInterval(PV._drvGuard);PV._drvGuard=null;}
+  if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
 }
 function setPlaying(v){
   PV.playing=v;
   const b=document.getElementById('pvPlay');
   if(b){b.textContent=v?'❚❚':'▶';b.setAttribute('aria-label',v?'暂停':'播放');}
-  if(PV.timer){clearInterval(PV.timer);PV.timer=null;}
+  mvDriveStop();
   if(v){
     PV.last=0;PV.holdUntil=0;
     mvPoiReset();PV._poiKm=PV.km;
@@ -2306,7 +2357,7 @@ function setPlaying(v){
     if(mvLoaded)mvPoiSync(PV.day,PV.km);
     /* 16ms = 62.5fps。不用 requestAnimationFrame：无头 Chrome 的 --virtual-time-budget
        不推进 rAF，冒烟会测不到；而 16ms 定时器的顺滑度已经够，速度准确性靠 dt 保证 */
-    PV.timer=setInterval(step,16);
+    mvDriveStart();
   } else {
     PV.holdUntil=0;
     try{ if(mvMap)mvMap.closePopup(); }catch(e){}
