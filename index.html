@@ -796,7 +796,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
       <tbody>
         <tr><td>D1 12/09</td><td>地窝堡国际机场 → 希尔顿（米东区红光山路1237号）</td><td>约 20 km</td><td>落地取车；两班机相差 1h40，先到的等</td></tr>
         <tr><td>D2 12/10</td><td>希尔顿 → >阿勒泰金桥假日（市中心）</td><td>492 km</td><td>G7 京新转 S21 阿乌高速，不经克拉玛依</td></tr>
-        <tr><td>D3 12/11</td><td>金桥假日 → 禾木游客中心</td><td>209 km</td><td>阿禾公路 10:00–14:00 放行、20:00 前驶离，仅雪地胎四驱；须先预约进村</td></tr>
+        <tr><td>D3 12/11</td><td>金桥假日 → 禾木游客中心</td><td>209 km</td><td>阿禾公路 10:00–14:00 放行、20:00 前驶离，仅雪地胎四驱、7 座及以下（含 7 座）；须先预约进村</td></tr>
         <tr><td>D4 12/12</td><td>禾木 → 喀纳斯图瓦村（停泊STAY·坐忘）</td><td>97 km</td><td>进山无加油站，出发前加满</td></tr>
         <tr><td>D5 12/13</td><td>喀纳斯 → 布尔津（卧龙湾路酒吧一条街2号楼）→ 五彩滩</td><td>156 km</td><td>五彩滩 09:00 开园、19:00 停售、19:15 最后入园</td></tr>
         <tr><td>D6 12/14</td><td>布尔津 → 乌尔禾（阿吾丹）→ 独山子（大庆东路13号）</td><td>467 km</td><td>魔鬼城 09:30–19:00、19:00 停售；克拉玛依黑油山顺路可停</td></tr>
@@ -1028,7 +1028,7 @@ const spots = [
   {name:'布尔津河堤夜市',region:'布尔津',desc:'冷水鱼一条街。烤狗鱼、五道黑，晚上才热闹。',img:'assets/spot_nightmarket.jpg',ref:'实景图·今日头条',book:'街区免费，吃饭按店结账',bookUrl:''},
   {name:'赛里木湖蓝冰',region:'博州',desc:'12 月初只有冰推冰裂，成片蓝冰要等 1 月中下旬。冬季门票半价 35 元/人；自驾服务费按车算，5 座及以下 120 元。东门进南门出，逆时针环湖。',img:'assets/spot_sayram.jpg',ref:'实景图·人民图片',book:'景区官方平台在线预约门票↗',bookUrl:'https://h5.visitor.xjslmhlt.cn/'},
   {name:'魔鬼城雪景',region:'克拉玛依',desc:'雪盖住雅丹，远观最好看。售票 09:30–19:00，19:00 停售门票和区间车票，咨询 0990-6964701。淡季门票约 20 元，小火车 20 元。风大时崖边结冰，别往边上站。',img:'assets/spot_ghostcity.jpg',ref:'实景图·汇图网',book:'现场购票·官网只有资讯与电话↗',bookUrl:'http://www.klmysjmgc.com/'},
-  {name:'阿禾公路',region:'阿勒泰',desc:'209 公里没有加油站，进山前在阿勒泰加满。冬季每年 10/16–次年 5/14：阿勒泰—禾木 10:00–14:00 双向放行，当天 20:00 前驶离；只许装雪地胎的 7 座以下四驱越野车。',img:'assets/spot_aheroad.jpg',ref:'实景图·VCG',book:'公路不收费；进禾木村另要预约',bookUrl:''},
+  {name:'阿禾公路',region:'阿勒泰',desc:'209 公里没有加油站，进山前在阿勒泰加满。冬季每年 10/16–次年 5/14：阿勒泰—禾木 10:00–14:00 双向放行，当天 20:00 前驶离；只许装雪地胎的 7 座及以下（含 7 座）四驱越野车，需具备冰雪路驾驶经验；官方原文写的是「越野车」，城市 SUV 能不能过请取车时让门店书面确认，别口头答应。',img:'assets/spot_aheroad.jpg',ref:'实景图·VCG',book:'公路不收费；进禾木村另要预约',bookUrl:''},
   {name:'乌鲁木齐大巴扎',region:'乌鲁木齐',desc:'D9 晚上逛一圈，看夜景、买干果。商铺多数开到 22:30，21:00 后小吃摊陆续收。干果按斤议价，先尝后买。',img:'assets/spot_bazaar.jpg',ref:'实景图·图虫',book:'免费开放，不用买票',bookUrl:''},
   {name:'新疆博物馆',region:'乌鲁木齐',desc:'这次不去。只当 D6 魔鬼城封路时的室内备选。',img:'assets/spot_museum.jpg',ref:'实景图·图虫',book:'本次不去（D6 封路备选）；要去需官方小程序预约',bookUrl:''},
   {name:'五彩滩日落',region:'布尔津',desc:'额尔齐斯河北岸的雅丹彩丘，D5 傍晚顺路。09:00 开园、19:00 停售、19:15 最后入园；淡季 22 元/人。日落前一小时进去，光最好。',img:'assets/spot_wucaotan.jpg',ref:'来源：布尔津县政府公告↗',refUrl:'https://brj.gov.cn/lybej/006018/20261008/e49f5b6b-efad-45ba-a711-7d98cfa1c132.html',book:'现场购票，无在线预约·政府公告↗',bookUrl:'https://brj.gov.cn/lybej/006018/20261008/e49f5b6b-efad-45ba-a711-7d98cfa1c132.html'},
