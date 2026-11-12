@@ -389,6 +389,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-player .read{font-size:12.5px;color:#cfc7bb;white-space:nowrap;min-width:132px}
 .mv-player input[type=range]{flex:1;min-width:80px;accent-color:#d94f2b;height:22px}
 .mv-player .speed{min-width:52px}
+@media (max-width:560px){
+  .mv-player{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"play read speed" "prev track next";row-gap:10px;column-gap:10px;padding:10px 12px}
+  .mv-player button.main{grid-area:play}
+  .mv-player .read{grid-area:read;min-width:0;overflow:hidden;text-overflow:ellipsis}
+  .mv-player .speed{grid-area:speed}
+  .mv-player input[type=range]{grid-area:track;width:100%;min-width:0}
+  .mv-player>button:nth-of-type(2){grid-area:prev}
+  .mv-player>button:nth-of-type(3){grid-area:next}
+}
 
 /* 地图图例 */
 .mv-legend{position:absolute;left:16px;bottom:64px;z-index:5200;display:flex;flex-direction:column-reverse;align-items:flex-start;gap:8px;pointer-events:auto}
