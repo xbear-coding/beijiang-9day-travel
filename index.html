@@ -908,7 +908,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
    ============================================================ */
 const CONFIG = {
   people: 3,                               /* ← 改人数只改这个数 */
-  members: ['刘总', '蒋爹', '熊大'],        /* ← 改人名改这个数组，顺序=行程叙事里的 m0/m1/m2 */
+  members: ['刘总', '怡哥', '熊大'],        /* ← 改人名改这个数组，顺序=行程叙事里的 m0/m1/m2 */
   payer: '熊大'                             /* ← 谁统一刷卡 */
 };
 const CN_NUM = ['零','一','二','三','四','五','六','七','八','九','十'];
@@ -950,7 +950,7 @@ const itinerary = [
     day: "D1",
     date: "12月09日 · 周三 · 各地 → 乌鲁木齐",
     rows: [
-      {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总与蒋爹（长沙）同机 CZ6882 预计15:30到；熊大（深圳）ZH9241 预计17:10到，机场会合。"},
+      {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总与怡哥（长沙）同机 CZ6882 预计15:30到；熊大（深圳）ZH9241 预计17:10到，机场会合。"},
       {t: "18:00", loc: "乌市取车", act: "机场取四驱SUV+雪地胎（已预留）。取车后直奔酒店放行李。", note: "检查胎压、防冻液"},
       {t: "20:00", loc: "乌市", act: "晚饭：馬风花·大盘鸡（建设路，乌鲁木齐美食热门榜第1）。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
     ],
@@ -1037,7 +1037,7 @@ const itinerary = [
       {t: "09:00", loc: "赛湖", act: "环湖拍照，南岸冰推。今天只开90km，慢慢来。"},
       {t: "11:00", loc: "出发", act: "走G30往精河方向，转温泉县。一路雪原，路况好。"},
       {t: "13:00", loc: "温泉县", act: "入住花间堂·阿日相，午饭就在店里膳祥餐厅吃——县城可选的馆子少，酒店餐厅是最稳的一顿。"},
-      {t: "15:00", loc: "温泉", act: "泡汤。室内外池都有，泡完再散步。蒋爹的主场。"},
+      {t: "15:00", loc: "温泉", act: "泡汤。室内外池都有，泡完再散步。怡哥的主场。"},
       {t: "19:00", loc: "温泉县", act: "晚饭：膳祥餐厅（酒店内）点本地羊肉和拌面；想换口味去旺福楼（孟克特北路，温泉县热门榜第2，铜锅奶茶、烤三文鱼串）。配酒适量，明天 600km。"},
     ],
     lodge: "<strong>宿温泉县 · 花间堂·阿日相</strong> 备选圣泉湾·万信至格、圣泉酒店。带私汤入户，泡完就能回房；温泉县是离赛湖最近的温泉，比绕去别处省一天。",
@@ -1060,8 +1060,8 @@ const itinerary = [
     date: "12月18日 · 周五 · 乌鲁木齐 → 各地",
     rows: [
       {t: "09:00", loc: "乌市", act: "退房还车，三人行李一次装车。", note: "还车前加满油"},
-      {t: "12:00", loc: "机场", act: "各自安检。刘总与蒋爹 CZ6881 预计14:00；熊大 ZH9242 预计16:00。"},
-      {t: "—", loc: "归途", act: "刘总负责浪漫，熊大负责兜底，蒋爹负责把酒喝明白。下次再约。"},
+      {t: "12:00", loc: "机场", act: "各自安检。刘总与怡哥 CZ6881 预计14:00；熊大 ZH9242 预计16:00。"},
+      {t: "—", loc: "归途", act: "刘总负责浪漫，熊大负责兜底，怡哥负责把酒喝明白。下次再约。"},
     ],
   },
 ];
@@ -1361,10 +1361,10 @@ function renderExpenses(){
   document.getElementById('settlement').innerHTML=`
     <div class="settlement__title">这笔账怎么分</div>
     <p class="settle-rule">自己那份自己付，不进平摊：${selfLine}。</p>
-    <p class="settle-rule">剩下的 ¥${sharedTotal.toLocaleString()} 是${_PCN}个人一起花的，一人一份 ${oneShare.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}；凑整后刘总 ¥${share['刘总'].toLocaleString()}、蒋爹 ¥${share['蒋爹'].toLocaleString()}、熊大 ¥${share['熊大'].toLocaleString()}，多出的 1 元记刘总。</p>
+    <p class="settle-rule">剩下的 ¥${sharedTotal.toLocaleString()} 是${_PCN}个人一起花的，一人一份 ${oneShare.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2})}；凑整后${members.map(m=>m+' ¥'+share[m].toLocaleString()).join('、')}${rem?'，多出的 '+rem+' 元记'+members[0]:''}。</p>
     <p class="settle-rule">这趟说好由${_PAY}统一刷卡，${_OTHERS.join('和')}不用先掏钱，回来各转一笔就完事。</p>
     ${rows}
-    <div class="settlement__row"><span>三个人一共</span><span>刘总 ¥${due['刘总'].toLocaleString()} · 蒋爹 ¥${due['蒋爹'].toLocaleString()} · 熊大 ¥${due['熊大'].toLocaleString()} ＝ ¥${(due['刘总']+due['蒋爹']+due['熊大']).toLocaleString()}</span></div>
+    <div class="settlement__row"><span>${_PCN}个人一共</span><span>${members.map(m=>m+' ¥'+due[m].toLocaleString()).join(' · ')} ＝ ¥${members.reduce((a,m)=>a+due[m],0).toLocaleString()}</span></div>
     <p class="settle-note">每个人该出多少 = 自己那几笔 + 平摊的一份。三档合计 ¥46,554，摊成一样是每人 ¥15,518；机票各买各的，所以按上面那列给。</p>`;
 
   /* —— 按人拆账：自己单独出的 / 大家一起花的，各算一块 —— */
@@ -1384,7 +1384,7 @@ function renderExpenses(){
       return `<li><b>${c.cat}</b><span>一共 ¥${c.sum.toLocaleString()}　你那份 ¥${per.toLocaleString()}</span></li>`;
     }).join('');
     const payLine = m==='熊大'
-      ? '这趟说好你统一刷卡，先垫 '+sharedTotal.toLocaleString()+' 元；刘总和蒋爹回来各转你一笔，你自己净掏 '+(share[m]+selfPaid[m]).toLocaleString()+' 元'
+      ? '这趟说好你统一刷卡，先垫 '+sharedTotal.toLocaleString()+' 元；'+_OTHERS.join('和')+'回来各转你一笔，你自己净掏 '+(share[m]+selfPaid[m]).toLocaleString()+' 元'
       : '熊大统一刷卡，你不用先掏钱；回来转他 '+share[m].toLocaleString()+' 元就行，自己那 '+selfPaid[m].toLocaleString()+' 元已经自己付过了';
     return `<div class="money-panel${idx===0?' active':''}" data-mwho="${m}">
       <div class="money-card">
