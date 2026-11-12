@@ -421,6 +421,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mv-all-mode .mv-poi__name{display:none}
 .mv-lowzoom .mv-poi__name{display:none}
 .mv-lowzoom .mv-poi--stay .mv-poi__name{display:inline-flex}
+.mv-lowzoom .mv-dest--end{display:none}          /* 中远视野先收长的终点标签 */
+.mv-nolabel .mv-dest{display:none}               /* 整省视野连日签一起收，只剩圆点 */
 .mv-poi__name i{font-style:normal;color:#ffc79a;margin-right:4px;font-weight:700}
 .mv-pop{font-size:12px;line-height:1.65;color:#241f1b;min-width:158px}
 .mv-pop__t{font-weight:700;font-size:12.5px;color:#1c1714}
@@ -2475,19 +2477,29 @@ function mvPoiDeoverlap(){
   if(!ms.length)return;
   ms.forEach(function(m){const nm=m.querySelector('.mv-poi__name');if(nm)nm.style.marginTop='0px';});
   const placed=[];
+  /* 日签（Dn 起 / Dn·地名）此前不在避让名单里，点位名被"往下推"时正好推进日签里，
+     两套标签各让各的、合起来还是糊的。这里把可见的日签先占位。 */
+  Array.prototype.slice.call(document.querySelectorAll('#mapCanvas .mv-dest span')).forEach(function(s){
+    if(getComputedStyle(s).display==='none')return;
+    const r=s.getBoundingClientRect();
+    if(r.width>0)placed.push({x:r.left,y:r.top,h:r.height+2});
+  });
   ms.forEach(function(m){
     const nm=m.querySelector('.mv-poi__name'),dot=m.querySelector('.mv-poi__dot');
     if(!nm||!dot)return;
     const dr=dot.getBoundingClientRect(), nr=nm.getBoundingClientRect();
     const w=nr.width||90, h=(nr.height||20)+2;
     let off=0;
-    for(let g=0;g<20;g++){
+    for(let g=0;g<6;g++){
       nm.style.marginTop=off+'px';
       const cur=nm.getBoundingClientRect();
       const clash=placed.some(function(p){return Math.abs(p.x-cur.left)<w&&Math.abs(p.y-cur.top)<h;});
       if(!clash)break;
       off+=h;
     }
+    /* 推 6 行还躲不开，说明这个视野下本来就放不下这么多名字：宁可不出，也不让它飘到别处去 */
+    if(off>=h*6){nm.style.visibility='hidden';return;}
+    nm.style.visibility='visible';
     placed.push({x:nm.getBoundingClientRect().left,y:nm.getBoundingClientRect().top});
   });
 }
@@ -2572,11 +2584,16 @@ function mvInit(){
   /* 只要是人手上的动作（滚轮、按下、双指），就让自动跟随退让 2.6 秒 */
   const _cv=document.getElementById('mapCanvas');
   if(_cv){['wheel','pointerdown','touchstart'].forEach(function(ev){_cv.addEventListener(ev,mvMarkManual,{passive:true});});}
-  mvMap.on('zoomend',function(){
-    const v=document.getElementById('mapView');if(!v)return;
-    v.classList.toggle('mv-lowzoom',mvMap.getZoom()<8.4);
-    mvPoiDeoverlapSoon(180);
-  });
+  /* 标签分几档显示，取决于这个视野下两个点之间到底有多少像素 —— 不能只靠 zoomend 触发：
+     首屏就是缩到整省的，那一屏根本没发生过 zoom 事件，标签会一次性全糊在一起。 */
+  function mvTier(){
+    const v=document.getElementById('mapView');if(!v||!mvMap)return;
+    const z=mvMap.getZoom();
+    v.classList.toggle('mv-lowzoom',z<10.5);   /* z<10.5：12km 的点只隔 20~90px，名字读不开，只留圆点 */
+    v.classList.toggle('mv-nolabel',z<9.0);    /* z<9：连日签也一并收起，只剩圆点 */
+  }
+  mvTier();
+  mvMap.on('zoomend',function(){ mvTier(); mvPoiDeoverlapSoon(180); });
   mvMap.on('moveend',function(){ mvPoiDeoverlapSoon(200); });
   mvMap.on('dblclick',mvMarkManual);
 
@@ -2640,23 +2657,31 @@ function mvInit(){
     buildTrip();
     mvBase.setLatLngs(GPTS);
     const DAY_PLACE=['乌市','阿勒泰','禾木','喀纳斯','布尔津','乌尔禾·独山子','赛里木湖','温泉县','乌市','机场还车'];
+    const _destGroups=[];
+    function _destPut(ll,kind,txt,anchor){
+      const g=_destGroups.find(function(x){return x.kind===kind&&Math.abs(x.ll[0]-ll[0])<0.02&&Math.abs(x.ll[1]-ll[1])<0.02;});
+      if(g){ if(g.txt.indexOf(txt)<0)g.txt.push(txt); return; }
+      _destGroups.push({ll:ll,kind:kind,txt:[txt],anchor:anchor});
+    }
     TRIP.forEach(function(d,i){
       const st=GPTS[DS[i]]||d.geom[0];
       const en=d.geom[d.geom.length-1];
       const pois=(mapDays[DAYS[i]]||{}).pois||[];
       const near=function(pt){return pois.some(function(p){return Math.abs(p[0]-pt[0])<0.02&&Math.abs(p[1]-pt[1])<0.02;});};
       /* 起终点本身就是行程要点时，编号标签已经说清楚了，不再叠一层没名字的白心圆点或半透明小药丸 */
-      if(!near(st)){
-        L.marker(st,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
-          html:'<span>'+DAYS[i]+' 起</span>',iconSize:[0,0],iconAnchor:[0,-9]})}).addTo(mvMap);
-      }
-      if(!near(en)){
-        L.marker(en,{interactive:false,zIndexOffset:700,icon:L.divIcon({className:'mv-dest',
-          html:'<span>'+DAYS[i]+' · '+(DAY_PLACE[i]||'')+'</span>',iconSize:[0,0],iconAnchor:[0,i===8?-30:-9]})}).addTo(mvMap);
-      }
+      if(!near(st)) _destPut(st,'start',DAYS[i]+' 起',-9);
+      if(!near(en)) _destPut(en,'end',DAYS[i]+' · '+(DAY_PLACE[i]||''),i===8?-30:-9);
+    });
+    /* 同一个经纬度上可能有两天的日签（D2 从乌市出发、D10 也从乌市出发），
+       以前会各贴一张、永远互相覆盖；并成一条「D2 起 / D10 起」更省地方也更准确。 */
+    _destGroups.forEach(function(g){
+      L.marker(g.ll,{interactive:false,zIndexOffset:700,icon:L.divIcon({
+        className:'mv-dest mv-dest--'+g.kind,
+        html:'<span>'+g.txt.join(' / ')+'</span>',iconSize:[0,0],iconAnchor:[0,g.anchor]})}).addTo(mvMap);
     });
     PV.km=0;PV.maxKm=0;renderProgress();
     mvPoiRender([DAYS[0]]);
+    mvTier();
     mvMap.flyToBounds(L.latLngBounds(TRIP[0].geom),{padding:[70,70],duration:1.1,maxZoom:10});
     mvHint('真实道路已载入 · 全长约 '+TRIP_TOTAL.toFixed(0)+' km，点日期看当天要点，按播放走全程');
     if(PV._wantPlay){PV._wantPlay=false;setPlaying(true);}
