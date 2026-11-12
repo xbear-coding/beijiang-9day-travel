@@ -27,6 +27,7 @@
   --text-secondary: #a8a098;
   --text-muted: #8a8580;
   --accent: #8a6a3f;
+  --accent-text: #d7ab74;   /* 暗底上的文字用色：与 accent 分工，accent 留给描边与块面 */
   --accent-hover: #b08a52;
   --border: #2a2826;
   --border-light: #3a3734;
@@ -46,6 +47,7 @@
   --text-secondary: #4d4843;
   --text-muted: #6f6a64;
   --accent: #8a6a3f;
+  --accent-text: #8a6a3f;   /* 浅底上沿用原来的深棕 */
   --accent-hover: #6e5432;
   --border: #d8d3c8;
   --border-light: #e8e3d8;
@@ -193,16 +195,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .tag-est{background:rgba(138,106,63,.15);color:var(--accent)}
 .tag-reserve{background:rgba(196,69,60,.15);color:var(--danger)}
 .settlement{background:var(--bg-card);border:1px solid var(--accent);padding:1.5rem;margin-top:2rem}
-.settlement__title{font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem;color:var(--accent)}
+.settlement__title{font-family:var(--font-serif);font-size:1.2rem;margin-bottom:1rem;color:var(--accent-text)}
 .settlement__row{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px dashed var(--border-light);font-size:.9rem}
-.settlement__row:last-child{border-bottom:none;font-weight:600;color:var(--accent);font-size:1rem}
+.settlement__row:last-child{border-bottom:none;font-weight:600;color:var(--accent-text);font-size:1rem}
 #suanzhang{padding-top:calc(var(--bar-h) + 18px)}
 .settlement{padding-top:1.9rem}
 .settlement__title{margin-top:.1rem}
 #suanzhang .expense-table{margin-top:.4rem}
 .settle-rule{font-size:.87rem;color:var(--text-secondary);line-height:1.75;margin:0 0 .5rem}
 .settle-note{font-size:.8rem;color:var(--text-muted);line-height:1.75;margin-top:1rem;padding-top:.8rem;border-top:1px dashed var(--border-light)}
-.settle-note strong{color:var(--accent)}
+.settle-note strong{color:var(--accent-text)}
 
 .weather-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-bottom:2rem}
 .weather-card{background:var(--bg-card);border:1px solid var(--border);padding:1rem;text-align:center}
@@ -713,8 +715,8 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
     <table class="lodge-table lodge-table--plans">
       <thead><tr><th>方案</th><th>住法</th><th>9晚住宿</th><th>全程总价</th><th>人均</th></tr></thead>
       <tbody>
-        <tr><td>三间大床</td><td>{{peopleCN}}人各住一间，逐晚实价×{{people}}</td><td>¥21,759</td><td>¥46,554</td><td id="planPerCap3">¥15,518</td></tr>
-        <tr><td>一间三床</td><td>{{peopleCN}}人同房（三人间/家庭房；D5、D7 无此房型，按两间双床计）</td><td>¥10,742</td><td>¥35,537</td><td>¥11,846</td></tr>
+        <tr><td>三间大床</td><td>{{peopleCN}}人各住一间，逐晚实价×{{people}}</td><td>¥21,759</td><td>¥46,354</td><td id="planPerCap3">¥15,451</td></tr>
+        <tr><td>一间三床</td><td>{{peopleCN}}人同房（三人间/家庭房；D5、D7 无此房型，按两间双床计）</td><td>¥10,742</td><td>¥35,337</td><td>¥11,779</td></tr>
         <tr><td>一间标间（2 人）</td><td>两人出行，1 间标间或大床，人均分摊</td><td>¥7,253</td><td>—</td><td>房费人均 ¥3,627</td></tr>
       </tbody>
     </table>
@@ -952,7 +954,7 @@ const itinerary = [
     day: "D1",
     date: "12月09日 · 周三 · 各地 → 乌鲁木齐",
     rows: [
-      {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总与怡哥（长沙）同机 CZ6882 预计15:30到；熊大（深圳）ZH9241 预计17:10到，机场会合。"},
+      {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总（长沙）CZ6882 预计15:30到；怡哥与熊大（深圳）同机 ZH9241 预计17:10到，机场会合。"},
       {t: "18:00", loc: "乌市取车", act: "机场取四驱SUV+雪地胎（已预留）。取车后直奔酒店放行李。", note: "检查胎压、防冻液"},
       {t: "20:00", loc: "乌市", act: "晚饭：馬风花·大盘鸡（建设路，乌鲁木齐美食热门榜第1）。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
     ],
@@ -1062,7 +1064,7 @@ const itinerary = [
     date: "12月18日 · 周五 · 乌鲁木齐 → 各地",
     rows: [
       {t: "09:00", loc: "乌市", act: "退房还车，三人行李一次装车。", note: "还车前加满油"},
-      {t: "12:00", loc: "机场", act: "各自安检。刘总与怡哥 CZ6881 预计14:00；熊大 ZH9242 预计16:00。"},
+      {t: "12:00", loc: "机场", act: "各自安检。刘总 CZ6881 预计14:00；怡哥与熊大同机 ZH9242 预计16:00。"},
       {t: "—", loc: "归途", act: "刘总负责浪漫，熊大负责兜底，怡哥负责把酒喝明白。下次再约。"},
     ],
   },
@@ -1122,9 +1124,9 @@ const restaurants = [
 /*DATA:expenses:START —— tools/build.py 从 data/trip.json 生成，勿手改*/
 const expenses = [
   {cat:'机票（三人）',items:[
-      {name:'长沙→乌市往返（$M0）',detail:'CZ6882＋CZ6881，与$M1同机',amount:'1,600',who:'$M0',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
-      {name:'长沙→乌市往返（$M1）',detail:'CZ6882＋CZ6881，与$M0同机',amount:'1,600',who:'$M1',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
-      {name:'深圳→乌市往返（$M2）',detail:'ZH9241＋ZH9242',amount:'1,400',who:'$M2',nature:'查到',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'}
+      {name:'长沙→乌市往返（$M0）',detail:'CZ6882＋CZ6881，单人单飞',amount:'1,600',who:'$M0',nature:'查到',ref:'南航官网↗',refUrl:'https://www.csair.com/'},
+      {name:'深圳→乌市往返（$M1）',detail:'ZH9241＋ZH9242，与$M2同机',amount:'1,400',who:'$M1',nature:'查到·同$M2价',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'},
+      {name:'深圳→乌市往返（$M2）',detail:'ZH9241＋ZH9242，与$M1同机',amount:'1,400',who:'$M2',nature:'查到',ref:'深航官网↗',refUrl:'https://www.shenzhenair.com/'}
     ]},
   {cat:'住宿（9晚·三间大床·中档基准）',items:[
       {name:'乌市希尔顿×2晚（三间）',detail:'D1 和 D9 两晚，三间',amount:'4,680',who:'公摊',nature:'估算',ref:'携程店页↗',refUrl:'https://hotels.ctrip.com/hotels/2386590.html?checkin=2026-12-09&checkout=2026-12-11'},
@@ -1375,7 +1377,7 @@ function renderExpenses(){
     <p class="settle-rule">这趟说好由${_PAY}统一刷卡，${_OTHERS.join('和')}不用先掏钱，回来各转一笔就完事。</p>
     ${rows}
     <div class="settlement__row"><span>${_PCN}个人一共</span><span>${members.map(m=>m+' ¥'+due[m].toLocaleString()).join(' · ')} ＝ ¥${members.reduce((a,m)=>a+due[m],0).toLocaleString()}</span></div>
-    <p class="settle-note">每个人该出多少 = 自己那几笔 + 平摊的一份。三档合计 ¥46,554，摊成一样是每人 ¥15,518；机票各买各的，所以按上面那列给。</p>`;
+    <p class="settle-note">每个人该出多少 = 自己那几笔 + 平摊的一份。三档合计 ¥46,354，摊成一样是每人 ¥15,451；机票各买各的，所以按上面那列给。</p>`;
 
   /* —— 按人拆账：自己单独出的 / 大家一起花的，各算一块 —— */
   const sharedByCat=[];
