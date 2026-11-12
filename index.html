@@ -956,7 +956,7 @@ const itinerary = [
     rows: [
       {t: "全天", loc: "长沙/深圳", act: "三人各自飞乌鲁木齐。刘总（长沙）CZ6882 预计15:30到；怡哥与熊大（深圳）同机 ZH9241 预计17:10到，机场会合。"},
       {t: "18:00", loc: "乌市取车", act: "机场取四驱SUV+雪地胎（已预留）。取车后直奔酒店放行李。", note: "检查胎压、防冻液"},
-      {t: "20:00", loc: "乌市", act: "晚饭：馬风花·大盘鸡（建设路，乌鲁木齐美食热门榜第1）。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
+      {t: "20:00", loc: "乌市", act: "晚饭：馬风花·大盘鸡（机场店，迎宾路393号维多利亚酒店院内，距机场3公里，11:00-22:00）。", link: {href: "https://m.dianping.com/shop/l87PzE1sWwA03Rgo", label: "大众点评↗"}},
     ],
     lodge: "<strong>宿乌市 · 希尔顿（米东区红光山路 1237 号）</strong> 备选华凌智享。双床 45㎡ 实价 780。到乌市第一晚住得离机场近，暖气足、24 小时热水、能免费寄存行李，第二天上高速方便。",
     alt: "备选：如航班延误超2小时，直接酒店外卖，不赶饭点。",
@@ -1113,6 +1113,7 @@ const hotels = [
 /*DATA:restaurants:START —— tools/build.py 从 data/trip.json 生成，勿手改*/
 const restaurants = [
   {name:'馬风花·新疆菜·大盘鸡（人民电影院店）',ll:[43.798587,87.616025],geo:'area',addr:'乌市天山区建设路成基大厦1楼底商（近国际大巴扎）',tel:'—',price:'人均50',hours:'12:00-次日',img:'assets/food_mafenghua.jpg',imgs:['assets/food_mafenghua_1.jpg','assets/food_mafenghua_2.jpg','assets/food_mafenghua_3.jpg','assets/food_mafenghua_4.jpg'],score:['点评4.7','15228条'],tags:['乌鲁木齐美食热门榜第1'],warn:'D1 落地第一顿、D9 逛完大巴扎的夜宵，都定这家——走 300 米就到。12:00 才开门，别上午去；有包厢大桌，三人到店直接说要大桌',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l87PzE1sWwA03Rgo'},
+  {name:'馬风花·大盘鸡·歌舞露天烧烤（机场店）',ll:[43.893,87.47],geo:'area',addr:'乌市新市区迎宾路393号维多利亚酒店院内（距机场约3公里）',tel:'—',price:'人均50',hours:'11:00-22:00',img:'assets/food_mafenghua.jpg',imgs:['assets/food_mafenghua_1.jpg','assets/food_mafenghua_2.jpg','assets/food_mafenghua_3.jpg','assets/food_mafenghua_4.jpg'],score:['点评4.7','品牌合计15228条'],tags:['乌鲁木齐美食热门榜第1','机场落地第一顿'],warn:'D1 落地第一顿就在这儿：出机场 3 公里，吃完再进市区。11:00-22:00，晚到也不怕；三人到店直接要包间。门脸与菜品图为品牌实拍（建设路店），机场店门头到店再认。',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l87PzE1sWwA03Rgo'},
   {name:'乡村馕坑肉（阿勒泰首店）',ll:[47.829092,88.13012],geo:'street',addr:'阿勒泰市团结路十区173-1栋',tel:'—',price:'人均83',hours:'12:00-次日',img:'assets/food_xiangcun.jpg',imgs:['assets/food_xiangcun_1.jpg','assets/food_xiangcun_2.jpg','assets/food_xiangcun_3.jpg','assets/food_xiangcun_4.jpg'],score:['点评4.1','5238条'],tags:['阿勒泰新疆菜榜第2'],warn:'D2 晚饭。馕坑肉、烤羊排、自制酸奶是前三名推荐；免费停车，冬天车别停外面过夜',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/Ew0MxjJQa6r1rZAT'},
   {name:'煲来饱去冷水鱼（布尔津）',ll:[47.701771,86.86208],geo:'door',addr:'布尔津友谊峰路美食四季夜市一楼二楼',tel:'—',price:'人均75',hours:'营业至02:00',img:'assets/food_baolai.jpg',imgs:['assets/food_baolai_1.jpg','assets/food_baolai_2.jpg','assets/food_baolai_3.jpg','assets/food_baolai_4.jpg'],score:['点评4.4','3415条'],tags:['狗鱼一鱼两吃'],warn:'D5 晚饭。642 人推荐爆炒野生狗鱼块，429 人推荐红烧狗鱼——点一条狗鱼两吃最划算。夜市同一家店上下两层，先看菜单再落座，问清按条还是按斤',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/H4swvmAqdrEiNyvS'},
   {name:'阿吾丹·非遗手抓饭（乌尔禾店）',ll:[46.089542,85.692495],geo:'street',addr:'克拉玛依乌尔禾区柳树街8-121号',tel:'—',price:'人均59',hours:'08:00-次日',img:'assets/food_awudan.jpg',imgs:['assets/food_awudan_1.jpg','assets/food_awudan_2.jpg','assets/food_awudan_3.jpg','assets/food_awudan_4.jpg'],score:['点评4.6','1354条'],tags:['乌尔禾美食热门榜第1'],warn:'D6 看完魔鬼城的午饭，就在镇中心，比景区门口强一档。羊拐抓饭、碎肉抓饭、现榨沙棘汁；08:00 开门，赶早不排队',ref:'大众点评↗',refUrl:'https://m.dianping.com/shop/l3gAGB8eERXy9cEi'},
@@ -1467,7 +1468,7 @@ function stampNow(){const d=new Date();return d.getFullYear()+'-'+String(d.getMo
 function dayIndex(){const n=new Date();const t0=new Date(n.getFullYear(),n.getMonth(),n.getDate());return Math.round((t0-TRIP_START)/86400000);}
 /* 今天页三格速览：今天走哪、今晚住哪、今晚吃哪——车上最高频的三个问题 */
 const DAY_STAY={1:'希尔顿（乌市）',2:'金桥假日酒店（阿勒泰）',3:'无也民宿（禾木）',4:'停泊STAY·坐忘民宿（喀纳斯图瓦村）',5:'知禾·设计师艺术民宿（布尔津）',6:'独山子玛依塔柯酒店',7:'赛里木湖逸扉酒店',8:'花间堂·阿日相（温泉县）',9:'希尔顿（乌市）'};
-const DAY_EAT={1:'馬风花·新疆菜·大盘鸡（人民电影院店）',2:'乡村馕坑肉（阿勒泰首店）',5:'煲来饱去冷水鱼（布尔津）',6:'阿吾丹·非遗手抓饭（乌尔禾店）',7:'高白鲑餐吧（克勒涌珠店）',8:'旺福楼酒店（温泉县）',9:'馬风花·新疆菜·大盘鸡（人民电影院店）'};
+const DAY_EAT={1:'馬风花·大盘鸡·歌舞露天烧烤（机场店）',2:'乡村馕坑肉（阿勒泰首店）',5:'煲来饱去冷水鱼（布尔津）',6:'阿吾丹·非遗手抓饭（乌尔禾店）',7:'高白鲑餐吧（克勒涌珠店）',8:'旺福楼酒店（温泉县）',9:'馬风花·新疆菜·大盘鸡（人民电影院店）'};
 function findByName(arr,n){for(var i=0;i<arr.length;i++){if(arr[i].name===n)return arr[i];}return null;}
 function mapLink(name){return '<a href="https://uri.amap.com/search?keyword='+encodeURIComponent(name)+'" target="_blank" rel="noopener">看位置↗</a>';}
 function renderToday(){
@@ -2015,8 +2016,9 @@ function decorateA11y(){
 
 /* 卡片上的站点编号：只标地图上真放得出的点，其余不标——编号就是"去地图上找这个点" */
 const CARD_CODE={
-  '希尔顿（乌市）':['D1-2','D9-5'],
-  '馬风花·新疆菜·大盘鸡（人民电影院店）':['D1-3','D9-3'],
+  '希尔顿（乌市）':['D1-3','D9-5'],
+  '馬风花·大盘鸡·歌舞露天烧烤（机场店）':['D1-2'],
+  '馬风花·新疆菜·大盘鸡（人民电影院店）':['D9-3'],
   '金桥假日酒店（阿勒泰）':['D2-2'],
   '独山子玛依塔柯酒店':['D6-4'],
   '赛里木湖逸扉酒店':['D7-3'],
@@ -2055,7 +2057,7 @@ setTimeout(()=>document.querySelectorAll('.hero .reveal').forEach(el=>el.classLi
 
 /* ===== 独立页面：路书地图（真实道路 + 播放控制） ===== */
 const mapDays = {
-  D1: {t:'各地 → 乌鲁木齐', note:'机场到市区 20.6 km；晚上去馬风花吃饭再回酒店，往返约 17 km', pts:[[43.917435,87.479638],[43.876259,87.615089],[43.798587,87.616025],[43.876259,87.615089]], pois:[[43.917435,87.479638,'乌市机场','交通'],[43.876259,87.615089,'乌市希尔顿','住宿'],[43.798587,87.616025,'馬风花','餐饮']]},
+  D1: {t:'各地 → 乌鲁木齐', note:'落地先吃机场店的馬风花（出机场 3 km），吃完进市区住希尔顿（约 18 km）', pts:[[43.917435,87.479638],[43.893,87.47],[43.876259,87.615089]], pois:[[43.917435,87.479638,'乌市机场','交通'],[43.893,87.47,'馬风花机场店','餐饮'],[43.876259,87.615089,'乌市希尔顿','住宿']]},
   D2: {t:'乌市 → 阿勒泰', note:'全程走阿乌高速 + 奎阿高速，492 km、约 4 小时 50 分，中途在三个泉子停车区歇一次', pts:[[43.876259,87.615089],[46.166669,87.573401],[47.827,88.132603]], pois:[[46.166669,87.573401,'三个泉子服务区','补给'],[47.827,88.132603,'金桥假日','住宿'],[47.829092,88.130120,'乡村馕坑肉','餐饮']]},
   D3: {t:'阿勒泰 → 禾木', note:'走阿禾公路（冬季 10:00–14:00 双向放行，只许雪地胎七座以下四驱），209 km 无加油站，沿途 31 处停车区、25 处临时卫生间；若封路改绕布尔津，262 km、约 4 小时 20 分', pts:[[47.827,88.132603],[47.991632,88.25937],[48.571918,87.432881]], pois:[[47.991632,88.25937,'小东沟检查站','路况'],[48.57805,87.4414,'禾木村','景点'],[48.577775,87.430497,'哈登观景台','打卡'],[48.571918,87.432881,'无也民宿','住宿'],[48.571849,87.430858,'禾木桥','打卡']]},
   D4: {t:'禾木 → 喀纳斯', note:'经贾登峪进景区，进山主路只有一条，依次过三湾再进图瓦村；停泊到湖边 2.9 km', pts:[[48.571918,87.432881],[48.64093,87.045609],[48.698999,87.00435],[48.786223,87.057447]], pois:[[48.64093,87.045609,'喀纳斯三湾','景点'],[48.698999,87.00435,'停泊STAY','住宿'],[48.786223,87.057447,'喀纳斯湖','景点']]},
